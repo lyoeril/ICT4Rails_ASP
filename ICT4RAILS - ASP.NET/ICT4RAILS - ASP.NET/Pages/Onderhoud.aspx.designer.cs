@@ -11,7 +11,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 {
 
 
-    public partial class Index
+    public partial class Onderhoud
     {
     }
 }

@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Pages/MasterPage.Master" AutoEventWireup="true" CodeBehind="SubMasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.SubMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Form" runat="server">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <!--<a class="navbar-brand logo" href="index.aspx"><img src="INSERT ICON HERE"/></a>!-->
+                    <a class="navbar-brand" href="Overzicht.aspx">ICT4Rails</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="overzicht"><a href="Overzicht.aspx">Overzicht</a></li>
+                    <li class="onderhoud"><a href="Onderhoud.aspx">Onderhoud</a></li>
+                    <li class="statusbeheer"><a href="Statusbeheer.aspx">Statusbeheer</a></li>
+                    <li class="accountbeheer"><a href="Accountbeheer.aspx">Accountbeheer</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="login"><a href="Index.aspx">Uitloggen</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="CPHBody" runat="server"></asp:ContentPlaceHolder>
+        </div>
+</asp:Content>

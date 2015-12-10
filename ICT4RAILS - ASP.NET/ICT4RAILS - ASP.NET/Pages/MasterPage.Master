@@ -4,9 +4,6 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <!--Title!-->
-    <asp:ContentPlaceHolder ID="title" runat="server"></asp:ContentPlaceHolder>
-
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,7 +13,7 @@
     <link rel="stylesheet" href="/css/Master.css" />
 
     <!--CSS files!-->
-    <asp:ContentPlaceHolder ID="css" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -26,7 +23,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            <!--Form!-->
+            <asp:ContentPlaceHolder ID="Form" runat="server"></asp:ContentPlaceHolder>
         </div>
     </form>
 </body>

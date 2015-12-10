@@ -70,9 +70,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\Index.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Pages\Accountbeheer.aspx" />
+    <Content Include="Pages\Index.aspx" />
     <Content Include="Pages\MasterPage.Master" />
+    <Content Include="Pages\Onderhoud.aspx" />
+    <Content Include="Pages\Overzicht.aspx" />
+    <Content Include="Pages\Statusbeheer.aspx" />
+    <Content Include="Pages\SubMasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -103,6 +108,13 @@
     <Compile Include="database\InsertScripts.cs" />
     <Compile Include="database\SelectScripts.cs" />
     <Compile Include="database\UpdateScripts.cs" />
+    <Compile Include="Pages\Accountbeheer.aspx.cs">
+      <DependentUpon>Accountbeheer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Accountbeheer.aspx.designer.cs">
+      <DependentUpon>Accountbeheer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,6 +128,34 @@
     </Compile>
     <Compile Include="Pages\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Onderhoud.aspx.cs">
+      <DependentUpon>Onderhoud.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Onderhoud.aspx.designer.cs">
+      <DependentUpon>Onderhoud.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Overzicht.aspx.cs">
+      <DependentUpon>Overzicht.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Overzicht.aspx.designer.cs">
+      <DependentUpon>Overzicht.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Statusbeheer.aspx.cs">
+      <DependentUpon>Statusbeheer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Statusbeheer.aspx.designer.cs">
+      <DependentUpon>Statusbeheer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SubMasterPage.master.cs">
+      <DependentUpon>SubMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\SubMasterPage.master.designer.cs">
+      <DependentUpon>SubMasterPage.master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

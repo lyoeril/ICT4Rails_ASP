@@ -13,22 +13,13 @@ namespace ICT4RAILS___ASP.NET {
     public partial class MasterPage {
         
         /// <summary>
-        /// title control.
+        /// CSS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder title;
-        
-        /// <summary>
-        /// css control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder css;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder CSS;
         
         /// <summary>
         /// form1 control.
@@ -40,12 +31,12 @@ namespace ICT4RAILS___ASP.NET {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// Form control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Form;
     }
 }

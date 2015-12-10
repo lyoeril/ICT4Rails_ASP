@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ICT4RAILS___ASP.NET.Pages
 {
-    public partial class Index : System.Web.UI.Page
+    public partial class SubMasterPage : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
