@@ -11,10 +11,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public string Naam { get; set; }
         public Functie Functie { get; set; }
 
-        public Medewerker(int id, string naam)
+        public Medewerker(int id, string naam, Functie functie)
         {
-            this.ID = id;
-            this.Naam = naam;
+            ID = id;
+            Naam = naam;
+            Functie = functie;
         }
 
         public override string ToString()
