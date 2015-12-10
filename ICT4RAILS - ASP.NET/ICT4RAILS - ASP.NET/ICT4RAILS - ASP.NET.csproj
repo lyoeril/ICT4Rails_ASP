@@ -48,6 +48,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.2400\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -95,6 +99,10 @@
     <Compile Include="Csharp\Tram.cs" />
     <Compile Include="Csharp\TramOnderhoud.cs" />
     <Compile Include="Csharp\TramType.cs" />
+    <Compile Include="database\Database.cs" />
+    <Compile Include="database\InsertScripts.cs" />
+    <Compile Include="database\SelectScripts.cs" />
+    <Compile Include="database\UpdateScripts.cs" />
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

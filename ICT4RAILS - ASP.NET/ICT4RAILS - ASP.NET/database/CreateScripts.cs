@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace ICT4RAILS___ASP.NET.database
 {
-    public partial class Database
+    class CreateScripts
     {
-
     }
 }
