@@ -15,6 +15,9 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public bool Defect { get; set; }
         public bool ConducteurGeschikt { get; set; }
         public bool Beschikbaar { get; set; }
+        public TramOnderhoud Onderhoud { get; set; }
+        public TramType TramType { get; set; }
+        public Lijn Lijn { get; set; }
 
         public Tram(int id, int nummer, int lengte, string status)
         {

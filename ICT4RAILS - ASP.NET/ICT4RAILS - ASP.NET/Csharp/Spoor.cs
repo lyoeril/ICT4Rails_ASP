@@ -11,6 +11,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public int Lengte { get; set; }
         public bool Beschikbaar { get; set; }
         public bool InUitrijSpoor { get; set; }
+        public List<Sector> Sectoren { get; set; }
 
         public Spoor(int nummer, int lengte, bool beschikbaar, bool inuitrijspoor)
         {
