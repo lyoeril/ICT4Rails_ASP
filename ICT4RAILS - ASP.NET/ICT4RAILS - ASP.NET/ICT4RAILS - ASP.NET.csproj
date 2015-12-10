@@ -70,6 +70,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\Accountbeheer.css" />
+    <Content Include="CSS\Onderhoud.css" />
+    <Content Include="CSS\Overzicht.css" />
+    <Content Include="CSS\Statusbeheer.css" />
     <Content Include="Images\Backgrounds\Railroad_Rails.jpg" />
     <Content Include="Images\Backgrounds\Railroad_Rails_Colorsplash_1920x1080.jpg" />
     <Content Include="Images\Icons\TramIcon.png" />
@@ -90,7 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\bootstrap.css" />
-    <Content Include="CSS\signin.css" />
+    <Content Include="CSS\Login.css" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="Web.config" />
   </ItemGroup>

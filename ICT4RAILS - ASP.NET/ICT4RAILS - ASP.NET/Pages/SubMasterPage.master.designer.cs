@@ -13,6 +13,15 @@ namespace ICT4RAILS___ASP.NET.Pages {
     public partial class SubMasterPage {
         
         /// <summary>
+        /// CSS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder CSS;
+        
+        /// <summary>
         /// CPHBody control.
         /// </summary>
         /// <remarks>

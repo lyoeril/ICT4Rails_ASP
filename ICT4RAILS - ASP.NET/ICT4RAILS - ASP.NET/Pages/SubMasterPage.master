@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Pages/MasterPage.Master" AutoEventWireup="true" CodeBehind="SubMasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.SubMasterPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
+            <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Form" runat="server">
         <nav class="navbar navbar-default navbar-fixed-top">
