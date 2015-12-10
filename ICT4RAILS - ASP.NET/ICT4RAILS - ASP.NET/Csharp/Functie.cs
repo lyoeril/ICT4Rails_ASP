@@ -21,7 +21,33 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
         public override string ToString()
         {
-            return base.ToString();
+            string idString;
+            if (ID == 0)
+            {
+                idString = "Onbekend";
+            }
+            else
+            {
+                idString = ID.ToString();
+            }
+
+            string rechtenString = "";
+            if (Rechten == null)
+            {
+                rechtenString = "Onbekend";
+            }
+            else
+            {
+                foreach (Recht r in Rechten)
+                {
+                    rechtenString = rechtenString + r.ID;
+                }
+            }
+
+            string info = "FunctieID: " + idString
+                 + ", RechtenID: " + rechtenString;
+
+            return info;
         }
     }
 }

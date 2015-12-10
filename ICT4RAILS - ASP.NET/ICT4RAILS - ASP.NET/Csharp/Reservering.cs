@@ -22,7 +22,52 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
         public override string ToString()
         {
-            return base.ToString();
+            string idString;
+            if (ID == 0)
+            {
+                idString = "Onbekend";
+            }
+            else
+            {
+                idString = ID.ToString();
+            }
+
+            string tramString;
+            if (Tram == null)
+            {
+                tramString = "Onbekend";
+            }
+            else
+            {
+                tramString = Tram.ID.ToString();
+            }
+
+            string spoorString;
+            if (Spoor == null)
+            {
+                spoorString = "Onbekend";
+            }
+            else
+            {
+                spoorString = Spoor.Nummer.ToString();
+            }
+
+            string sectorString;
+            if (Sector == null)
+            {
+                sectorString = "Onbekend";
+            }
+            else
+            {
+                sectorString = Sector.ID.ToString();
+            }
+
+            string info = "ReserveringID: " + idString
+                 + ", TramID: " + tramString
+                 + ", Spoornummer: " + spoorString
+                 + ", SectorID: " + sectorString;
+
+            return info;        
         }
     }
 }
