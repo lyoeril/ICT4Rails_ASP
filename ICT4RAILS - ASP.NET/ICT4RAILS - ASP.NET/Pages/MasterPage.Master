@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.MasterPage" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.MasterPage" %>
 
 <!DOCTYPE html>
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ICT4RAILS___ASP.NET {
+namespace ICT4RAILS___ASP.NET.Pages {
     
     
     public partial class MasterPage {

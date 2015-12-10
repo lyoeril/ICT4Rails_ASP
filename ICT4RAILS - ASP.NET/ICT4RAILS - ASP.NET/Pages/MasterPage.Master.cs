@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ICT4RAILS___ASP.NET
+namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class MasterPage : System.Web.UI.MasterPage
     {
