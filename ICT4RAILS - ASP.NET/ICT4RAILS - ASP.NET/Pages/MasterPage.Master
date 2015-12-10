@@ -20,6 +20,6 @@
 </head>
 
 <body>
-    <asp:ContentPlaceHolder ID="Form" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
 </body>
 </html>
