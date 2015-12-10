@@ -36,15 +36,16 @@ namespace ICT4RAILS___ASP.NET.database
             List<Recht> rechtenList = new List<Recht>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT R.ID, R.\"Omschrijving\" FROM FUNCTIE_RECHT FR, RECHT R WHERE FR.\"Functie_ID\" = 1 and R.ID = FR.\"Recht_ID\"";
+                string query = "SELECT R.ID, R.\"Omschrijving\" FROM FUNCTIE_RECHT FR, RECHT R WHERE FR.\"Functie_ID\" = :paraID and R.ID = FR.\"Recht_ID\"";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
+                    command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             rechtenList.Add(CreateRechtFromReader(reader));
-                            
+
                         }
                     }
                 }
@@ -69,6 +70,26 @@ namespace ICT4RAILS___ASP.NET.database
                 }
             }
             return functielList;
+        }
+        public Functie SelectFunctie(int id)
+        {
+            Functie localFunctie = null;
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT F.ID, F.\"Naam\" FROM FUNCTIE F WHERE F.ID = :paraID and ROWNUM <=1";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("paraID", id));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            localFunctie = CreateFunctieFromReader(reader);
+                        }
+                    }
+                }
+            }
+            return localFunctie;
         }
     }
 }

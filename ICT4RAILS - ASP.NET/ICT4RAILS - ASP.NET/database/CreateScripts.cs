@@ -10,17 +10,16 @@ namespace ICT4RAILS___ASP.NET.database
 {
     public partial class Database
     {
-        /*
+        
         private Medewerker CreateMedewerkerFromReader(OracleDataReader reader)
         {
             return new Medewerker(
                 Convert.ToInt32(reader["ID"]),
-                Convert.ToString(reader["Naam"])
-
-                );
-           
+                Convert.ToString(reader["Naam"]),
+                SelectFunctie(Convert.ToInt32(reader["Functie_ID"]))
+                );           
         }
-        */
+        
 
         private Recht CreateRechtFromReader(OracleDataReader reader)
         {
