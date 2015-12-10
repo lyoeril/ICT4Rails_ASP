@@ -86,9 +86,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="css\bootstrap.css" />
-    <Content Include="css\signin.css" />
-    <Content Include="js\bootstrap.js" />
+    <Content Include="CSS\bootstrap.css" />
+    <Content Include="CSS\signin.css" />
+    <Content Include="JS\bootstrap.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -104,10 +104,11 @@
     <Compile Include="Csharp\Tram.cs" />
     <Compile Include="Csharp\TramOnderhoud.cs" />
     <Compile Include="Csharp\TramType.cs" />
-    <Compile Include="database\Database.cs" />
-    <Compile Include="database\InsertScripts.cs" />
-    <Compile Include="database\SelectScripts.cs" />
-    <Compile Include="database\UpdateScripts.cs" />
+    <Compile Include="Database\CreateScripts.cs" />
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\InsertScripts.cs" />
+    <Compile Include="Database\SelectScripts.cs" />
+    <Compile Include="Database\UpdateScripts.cs" />
     <Compile Include="Pages\Accountbeheer.aspx.cs">
       <DependentUpon>Accountbeheer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

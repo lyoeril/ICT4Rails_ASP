@@ -18,7 +18,30 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
         public override string ToString()
         {
-            return base.ToString();
+            string idString;
+            if (ID == 0)
+            {
+                idString = "Onbekend";
+            }
+            else
+            {
+                idString = ID.ToString();
+            }
+
+            string omschrijvingString;
+            if (Omschrijving == "")
+            {
+                omschrijvingString = "Onbekend";
+            }
+            else
+            {
+                omschrijvingString = Omschrijving;
+            }
+
+            string info = "TramTypeID: " + idString
+                 + ", Omschrijving: " + omschrijvingString;
+
+            return info;
         }
     }
 }
