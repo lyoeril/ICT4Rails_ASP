@@ -13,6 +13,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public int KleineServiceBeurtenPerDag { get; set; }
         public int GroteSchoonmaakBeurtenPerDag { get; set; }
         public int KleineSchoonmaakBeurtenPerDag { get; set; }
+        public List<Spoor> Sporen { get; set; }
+        public List<Tram> Trams { get; set; }
+        public List<Lijn> Lijnen { get; set; }
+        public List<Reservering> Reserveringen { get; set; }
 
         public Remise(int id, string naam, int groteservice, int kleineservice, int groteschoonmaak, int kleineschoonmaak)
         {

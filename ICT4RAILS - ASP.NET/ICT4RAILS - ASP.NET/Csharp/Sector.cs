@@ -11,6 +11,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public int Nummer { get; set; }
         public bool Beschikbaar { get; set; }
         public bool Blokkade { get; set; }
+        public Tram Tram { get; set; }
 
         public Sector(int id, int nummer, bool beschikbaar, bool blokkade)
         {
@@ -18,6 +19,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             this.Nummer = nummer;
             this.Beschikbaar = beschikbaar;
             this.Blokkade = blokkade;
+            this.Tram = null;
         }
 
         public override string ToString()
