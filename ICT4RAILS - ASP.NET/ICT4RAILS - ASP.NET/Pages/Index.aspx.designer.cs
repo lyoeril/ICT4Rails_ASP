@@ -11,7 +11,7 @@ namespace ICT4RAILS___ASP.NET
 {
 
 
-    public partial class WebForm1
+    public partial class Index
     {
     }
 }
