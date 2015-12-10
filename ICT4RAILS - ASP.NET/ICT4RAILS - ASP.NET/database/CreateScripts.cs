@@ -35,7 +35,9 @@ namespace ICT4RAILS___ASP.NET.database
             int functieid = Convert.ToInt32(reader["ID"]);
             List<Recht> rechtenList = GetAllRechten(functieid);
             return new Functie(
-                Convert.ToInt32(reader["ID"]), rechtenList
+                Convert.ToInt32(reader["ID"]),
+                Convert.ToString(reader["Naam"]), 
+                rechtenList
                 );
         }
     }

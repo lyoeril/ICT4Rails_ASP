@@ -9,13 +9,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
     {
         public int ID { get; private set; }
 
-        public string Recht { get; set; }
+        public string Naam { get; set; }
         public List<Recht> Rechten { get; set; }
 
-        public Functie(int id, string recht,List<Recht> rechten)
+        public Functie(int id, string naam,List<Recht> rechten)
         {
             this.ID = id;
-            this.Recht = recht;
+            this.Naam = naam;
             this.Rechten = rechten;
         }
 
