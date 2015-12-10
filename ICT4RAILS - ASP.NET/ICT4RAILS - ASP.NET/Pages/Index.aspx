@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
     <link rel="stylesheet" href="/css/Login.css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Form" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Form" class="form-signin" runat="server">
     <div class="container">
         <h2 class="form-signin-heading">Inloggen</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
