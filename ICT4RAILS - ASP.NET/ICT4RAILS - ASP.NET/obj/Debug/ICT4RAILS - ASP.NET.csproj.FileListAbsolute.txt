@@ -59,3 +59,24 @@ C:\Users\VINK\Documents\Github repositories\ICT4RAILS_ASP\ICT4RAILS - ASP.NET\IC
 C:\Users\VINK\Documents\Github repositories\ICT4RAILS_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.csprojResolveAssemblyReference.cache
 C:\Users\VINK\Documents\Github repositories\ICT4RAILS_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.dll
 C:\Users\VINK\Documents\Github repositories\ICT4RAILS_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.pdb
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\csc.exe
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\vbc.exe
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\VBCSCompiler.exe
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\ICT4RAILS - ASP.NET.dll.config
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\ICT4RAILS - ASP.NET.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\ICT4RAILS - ASP.NET.pdb
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.csprojResolveAssemblyReference.cache
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.dll
+C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.pdb
