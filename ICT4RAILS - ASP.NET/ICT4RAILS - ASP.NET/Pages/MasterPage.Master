@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="icon" href="/Images/Icons/TramIcon.png"/>
-    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/CSS/bootstrap.css" />
 
     <!--CSS files!-->
     <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
@@ -20,11 +20,6 @@
 </head>
 
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <!--Form!-->
-            <asp:ContentPlaceHolder ID="Form" runat="server"></asp:ContentPlaceHolder>
-        </div>
-    </form>
+    <asp:ContentPlaceHolder ID="Form" runat="server"></asp:ContentPlaceHolder>
 </body>
 </html>

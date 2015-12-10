@@ -81,3 +81,18 @@ C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - AS
 C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.dll
 C:\Users\Mastermouse\Documents\GitHub\Ict4Rails new\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\obj\Debug\ICT4RAILS - ASP.NET.pdb
 C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\csc.exe.config
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\csc.rsp
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\csi.exe
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\csi.rsp
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.AppContext.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.Console.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\vbc.exe.config
+C:\Users\Robin\Documents\GitHub\ICT4Rails_ASP\ICT4RAILS - ASP.NET\ICT4RAILS - ASP.NET\bin\roslyn\vbc.rsp
