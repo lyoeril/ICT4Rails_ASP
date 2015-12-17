@@ -12,12 +12,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public class ActiveDirectory
     {
-        private string sDomain = "192.168.20.109";
+        private string sDomain = "192.168.19.217";
         private string sServiceUser = "Administrator";
         private string sDefaultOU = "DC=local";
-        private string sServicePassword = "Password1!";
+        private string sServicePassword = "Welkom123";
 
-        DirectoryEntry DE = new DirectoryEntry("LDAP://192.168.20.109", "Administrator", "Password1!");
+        DirectoryEntry DE = new DirectoryEntry("LDAP://192.168.19.217", "Administrator", "Password1!");
         public bool ValidateUser(string userName, string password)
         {
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, sDomain);
@@ -25,7 +25,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
             isValid = pc.ValidateCredentials(userName, password);
             return isValid;
         }
-
         public bool AddUser(string username, string firstname, string lastname, string password)
         {
             DirectoryEntry objADAM; // Binding object.
@@ -33,7 +32,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
             string strDisplayName = firstname + " " + lastname;
             string strUser = username;
-            string strUserPrincipalName = strUser + "@Reeendal.info";
+            string strUserPrincipalName = strUser + "@PTS17.local";
             string samacct;
 
             const long ADS_OPTION_PASSWORD_PORTNUMBER = 6;

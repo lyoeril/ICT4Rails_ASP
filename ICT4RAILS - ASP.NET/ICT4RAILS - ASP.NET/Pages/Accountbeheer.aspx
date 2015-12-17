@@ -7,7 +7,7 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li>
-                    <a href="#">Create Account</a>
+                    <a href="#">Overzicht</a>
                 </li>
                 <li>
                     <a href="#">1</a>
@@ -28,6 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>test</h1>
+
                      </div>
                 </div>
             </div>

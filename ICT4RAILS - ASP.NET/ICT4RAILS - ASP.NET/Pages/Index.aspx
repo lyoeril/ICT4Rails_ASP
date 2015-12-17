@@ -10,7 +10,7 @@
             <label for="inputPassword" class="sr-only">Password</label>
             <asp:TextBox ID="txtInputPassword" runat="server" CssClass="form-control" placeholder ="Wachtwoord" required="" autofocus=""></asp:TextBox>
             <div class="checkbox">
-            </div>
+             </div>
             <asp:Button ID="bttnInloggen" runat="server" Text="Inloggen" CssClass="btn btn-lg btn-primary btn-block" type ="submit"/>
      </form>
 </asp:Content>
