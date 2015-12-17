@@ -8,7 +8,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
     public class Functie
     {
         public int ID { get; private set; }
-
         public string Naam { get; set; }
         public List<Recht> Rechten { get; set; }
 

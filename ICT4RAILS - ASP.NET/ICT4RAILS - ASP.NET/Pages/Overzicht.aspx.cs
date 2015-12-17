@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICT4RAILS___ASP.NET.Csharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,12 @@ namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class Overzicht : System.Web.UI.Page
     {
+        private Administratie admin;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            admin = new Administratie();
+            OverzichtTable = admin.CreateTable(OverzichtTable);
         }
     }
 }

@@ -3,9 +3,6 @@
     <link href="../CSS/Accountbeheer.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
-    <!DOCTYPE html>
-<body>
-
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -36,5 +33,4 @@
             </div>
         </div>
     </div>
-   </body>
 </asp:Content>

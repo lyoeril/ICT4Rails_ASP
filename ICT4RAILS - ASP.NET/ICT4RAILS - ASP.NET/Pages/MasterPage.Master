@@ -20,6 +20,8 @@
 </head>
 
 <body>
-    <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
+    <div class="container">
+        <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
+    </div>
 </body>
 </html>

@@ -105,6 +105,7 @@
   <ItemGroup>
     <Compile Include="Csharp\ActiveDirectory.cs" />
     <Compile Include="Csharp\Administratie.cs" />
+    <Compile Include="Csharp\AdministratieFind.cs" />
     <Compile Include="Csharp\Functie.cs" />
     <Compile Include="Csharp\Lijn.cs" />
     <Compile Include="Csharp\Medewerker.cs" />
