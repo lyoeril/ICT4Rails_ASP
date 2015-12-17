@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\Accountbeheer.css" />
+    <Content Include="CSS\SubMaster.css" />
     <Content Include="CSS\Onderhoud.css" />
     <Content Include="CSS\Overzicht.css" />
     <Content Include="CSS\Statusbeheer.css" />

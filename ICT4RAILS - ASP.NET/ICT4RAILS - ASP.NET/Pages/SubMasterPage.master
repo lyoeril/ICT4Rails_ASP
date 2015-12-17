@@ -1,13 +1,14 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Pages/MasterPage.Master" AutoEventWireup="true" CodeBehind="SubMasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.SubMasterPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
-            <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
-</asp:Content>
+    <link rel="stylesheet" href="/CSS/SubMaster.css" />
+    <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
+    </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <!--<a class="navbar-brand logo" href="index.aspx"><img src="INSERT ICON HERE"/></a>!-->
-                    <a class="navbar-brand" href="Overzicht.aspx">ICT4Rails</a>
+                    <a class="navbar-brand logo" href="index.aspx"><img src="/Images/Icons/TramIcon.png"/></a>
+                    <!--<a class="navbar-brand" href="Overzicht.aspx">ICT4Rails</a>!-->
                 </div>
                 <ul class="nav navbar-nav">
                     <li class="overzicht"><a href="Overzicht.aspx">Overzicht</a></li>
