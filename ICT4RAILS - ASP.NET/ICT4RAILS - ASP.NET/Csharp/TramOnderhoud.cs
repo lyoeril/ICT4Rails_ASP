@@ -12,14 +12,16 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public bool BeschikbaarDatum { get; set; }
         public string TypeOnderhoud { get; set; }
         public Medewerker Medewerker { get; set; }
+        public Tram Tram { get; set; }
 
-        public TramOnderhoud(int id, DateTime datumtijdstip, bool beschikbaardatum, string typeonderhoud, Medewerker medewerker)
+        public TramOnderhoud(int id, DateTime datumtijdstip, bool beschikbaardatum, string typeonderhoud, Medewerker medewerker, Tram tram)
         {
             this.ID = id;
             this.DatumTijdstip = datumtijdstip;
             this.BeschikbaarDatum = beschikbaardatum;
             this.TypeOnderhoud = typeonderhoud;
             this.Medewerker = medewerker;
+            this.Tram = tram;
         }
 
         public override string ToString()

@@ -13,13 +13,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public bool Blokkade { get; set; }
         public Tram Tram { get; set; }
 
-        public Sector(int id, int nummer, bool beschikbaar, bool blokkade)
+        public Sector(int id, int nummer, bool beschikbaar, bool blokkade, Tram tram)
         {
             this.ID = id;
             this.Nummer = nummer;
             this.Beschikbaar = beschikbaar;
             this.Blokkade = blokkade;
-            this.Tram = null;
+            this.Tram = tram;
         }
 
         public override string ToString()

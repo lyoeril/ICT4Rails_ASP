@@ -15,17 +15,23 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public bool Defect { get; set; }
         public bool ConducteurGeschikt { get; set; }
         public bool Beschikbaar { get; set; }
-        public TramOnderhoud Onderhoud { get; set; }
         public TramType TramType { get; set; }
         public Lijn Lijn { get; set; }
 
-        public Tram(int id, int nummer, int lengte, string status)
+        public Tram(int id, TramType tramtype, int nummer, int lengte, string status, bool vervuild, bool defect, bool conducteurgeschikt, bool beschikbaar)
         {
             this.ID = id;
+            this.TramType = tramtype;
             this.Nummer = nummer;
             this.Lengte = lengte;
             this.Status = status;
+            this.Vervuild = vervuild;
+            this.Defect = defect;
+            this.ConducteurGeschikt = conducteurgeschikt;
+            this.Beschikbaar = beschikbaar;
         }
+
+
 
         public override string ToString()
         {
@@ -109,47 +115,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 conducteurString = "Ja";
             }
 
-            string onderhoudString;
-            if (Onderhoud == null)
-            {
-                onderhoudString = "Onbekend";
-            }
-            else
-            {
-                onderhoudString = Onderhoud.TypeOnderhoud.ToString();
-            }
-
-            string tramtypeString;
-            if (Onderhoud == null)
-            {
-                tramtypeString = "Onbekend";
-            }
-            else
-            {
-                tramtypeString = TramType.Omschrijving.ToString();
-            }
-
-            string lijnString;
-            if (Onderhoud == null)
-            {
-                lijnString = "Onbekend";
-            }
-            else
-            {
-                lijnString = Lijn.ID.ToString();
-            }
-
             string info = "TramID: " + idString
-                 + ", Nummer: " + nummerString
-                 + ", Lengte: " + lengteString
-                 + ", Status: " + statusString
-                 + ", Vervuild: " + vervuildString
-                 + ", Defect: " + defectString
-                 + ", ConducteurGeschikt: " + conducteurString
-                 + ", Beschikbaar: " + beschikbaarString
-                 + ", Onderhoud: " + onderhoudString
-                 + ", Tramtype: "+ tramtypeString
-                 + ", Lijn: " + lijnString;
+                          + ", Nummer: " + nummerString
+                          + ", Lengte: " + lengteString
+                          + ", Status: " + statusString
+                          + ", Vervuild: " + vervuildString
+                          + ", Defect: " + defectString
+                          + ", ConducteurGeschikt: " + conducteurString
+                          + ", Beschikbaar: " + beschikbaarString;
 
             return info;
         }
