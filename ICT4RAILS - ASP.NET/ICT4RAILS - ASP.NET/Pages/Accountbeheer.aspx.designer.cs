@@ -13,12 +13,12 @@ namespace ICT4RAILS___ASP.NET.Pages {
     public partial class Accountbeheer {
         
         /// <summary>
-        /// GridView1 control.
+        /// GridMedewerker1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridMedewerker1;
     }
 }
