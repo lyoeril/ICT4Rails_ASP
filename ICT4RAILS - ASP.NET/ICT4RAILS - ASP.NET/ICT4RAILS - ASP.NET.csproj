@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\Accountbeheer.css" />
+    <Content Include="CSS\Remisebeheer.css" />
     <Content Include="CSS\SubMaster.css" />
     <Content Include="CSS\Onderhoud.css" />
     <Content Include="CSS\Overzicht.css" />
@@ -86,6 +87,7 @@
     <Content Include="Pages\MasterPage.Master" />
     <Content Include="Pages\Onderhoud.aspx" />
     <Content Include="Pages\Overzicht.aspx" />
+    <Content Include="Pages\Remisebeheer.aspx" />
     <Content Include="Pages\Statusbeheer.aspx" />
     <Content Include="Pages\SubMasterPage.master" />
     <None Include="Web.Debug.config">
@@ -157,6 +159,13 @@
     </Compile>
     <Compile Include="Pages\Overzicht.aspx.designer.cs">
       <DependentUpon>Overzicht.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Remisebeheer.aspx.cs">
+      <DependentUpon>Remisebeheer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Remisebeheer.aspx.designer.cs">
+      <DependentUpon>Remisebeheer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Statusbeheer.aspx.cs">
       <DependentUpon>Statusbeheer.aspx</DependentUpon>
