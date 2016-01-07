@@ -31,8 +31,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
             this.Beschikbaar = beschikbaar;
         }
 
-
-
         public override string ToString()
         {
             string idString;

@@ -21,7 +21,5 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
-        <asp:ContentPlaceHolder ID="CPHBody" runat="server"></asp:ContentPlaceHolder>
-    </div>
+    <asp:ContentPlaceHolder ID="CPHBody" runat="server"></asp:ContentPlaceHolder>
 </asp:Content>

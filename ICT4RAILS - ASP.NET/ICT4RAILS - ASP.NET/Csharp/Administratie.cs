@@ -43,22 +43,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             trams = new List<Tram>();
             onderhoudsbeurten = new List<TramOnderhoud>();
             typen = new List<TramType>();
-        }
 
-        public Table CreateTable(Table t)
-        {
-            for (int row = 0; row < 23; row++)
-            {
-                TableRow r = new TableRow();
-                for (int col = 0; col < 19; col++)
-                {
-                    TableCell c = new TableCell();
-                    c.Text = col + ", " + row;
-                    r.Cells.Add(c);
-                }
-                t.Rows.Add(r);
-            }
-            return t;
+            tableCells = new List<TableCell>();
         }
     }
 }

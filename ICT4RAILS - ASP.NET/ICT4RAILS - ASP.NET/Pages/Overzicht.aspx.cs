@@ -16,6 +16,7 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             admin = new Administratie();
             OverzichtTable = admin.CreateTable(OverzichtTable);
+            admin.OverzichtInit();
         }
     }
 }
