@@ -25,8 +25,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         public void LoadInfo()
         {
-            
-            GridMedewerker1.DataSource = administratie.Medewerkers;
+            GridMedewerker1.DataSource = administratie.Medewerkers
             GridMedewerker1.DataBind();
         }
 

@@ -33,8 +33,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
             this.Lijn = lijn;
         }
 
-
-
         public override string ToString()
         {
             string idString;
