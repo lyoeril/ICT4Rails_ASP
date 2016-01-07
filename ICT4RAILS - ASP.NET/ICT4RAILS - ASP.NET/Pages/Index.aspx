@@ -11,6 +11,6 @@
             <asp:TextBox ID="txtInputPassword" runat="server" CssClass="form-control" placeholder ="Wachtwoord" required="" autofocus=""></asp:TextBox>
             <div class="checkbox">
              </div>
-            <asp:Button ID="bttnInloggen" runat="server" Text="Inloggen" CssClass="btn btn-lg btn-primary btn-block" type ="submit"/>
+            <asp:Button ID="bttnInloggen" runat="server" Text="Inloggen" CssClass="btn btn-lg btn-primary btn-block" type ="submit" OnClick="bttnInloggen_Click"/>
      </form>
 </asp:Content>

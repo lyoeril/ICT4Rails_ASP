@@ -18,14 +18,18 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public List<Lijn> Lijnen { get; set; }
         public List<Reservering> Reserveringen { get; set; }
 
-        public Remise(int id, string naam, int groteservice, int kleineservice, int groteschoonmaak, int kleineschoonmaak)
+        public Remise(int id, string naam, int groteServiceBeurtenPerDag, int kleineServiceBeurtenPerDag, int groteSchoonmaakBeurtenPerDag, int kleineSchoonmaakBeurtenPerDag, List<Spoor> sporen, List<Tram> trams, List<Lijn> lijnen, List<Reservering> reserveringen)
         {
-            this.ID = id;
-            this.Naam = naam;
-            this.GroteServiceBeurtenPerDag = groteservice;
-            this.KleineServiceBeurtenPerDag = kleineservice;
-            this.GroteSchoonmaakBeurtenPerDag = groteschoonmaak;
-            this.KleineSchoonmaakBeurtenPerDag = kleineschoonmaak;
+            ID = id;
+            Naam = naam;
+            GroteServiceBeurtenPerDag = groteServiceBeurtenPerDag;
+            KleineServiceBeurtenPerDag = kleineServiceBeurtenPerDag;
+            GroteSchoonmaakBeurtenPerDag = groteSchoonmaakBeurtenPerDag;
+            KleineSchoonmaakBeurtenPerDag = kleineSchoonmaakBeurtenPerDag;
+            Sporen = sporen;
+            Trams = trams;
+            Lijnen = lijnen;
+            Reserveringen = reserveringen;
         }
 
         public override string ToString()

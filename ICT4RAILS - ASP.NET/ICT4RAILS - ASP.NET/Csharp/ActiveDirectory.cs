@@ -17,7 +17,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         private string sDefaultOU = "DC=local";
         private string sServicePassword = "Welkom123";
 
-        DirectoryEntry DE = new DirectoryEntry("LDAP://192.168.19.217", "Administrator", "Password1!");
+        DirectoryEntry DE = new DirectoryEntry("LDAP://192.168.19.217", "Administrator", "Welkom123");
         public bool ValidateUser(string userName, string password)
         {
             PrincipalContext pc = new PrincipalContext(ContextType.Domain, sDomain);

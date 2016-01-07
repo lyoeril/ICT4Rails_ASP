@@ -4,14 +4,40 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ICT4RAILS___ASP.NET.Csharp;
 
 namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class Accountbeheer : System.Web.UI.Page
     {
+        private Medewerker medewerker;
+        private Administratie administratie;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                LoadInfo();
+            }
+        }
 
+        public void LoadInfo()
+        {
+            List<Medewerker> list = new List<Medewerker>();
+            list.Add(new Medewerker(1, "Mario", new Functie(1, "Schoonmalker")));
+            GridMedewerker1.DataSource = list; //administratie.Medewerkers;
+            GridMedewerker1.DataBind();
+        }
+
+        protected void grdMedewerkerList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Medewerker entry = e.Row.DataItem as Medewerker;
+                e.Row.Cells[0].Text = entry.ID.ToString();
+                e.Row.Cells[1].Text = entry.Naam;
+                e.Row.Cells[2].Text = entry.Functie.ToString();
+            }
         }
     }
 }

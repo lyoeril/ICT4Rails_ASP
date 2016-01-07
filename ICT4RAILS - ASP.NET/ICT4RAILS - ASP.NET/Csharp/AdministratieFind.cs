@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ICT4RAILS___ASP.NET.database;
 
 namespace ICT4RAILS___ASP.NET.Csharp
 {
     public partial class Administratie
     {
-        public Functie FindFunctie(int id)
+        /*public Functie FindFunctie(int id)
         {
             foreach (Functie f in functies)
             {
@@ -43,7 +44,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return null;
         }
 
-        public Recht FindRecht(int id)
+       public Recht FindRecht(int id)
         {
             foreach (Recht r in rechten)
             {
@@ -114,6 +115,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 }
             }
             return null;
-        }
+        }*/
     }
 }

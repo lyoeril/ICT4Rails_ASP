@@ -10,13 +10,20 @@ namespace ICT4RAILS___ASP.NET.database
 {
     public partial class Database
     {
-        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader)
+        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader, List<Functie> functies)
         {
-            return new Medewerker(
-                Convert.ToInt32(reader["ID"]),
-                Convert.ToString(reader["Naam"]),
-                SelectFunctie(Convert.ToInt32(reader["Functie_ID"]))
-                );
+            int id = Convert.ToInt32(reader["ID"]);
+            string naam = Convert.ToString(reader["Naam"]);
+            Functie localFunctie = null;
+            foreach (Functie functie in functies)
+            {
+                if (functie.ID == Convert.ToInt32(reader["Functie_ID"]))
+                {
+                    localFunctie = functie;
+                }
+            }
+            
+            return new Medewerker(id,naam,localFunctie);
         }
 
 
@@ -24,21 +31,58 @@ namespace ICT4RAILS___ASP.NET.database
         {
             return new Recht(
                 Convert.ToInt32(reader["ID"]),
-                Convert.ToString((reader["Omschrijving"]))
+                Convert.ToString((reader["Omschrijving"])),
+                Convert.ToInt32(reader["Functie_ID"])
                 );
         }
 
-        private Functie CreateFunctieFromReader(OracleDataReader reader)
+        private Functie CreateFunctieFromReader(OracleDataReader reader, List<Recht> rechtenList )
         {
             int functieid = Convert.ToInt32(reader["ID"]);
-            List<Recht> rechtenList = GetAllRechten(functieid);
+            string naam = Convert.ToString(reader["Naam"]);
+            List<Recht> rechten = new List<Recht>();
+            foreach (Recht recht in rechtenList)
+            {
+                if (recht.FunctieId == functieid)
+                {
+                    rechten.Add(recht);
+                }
+            }
             return new Functie(
-                Convert.ToInt32(reader["ID"]),
-                Convert.ToString(reader["Naam"]),
-                rechtenList
+                functieid,
+                naam,
+                rechten
                 );
         }
 
+        private Spoor CreateSpoorFromReader(OracleDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            bool beschikbaar;
+            if (Convert.ToInt32(reader["Beschikbaar"]) == 1)
+            {
+                beschikbaar = true;
+            }
+            else
+            {
+                beschikbaar = false;
+            }
+            bool inUitRijSpoor;
+            if (Convert.ToInt32(reader["InUitRijspoor"]) == 1)
+            {
+                inUitRijSpoor = true;
+            }
+            else
+            {
+                inUitRijSpoor = false;
+            }
+            return new Spoor(
+                id, 
+                Convert.ToInt32(reader["Nummer"]), 
+                beschikbaar, 
+                inUitRijSpoor, 
+                GetAllSectorenRemise(id));
+        }
         private TramType CreateTramTypeFromReader(OracleDataReader reader)
         {
             return new TramType(Convert.ToInt32(reader["ID"]), Convert.ToString(reader["Omschrijving"]));
@@ -55,7 +99,10 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 conducteurrijdtmee = false;
             }
-            return new Lijn(Convert.ToInt32(reader["ID"]), Convert.ToInt32(reader["Nummer"]), conducteurrijdtmee);
+            return new Lijn(
+                Convert.ToInt32(reader["ID"]), 
+                Convert.ToInt32(reader["Nummer"]), 
+                conducteurrijdtmee);
         }
 
         private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader)
@@ -123,19 +170,22 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 beschikbaar = false;
             }
+            int id = Convert.ToInt32(reader["ID"]);
             return new Tram(
-                Convert.ToInt32(reader["ID"]),
-                SelecTramType(Convert.ToInt32(reader["Tramtype_ID"])),
+                id,
                 Convert.ToInt32(reader["Nummer"]),
                 Convert.ToInt32(reader["Lengte"]),
                 status, 
                 vervuild,
                 defect, 
                 conducteurgeschikt, 
-                beschikbaar);
+                beschikbaar,
+                SelectTramType(Convert.ToInt32(reader["Tramtype_ID"])),
+                SelectLijn(id)
+                );
         }
 
-        private Sector createSectorFromReader(OracleDataReader reader)
+        private Sector CreateSectorFromReader(OracleDataReader reader)
         {
             bool beschikbaar;
             if (Convert.ToInt32(reader["Beschikbaar"]) == 1)
@@ -155,7 +205,39 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 blokkade = false;
             }
-            return new Sector(Convert.ToInt32(reader["ID"]),Convert.ToInt32(reader["Nummer"]), beschikbaar, blokkade, SelectTram(Convert.ToInt32(reader["Tram_ID"])));
+            return new Sector(
+                Convert.ToInt32(reader["ID"]),
+                Convert.ToInt32(reader["Nummer"]), 
+                beschikbaar, 
+                blokkade, 
+                SelectTram(Convert.ToInt32(reader["Tram_ID"]))
+                );
+        }
+
+        private Remise CreateRemiseFromReader(OracleDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            return new Remise(
+                id,
+                Convert.ToString(reader["Naam"]),
+                Convert.ToInt32(reader["GroteServiceBeurtenPerDag"]),
+                Convert.ToInt32(reader["KleineServiceBeurtenPerDag"]),
+                Convert.ToInt32(reader["GroteSchoonmaakBeurtenPerDag"]),
+                Convert.ToInt32(reader["KleineSchoonmaakBeurtenPerDag"]),
+                GetAllSporenRemise(id),
+                GetAllTramsRemise(id),
+                GetAllLijnenRemise(id),
+                GetAllReserveringenRemise(id)
+                );
+        }
+
+        private Reservering CreateReserveringFromReader(OracleDataReader reader)
+        {
+            return new Reservering(
+                Convert.ToInt32(reader["ID"]),
+                SelectTram(Convert.ToInt32(reader["Tram_ID"])),
+                SelectSpoor(Convert.ToInt32(reader["Spoor_ID"]))
+                );
         }
     }
 }
