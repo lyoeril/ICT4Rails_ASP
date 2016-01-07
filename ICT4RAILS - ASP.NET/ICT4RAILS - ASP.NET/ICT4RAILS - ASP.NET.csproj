@@ -99,7 +99,6 @@
     <Content Include="CSS\bootstrap.css" />
     <Content Include="CSS\Login.css" />
     <Content Include="JS\bootstrap.js" />
-    <Content Include="Pages\TEST.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -170,13 +169,6 @@
     </Compile>
     <Compile Include="Pages\SubMasterPage.master.designer.cs">
       <DependentUpon>SubMasterPage.master</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\TEST.aspx.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\TEST.aspx.designer.cs">
-      <DependentUpon>TEST.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
