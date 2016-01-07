@@ -76,7 +76,7 @@ namespace ICT4RAILS___ASP.NET.database
             List<Lijn> lijnenList = new List<Lijn>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT L.ID, L.\"Nummer\", L.\"ConducteurRijdtMee\" FROM LIJN L WHERE \"Remise_ID\" = :ParaID";
+                string query = "SELECT L.ID, L.\"Nummer\", L.\"ConducteurRijdtMee\" FROM LIJN L WHERE L.\"Remise_ID\" = :ParaID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     using (OracleDataReader reader = command.ExecuteReader())
@@ -97,7 +97,7 @@ namespace ICT4RAILS___ASP.NET.database
             List<Spoor> sporenlijst = new List<Spoor>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT S.ID, S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE \"Remise_ID\" = :ParaID";
+                string query = "SELECT S.ID, S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE S.\"Remise_ID\" = :ParaID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     using (OracleDataReader reader = command.ExecuteReader())
@@ -118,7 +118,7 @@ namespace ICT4RAILS___ASP.NET.database
             List<Sector> sectorenlijst = new List<Sector>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT S.ID, S.\"Spoor_ID\", S.\"Tram_ID\", S.\"Nummer\", S.\"Beschikbaar\", S.\"Blokkade\" FROM Sector S WHERE \"Spoor_ID\" = 1";
+                string query = "SELECT S.ID, S.\"Spoor_ID\", S.\"Tram_ID\", S.\"Nummer\", S.\"Beschikbaar\", S.\"Blokkade\" FROM Sector S WHERE S.\"Spoor_ID\" = :ParaID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     using (OracleDataReader reader = command.ExecuteReader())
@@ -133,6 +133,69 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return sectorenlijst;
         }
+
+        public List<Tram> GetAllTramsRemise(int remiseId)
+        {
+            List<Tram> sectorenlijst = new List<Tram>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAM WHERE \"Remise_ID_Standplaats\" = :ParaID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        command.Parameters.Add(new OracleParameter("ParaID", remiseId));
+                        while (reader.Read())
+                        {
+                            sectorenlijst.Add(CreateTramFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return sectorenlijst;
+        }
+
+        public List<Remise> GetAllRemises()
+        {
+            List<Remise> remiselijst = new List<Remise>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM REMISE";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            remiselijst.Add(CreateRemiseFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return remiselijst;
+        }
+
+        public List<Reservering> GetAllReserveringenRemise(int remiseId)
+        {
+            List<Reservering> reserveringslijst = new List<Reservering>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM RESERVERING R WHERE R.\"Tram_ID\" IN (SELECT ID FROM TRAM T WHERE T.\"Remise_ID_Standplaats\" = :paraID) and R.\"Spoor_ID\" IN (SELECT ID FROM SPOOR S WHERE S.\"Remise_ID\" = :paraID)";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("paraID", remiseId));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            reserveringslijst.Add(CreateReserveringFromReader(reader));
+                        }
+                    }
+                }
+
+            }
+            return reserveringslijst;
+        } 
         public Functie SelectFunctie(int id)
         {
             Functie localFunctie = null;
@@ -169,7 +232,7 @@ namespace ICT4RAILS___ASP.NET.database
             return medewerker;
         }
 
-        public TramType SelecTramType(int id)
+        public TramType SelectTramType(int id)
         {
             TramType tramtype = null;
             using (OracleConnection connection = Connection)
@@ -220,6 +283,24 @@ namespace ICT4RAILS___ASP.NET.database
                 }
             }
             return tram;
+        }
+
+        public Spoor SelectSpoor(int id)
+        {
+            Spoor spoor = null;
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT S.ID, S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE S.ID = :ParaID and ROWNUM <=1";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add((new OracleParameter("ParaID", id)));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        spoor = CreateSpoorFromReader(reader);
+                    }
+                }
+            }
+            return spoor;
         }
     }
 }
