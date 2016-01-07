@@ -12,6 +12,7 @@ namespace ICT4RAILS___ASP.NET.database
     {
         public List<Medewerker> GetAllMedewerkers()
         {
+            List<Functie> functies = GetAllFuncties();
             List<Medewerker> medewerkers = new List<Medewerker>();
             using (OracleConnection connection = Connection)
             {
@@ -22,7 +23,7 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         while (reader.Read())
                         {
-                            medewerkers.Add(CreateMedewerkerFromReader(reader));
+                            medewerkers.Add(CreateMedewerkerFromReader(reader, functies));
                         }
                     }
                 }
@@ -30,15 +31,14 @@ namespace ICT4RAILS___ASP.NET.database
             return medewerkers;
         }
 
-        public List<Recht> GetAllRechten(int id)
+        public List<Recht> GetAllRechten()
         {
             List<Recht> rechtenList = new List<Recht>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT R.ID, R.\"Omschrijving\" FROM FUNCTIE_RECHT FR, RECHT R WHERE FR.\"Functie_ID\" = :paraID and R.ID = FR.\"Recht_ID\"";
+                string query = "SELECT R.ID, R.\"Omschrijving\", FR.\"Functie_ID\" FROM FUNCTIE_RECHT FR, RECHT R WHERE R.ID = FR.\"Recht_ID\"";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
-                    command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -53,6 +53,7 @@ namespace ICT4RAILS___ASP.NET.database
         }
         public List<Functie> GetAllFuncties()
         {
+            List<Recht> rechten = GetAllRechten();
             List<Functie> functielList = new List<Functie>();
             using (OracleConnection connection = Connection)
             {
@@ -63,7 +64,7 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         while (reader.Read())
                         {
-                            functielList.Add(CreateFunctieFromReader(reader));
+                            functielList.Add(CreateFunctieFromReader(reader, rechten));
                         }
                     }
                 }
@@ -195,9 +196,30 @@ namespace ICT4RAILS___ASP.NET.database
 
             }
             return reserveringslijst;
-        } 
+        }
+        public List<TramType> GetAllTramtypes()
+        {
+            List<TramType> tramtypelist = new List<TramType>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAMTYPE";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tramtypelist.Add(CreateTramTypeFromReader(reader));
+                        }
+                    }
+                }
+
+            }
+            return tramtypelist;
+        }
         public Functie SelectFunctie(int id)
         {
+            List<Recht> rechten = GetAllRechten();
             Functie localFunctie = null;
             using (OracleConnection connection = Connection)
             {
@@ -207,7 +229,7 @@ namespace ICT4RAILS___ASP.NET.database
                     command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        localFunctie = CreateFunctieFromReader(reader);
+                        localFunctie = CreateFunctieFromReader(reader, rechten);
                     }
                 }
             }
@@ -216,6 +238,7 @@ namespace ICT4RAILS___ASP.NET.database
 
         public Medewerker SelectMedewerker(int id)
         {
+            List<Functie> functies = GetAllFuncties();
             Medewerker medewerker = null;
             using (OracleConnection connection = Connection)
             {
@@ -225,7 +248,7 @@ namespace ICT4RAILS___ASP.NET.database
                     command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        medewerker = CreateMedewerkerFromReader(reader);
+                        medewerker = CreateMedewerkerFromReader(reader, functies);
                     }
                 }
             }
