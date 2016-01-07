@@ -28,7 +28,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>test</h1>
-
+                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="50%" onrowdatabound="grdStudentList_RowDataBound">
+                          <Columns>
+                              <asp:TemplateField HeaderText="Medewerker ID" ItemStyle-HorizontalAlign="Center">
+                              <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                              </asp:TemplateField>
+                              <asp:TemplateField HeaderText=" Functie " ItemStyle-HorizontalAlign="Center">
+                              <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                              </asp:TemplateField>
+                              <asp:TemplateField HeaderText=" Rekt" ItemStyle-HorizontalAlign="Center">
+                              <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                              </asp:TemplateField>
+                          </Columns>
+                         </asp:GridView>
                      </div>
                 </div>
             </div>
