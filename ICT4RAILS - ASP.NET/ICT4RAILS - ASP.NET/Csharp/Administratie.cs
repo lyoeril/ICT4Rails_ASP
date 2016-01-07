@@ -15,7 +15,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         //public Remise Remise { get { return remise; } }
         //public List<Functie> Functies { get { return functies; } }
         //public List<Lijn> Lijnen { get { return lijnen; } }
-        public List<Medewerker> Medewerkers { get { return medewerkers; } }
+        //public List<Medewerker> Medewerkers { get { return medewerkers; } }
         //public List<Recht> Rechten { get { return rechten; } }
         //public List<Reservering> Reserveringen { get { return reserveringen; } }
         //public List<Spoor> Sporen { get { return sporen; } }
@@ -32,15 +32,15 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public Administratie()
         {
             //remise = new Remise();
-            functies = new List<Functie>();
-            lijnen = new List<Lijn>();
-            medewerkers = new List<Medewerker>();
-            rechten = new List<Recht>();
-            reserveringen = new List<Reservering>();
-            sporen = new List<Spoor>();
-            trams = new List<Tram>();
-            onderhoudsbeurten = new List<TramOnderhoud>();
-            typen = new List<TramType>();
+            //functies = new List<Functie>();
+            //lijnen = new List<Lijn>();
+            //medewerkers = new List<Medewerker>();
+            //rechten = new List<Recht>();
+            //reserveringen = new List<Reservering>();
+            //sporen = new List<Spoor>();
+            //trams = new List<Tram>();
+            //onderhoudsbeurten = new List<TramOnderhoud>();
+            //typen = new List<TramType>();
 
             tableCells = new List<TableCell>();
 			
@@ -51,23 +51,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Onderhoudsbeurten = new List<TramOnderhoud>();
             
             //Remises = data.GetAllRemises();
-        }
-
-        public Table CreateTable(Table t)
-        {
-            
-            for (int row = 0; row < 23; row++)
-            {
-                TableRow r = new TableRow();
-                for (int col = 0; col < 19; col++)
-                {
-                    TableCell c = new TableCell();
-                    c.Text = col + ", " + row;
-                    r.Cells.Add(c);
-                }
-                t.Rows.Add(r);
-            }
-            return t;
         }
     }
 }

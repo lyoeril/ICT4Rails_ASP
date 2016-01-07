@@ -23,9 +23,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         public void LoadInfo()
         {
-            List<Medewerker> list = new List<Medewerker>();
-            list.Add(new Medewerker(1, "Mario", new Functie(1, "Schoonmalker")));
-            GridMedewerker1.DataSource = list; //administratie.Medewerkers;
+            //GridMedewerker1.DataSource = list; //administratie.Medewerkers;
             GridMedewerker1.DataBind();
         }
 
