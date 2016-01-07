@@ -10,14 +10,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public int ID { get; private set; }
         public Tram Tram { get; set; }
         public Spoor Spoor { get; set; }
-        public Sector Sector { get; set; }
 
-        public Reservering(int id, Tram tram, Spoor spoor, Sector sector)
+        public Reservering(int id, Tram tram, Spoor spoor)
         {
             this.ID = id;
             this.Tram = tram;
             this.Spoor = spoor;
-            this.Sector = sector;
+
         }
 
         public override string ToString()
@@ -52,20 +51,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 spoorString = Spoor.Nummer.ToString();
             }
 
-            string sectorString;
-            if (Sector == null)
-            {
-                sectorString = "Onbekend";
-            }
-            else
-            {
-                sectorString = Sector.ID.ToString();
-            }
+
 
             string info = "ReserveringID: " + idString
-                 + ", TramID: " + tramString
-                 + ", Spoornummer: " + spoorString
-                 + ", SectorID: " + sectorString;
+                          + ", TramID: " + tramString
+                          + ", Spoornummer: " + spoorString;
 
             return info;        
         }
