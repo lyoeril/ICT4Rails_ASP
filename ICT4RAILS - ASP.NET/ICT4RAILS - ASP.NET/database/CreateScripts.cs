@@ -33,12 +33,34 @@ namespace ICT4RAILS___ASP.NET.database
             int functieid = Convert.ToInt32(reader["ID"]);
             List<Recht> rechtenList = GetAllRechten(functieid);
             return new Functie(
-                Convert.ToInt32(reader["ID"]),
+                functieid,
                 Convert.ToString(reader["Naam"]),
                 rechtenList
                 );
         }
 
+        private Spoor CreateSpoorFromReader(OracleDataReader reader)
+        {
+            bool beschikbaar;
+            if (Convert.ToInt32(reader["Beschikbaar"]) == 1)
+            {
+                beschikbaar = true;
+            }
+            else
+            {
+                beschikbaar = false;
+            }
+            bool InUitRijSpoor;
+            if (Convert.ToInt32(reader["InUitRijspoor"]) == 1)
+            {
+                InUitRijSpoor = true;
+            }
+            else
+            {
+                InUitRijSpoor = false;
+            }
+            return new Spoor(Convert.ToInt32(reader["ID"]), Convert.ToInt32(reader["Nummer"]), beschikbaar, InUitRijSpoor,);
+        }
         private TramType CreateTramTypeFromReader(OracleDataReader reader)
         {
             return new TramType(Convert.ToInt32(reader["ID"]), Convert.ToString(reader["Omschrijving"]));
@@ -123,19 +145,22 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 beschikbaar = false;
             }
+            int id = Convert.ToInt32(reader["ID"]);
             return new Tram(
-                Convert.ToInt32(reader["ID"]),
-                SelecTramType(Convert.ToInt32(reader["Tramtype_ID"])),
+                id,
                 Convert.ToInt32(reader["Nummer"]),
                 Convert.ToInt32(reader["Lengte"]),
                 status, 
                 vervuild,
                 defect, 
                 conducteurgeschikt, 
-                beschikbaar);
+                beschikbaar,
+                SelecTramType(Convert.ToInt32(reader["Tramtype_ID"])),
+                SelectLijn(id)
+                );
         }
 
-        private Sector createSectorFromReader(OracleDataReader reader)
+        private Sector CreateSectorFromReader(OracleDataReader reader)
         {
             bool beschikbaar;
             if (Convert.ToInt32(reader["Beschikbaar"]) == 1)

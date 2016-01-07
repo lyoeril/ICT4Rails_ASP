@@ -105,7 +105,7 @@ namespace ICT4RAILS___ASP.NET.database
                         command.Parameters.Add(new OracleParameter("ParaID", remiseId));
                         while (reader.Read())
                         {
-                            //sporenlijst.Add(create);
+                            sporenlijst.Add(CreateSpoorFromReader(reader));
                         }
                     }
                 }
@@ -113,6 +113,26 @@ namespace ICT4RAILS___ASP.NET.database
             return sporenlijst;
         }
 
+        public List<Sector> GetAllSectorenRemise(int spoorId)
+        {
+            List<Sector> sectorenlijst = new List<Sector>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT S.ID, S.\"Spoor_ID\", S.\"Tram_ID\", S.\"Nummer\", S.\"Beschikbaar\", S.\"Blokkade\" FROM Sector S WHERE \"Spoor_ID\" = 1";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        command.Parameters.Add(new OracleParameter("ParaID", spoorId));
+                        while (reader.Read())
+                        {
+                            sectorenlijst.Add(CreateSectorFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return sectorenlijst;
+        }
         public Functie SelectFunctie(int id)
         {
             Functie localFunctie = null;
@@ -167,6 +187,23 @@ namespace ICT4RAILS___ASP.NET.database
             return tramtype;
         }
 
+        public Lijn SelectLijn(int id)
+        {
+            Lijn lijn = null;
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT L.ID, L.\"Nummer\", L.\"ConducteurRijdtMee\" FROM TRAM_LIJN TL, LIJN L WHERE TL.\"Lijn_ID\" = L.ID and TL.\"Tram_ID\" = :ParaID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add((new OracleParameter("ParaID", id)));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        lijn = CreateLijnFromReader(reader);
+                    }
+                }
+            }
+            return lijn;
+        }
         public Tram SelectTram(int id)
         {
             Tram tram = null;
