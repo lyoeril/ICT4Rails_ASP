@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ICT4RAILS___ASP.NET.Csharp
 {
-    public class AdministratieRemove
+    public partial class Administratie
     {
     }
 }

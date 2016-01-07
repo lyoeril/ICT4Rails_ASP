@@ -23,7 +23,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         //public Remise Remise { get { return remise; } }
         //public List<Functie> Functies { get { return functies; } }
         //public List<Lijn> Lijnen { get { return lijnen; } }
-        //public List<Medewerker> Medewerkers { get { return medewerkers; } }
+        public List<Medewerker> Medewerkers { get { return medewerkers; } }
         //public List<Recht> Rechten { get { return rechten; } }
         //public List<Reservering> Reserveringen { get { return reserveringen; } }
         //public List<Spoor> Sporen { get { return sporen; } }

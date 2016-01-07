@@ -23,11 +23,8 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         public void LoadInfo()
         {
-            
-            //GridMedewerker1.DataSource = list;
-           // GridMedewerker1.DataBind();
-            // Get all medewerkers 
-
+            GridMedewerker1.DataSource = administratie.Medewerkers;
+            GridMedewerker1.DataBind();
         }
 
         protected void grdMedewerkerList_RowDataBound(object sender, GridViewRowEventArgs e)

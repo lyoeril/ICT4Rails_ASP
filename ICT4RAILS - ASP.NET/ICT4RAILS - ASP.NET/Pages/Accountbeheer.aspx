@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>test</h1>
-                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Width="50%" onrowdatabound="grdStudentList_RowDataBound">
+                        <asp:GridView ID="GridMedewerker1" runat="server" AutoGenerateColumns="False" Width="50%" onrowdatabound="grdMedewerkerList_RowDataBound">
                           <Columns>
                               <asp:TemplateField HeaderText="Medewerker ID" ItemStyle-HorizontalAlign="Center">
                               <ItemStyle HorizontalAlign="Center"></ItemStyle>
