@@ -10,11 +10,13 @@ namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class Accountbeheer : System.Web.UI.Page
     {
-        private Medewerker medewerker;
         private Administratie administratie;
+        private Medewerker medewerker;
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            administratie = new Administratie();
+
             if (!IsPostBack)
             {
                 LoadInfo();
@@ -23,9 +25,8 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         public void LoadInfo()
         {
-            List<Medewerker> list = new List<Medewerker>();
-            list.Add(new Medewerker(1, "Mario", new Functie(1, "Schoonmalker")));
-            GridMedewerker1.DataSource = list; //administratie.Medewerkers;
+            
+            GridMedewerker1.DataSource = administratie.Medewerkers;
             GridMedewerker1.DataBind();
         }
 
@@ -36,8 +37,14 @@ namespace ICT4RAILS___ASP.NET.Pages
                 Medewerker entry = e.Row.DataItem as Medewerker;
                 e.Row.Cells[0].Text = entry.ID.ToString();
                 e.Row.Cells[1].Text = entry.Naam;
-                e.Row.Cells[2].Text = entry.Functie.ToString();
+                e.Row.Cells[2].Text = entry.Functie.Naam;
+                e.Row.Cells[3].Text = entry.Functie.ID.ToString();
             }
+        }
+
+        protected void GridMedewerker1_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

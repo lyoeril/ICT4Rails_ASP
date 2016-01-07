@@ -29,15 +29,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>test</h1>
-                        <asp:GridView ID="GridMedewerker1" runat="server" AutoGenerateColumns="False" Width="50%" onrowdatabound="grdMedewerkerList_RowDataBound">
+                        <asp:GridView ID="GridMedewerker1" runat="server" AutoGenerateColumns="False" Width="100%" class="table table-striped"
+                            autogenerateselectbutton="True" OnSelectedIndexChanged="GridMedewerker1_OnSelectedIndexChanged">
                           <Columns>
                               <asp:TemplateField HeaderText="Medewerker ID" ItemStyle-HorizontalAlign="Center">
                               <ItemStyle HorizontalAlign="Center"></ItemStyle>
                               </asp:TemplateField>
-                              <asp:TemplateField HeaderText=" Functie " ItemStyle-HorizontalAlign="Center">
+                              <asp:TemplateField HeaderText="Functie" ItemStyle-HorizontalAlign="Center">
                               <ItemStyle HorizontalAlign="Center"></ItemStyle>
                               </asp:TemplateField>
-                              <asp:TemplateField HeaderText=" Rekt" ItemStyle-HorizontalAlign="Center">
+                              <asp:TemplateField HeaderText="Functie" ItemStyle-HorizontalAlign="Center">
+                              <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                              </asp:TemplateField>
+                              <asp:TemplateField HeaderText="Functie ID" ItemStyle-HorizontalAlign="Center">
                               <ItemStyle HorizontalAlign="Center"></ItemStyle>
                               </asp:TemplateField>
                           </Columns>
