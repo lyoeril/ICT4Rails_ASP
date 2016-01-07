@@ -9,11 +9,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
     {
         public int ID { get; private set; }
         public string Omschrijving { get; set; }
+        public int FunctieId { get; private set; }
 
-        public Recht(int id, string omschrijving)
+        public Recht(int id, string omschrijving, int funtieid)
         {
             this.ID = id;
             this.Omschrijving = omschrijving;
+            this.FunctieId = funtieid;
         }
 
         public override string ToString()

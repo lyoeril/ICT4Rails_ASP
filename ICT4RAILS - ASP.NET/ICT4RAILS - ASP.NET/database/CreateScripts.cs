@@ -10,13 +10,20 @@ namespace ICT4RAILS___ASP.NET.database
 {
     public partial class Database
     {
-        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader)
+        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader, List<Functie> functies)
         {
-            return new Medewerker(
-                Convert.ToInt32(reader["ID"]),
-                Convert.ToString(reader["Naam"]),
-                SelectFunctie(Convert.ToInt32(reader["Functie_ID"]))
-                );
+            int id = Convert.ToInt32(reader["ID"]);
+            string naam = Convert.ToString(reader["Naam"]);
+            Functie localFunctie = null;
+            foreach (Functie functie in functies)
+            {
+                if (functie.ID == Convert.ToInt32(reader["Functie_ID"]))
+                {
+                    localFunctie = functie;
+                }
+            }
+            
+            return new Medewerker(id,naam,localFunctie);
         }
 
 
@@ -24,17 +31,27 @@ namespace ICT4RAILS___ASP.NET.database
         {
             return new Recht(
                 Convert.ToInt32(reader["ID"]),
-                Convert.ToString((reader["Omschrijving"]))
+                Convert.ToString((reader["Omschrijving"])),
+                Convert.ToInt32(reader["Functie_ID"])
                 );
         }
 
-        private Functie CreateFunctieFromReader(OracleDataReader reader)
+        private Functie CreateFunctieFromReader(OracleDataReader reader, List<Recht> rechtenList )
         {
             int functieid = Convert.ToInt32(reader["ID"]);
+            string naam = Convert.ToString(reader["Naam"]);
+            List<Recht> rechten = new List<Recht>();
+            foreach (Recht recht in rechtenList)
+            {
+                if (recht.FunctieId == functieid)
+                {
+                    rechten.Add(recht);
+                }
+            }
             return new Functie(
                 functieid,
-                Convert.ToString(reader["Naam"]),
-                GetAllRechten(functieid)
+                naam,
+                rechten
                 );
         }
 

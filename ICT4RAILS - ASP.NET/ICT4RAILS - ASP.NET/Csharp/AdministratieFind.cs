@@ -8,7 +8,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public partial class Administratie
     {
-        public Functie FindFunctie(int id)
+        /*public Functie FindFunctie(int id)
         {
             foreach (Functie f in functies)
             {
@@ -115,6 +115,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 }
             }
             return null;
-        }
+        }*/
     }
 }
