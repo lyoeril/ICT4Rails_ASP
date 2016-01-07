@@ -23,6 +23,7 @@
                 </li>
             </ul>
         </div>
+        <form runat="server">
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -45,5 +46,7 @@
                 </div>
             </div>
         </div>
+            </form>
     </div>
+   
 </asp:Content>
