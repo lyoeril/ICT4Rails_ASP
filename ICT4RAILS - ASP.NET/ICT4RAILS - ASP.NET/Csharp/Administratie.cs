@@ -27,7 +27,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public List<Medewerker> Medewerkers { get; private set; }
         public List<TramOnderhoud> Onderhoudsbeurten { get; private set; }
         public List<TramType> Typen { get; private set; }
-//>>>>>>> 862ec7fb373141285339e892f09945f4d898ba4e
+        public List<Spoor> Sporen { get; private set; }
+        //>>>>>>> 862ec7fb373141285339e892f09945f4d898ba4e
 
         public Administratie()
         {
@@ -49,6 +50,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Functies = data.GetAllFuncties();
             Medewerkers = data.GetAllMedewerkers();
             Onderhoudsbeurten = new List<TramOnderhoud>();
+            Sporen = new List<Spoor>();
             
             //Remises = data.GetAllRemises();
         }

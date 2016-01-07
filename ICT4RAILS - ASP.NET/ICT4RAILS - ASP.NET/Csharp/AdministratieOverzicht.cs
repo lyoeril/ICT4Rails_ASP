@@ -9,15 +9,16 @@ namespace ICT4RAILS___ASP.NET.Csharp
     public partial class Administratie
     {
         private List<TableCell> tableCells;
-        private TableCell[][] Sporen;
+        private TableCell[][] SporenArray;
         private string[][] Lijnen;
 
         public void OverzichtInit()
         {
-            Sporen = SporenArray();
-            Lijnen = LijnenArray();
+            SporenArray = Sporenarray();
+            Lijnen = Lijnenarray();
             VulSpoornummers();
             VulLijnnummers();
+            VulSporen();
         }
 
         public Table CreateTable(Table t)
@@ -107,7 +108,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return null;
         }
 
-        public TableCell[][] SporenArray()
+        public TableCell[][] Sporenarray()
         {
             TableCell[][] sporenArray = new TableCell[78][];
 
@@ -156,7 +157,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return sporenArray;
         }
 
-        private string[][] LijnenArray()
+        private string[][] Lijnenarray()
         {
             string[][] lijnenArray = new string[10][];
 
@@ -172,26 +173,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
             lijnenArray[9] = new string[19] { "RES", "31", "40", "58", "64", "74", "75", "76", "77", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
 
             return lijnenArray;
-        }
-
-        private void VulLijnnummers()
-        {
-            for (int spoor = 0; spoor < Sporen.Length; spoor++)
-            {
-                for (int lijn = 0; lijn < Lijnen.Length - 1; lijn++)
-                {
-                    if (Sporen[spoor] != null && Sporen[spoor][0] != null)
-                    {
-                        for (int lijnSpoor = 1; lijnSpoor < Lijnen[lijn].Length; lijnSpoor++)
-                        {
-                            if (Convert.ToString(spoor) == Lijnen[lijn][lijnSpoor])
-                            {
-                                Sporen[spoor][0].Text = Lijnen[lijn][0];
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         private void VulSpoornummers()
@@ -239,6 +220,62 @@ namespace ICT4RAILS___ASP.NET.Csharp
             GetCell(17, 20).Text = "19";
             GetCell(17, 21).Text = "20";
             GetCell(17, 22).Text = "21";
+        }
+
+        private void VulLijnnummers()
+        {
+            for (int spoor = 0; spoor < SporenArray.Length; spoor++)
+            {
+                for (int lijn = 0; lijn < Lijnen.Length - 1; lijn++)
+                {
+                    if (SporenArray[spoor] != null && SporenArray[spoor][0] != null)
+                    {
+                        for (int lijnSpoor = 1; lijnSpoor < Lijnen[lijn].Length; lijnSpoor++)
+                        {
+                            if (Convert.ToString(spoor) == Lijnen[lijn][lijnSpoor])
+                            {
+                                SporenArray[spoor][0].Text = Lijnen[lijn][0];
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void VulSporen()
+        {
+            // Alle tramnummers uit de tabel halen
+            for (int spoor = 0; spoor < SporenArray.Length; spoor++)
+            {
+                if (SporenArray[spoor] != null)
+                {
+                    for (int sector = 1; sector < SporenArray[spoor].Length; sector++)
+                    {
+                        if (SporenArray[spoor][sector] != null)
+                        {
+                            SporenArray[spoor][sector].Text = "";
+                        }
+                    }
+                }
+            }
+
+            // De tabel opnieuw vullen met alle aanwezige trams
+            foreach (Spoor sp in Sporen)
+            {
+                foreach (Sector se in sp.Sectoren)
+                {
+                    if (se.Tram != null)
+                    {
+                        SporenArray[sp.Nummer][se.Nummer].Text = Convert.ToString(se.Tram.Nummer);
+                    }
+                }
+            }
+        }
+
+        public Tram SorteerTram(Tram t)
+        {
+            throw new NotImplementedException();
+            return t;
         }
     }
 }
