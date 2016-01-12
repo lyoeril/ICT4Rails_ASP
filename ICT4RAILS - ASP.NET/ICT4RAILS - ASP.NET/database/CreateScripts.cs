@@ -110,28 +110,45 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 conducteurrijdtmee = false;
             }
-            return new Lijn(id,remiseid,nummer,conducteurrijdtmee);
+            return new Lijn(id, remiseid, nummer, conducteurrijdtmee);
         }
 
-        private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader)
+        private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader, List<Medewerker> medewerkers, List<Tram> trams)
         {
+            int id = Convert.ToInt32(reader["ID"]);
+            int medewerkerid = Convert.ToInt32(reader["Medewerker_ID"]);
+            int tramid = Convert.ToInt32(reader["Tram_ID"]);
+            var datetime = reader["DatumTijdstip"];
+            var beschikbaardatetime = reader["BeschikbaarDatum"];
+            string typeonderhoud = Convert.ToString(reader["TypeOnderhoud"]);
             bool beschikbaar;
-            if (Convert.ToInt32(reader["BeschikbaarDatum"]) == 1)
+            DateTime localdatetime = new DateTime(0, 0, 0, 0, 0, 0);
+            if (datetime != DBNull.Value)
             {
-                beschikbaar = true;
+                localdatetime = Convert.ToDateTime(datetime);
             }
-            else
+            DateTime localbeschikbaardatetime = new DateTime(0, 0, 0, 0, 0, 0);
+            if (beschikbaardatetime != DBNull.Value)
             {
-                beschikbaar = false;
+                localbeschikbaardatetime = Convert.ToDateTime(beschikbaardatetime);
             }
-            return new TramOnderhoud(
-                Convert.ToInt32(reader["ID"]),
-                Convert.ToDateTime(reader["DatumTijdstip"]),
-                beschikbaar,
-                Convert.ToString(reader["TypeOnderhoud"]),
-                SelectMedewerker(Convert.ToInt32(reader["Medewerker_ID"])),
-                SelectTram(Convert.ToInt32(reader["Tram_ID"]))
-                );
+            Medewerker localMedewerker= null;
+            foreach (Medewerker mede in medewerkers)
+            {
+                if (mede.ID == medewerkerid)
+                {
+                    localMedewerker = mede;
+                }
+            }
+            Tram localtram = null;
+            foreach (Tram tram in trams)
+            {
+                if (tram.ID == tramid)
+                {
+                    localtram = tram;
+                }
+            }
+            return new TramOnderhoud(id, localdatetime,localbeschikbaardatetime,typeonderhoud,localMedewerker, localtram);
         }
 
         private Tram CreateTramFromReader(OracleDataReader reader, List<TramType> tramtypes, List<Lijn> lijnen)
@@ -305,7 +322,7 @@ namespace ICT4RAILS___ASP.NET.database
                 );
         }
 
-        private Reservering CreateReserveringFromReader(OracleDataReader reader,List<Tram> trams, List<Spoor> sporen)
+        private Reservering CreateReserveringFromReader(OracleDataReader reader, List<Tram> trams, List<Spoor> sporen)
         {
             int id = Convert.ToInt32(reader["Reservering_ID"]);
             int tramid = Convert.ToInt32(reader["Tram_ID"]);

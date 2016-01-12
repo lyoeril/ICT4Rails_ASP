@@ -333,5 +333,28 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return spoor;
         }
+
+        public List<TramOnderhoud> GetAllOnderhoud()
+        {
+            List<TramOnderhoud> tramonderhoudslist = new List<TramOnderhoud>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAM_ONDERHOUD";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    List<Medewerker> medewerkers = GetAllMedewerkers();
+                    List<Tram> tram = GetAllTrams();
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tramonderhoudslist.Add(CreateTramOnderhoudFromReader(reader, medewerkers, tram));
+                        }
+                    }
+                }
+
+            }
+            return tramonderhoudslist;
+        }
     }
 }

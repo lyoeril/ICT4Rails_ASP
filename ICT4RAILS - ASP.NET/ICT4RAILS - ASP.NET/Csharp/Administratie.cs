@@ -27,9 +27,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Typen = data.GetAllTramtypes();
             Functies = data.GetAllFuncties();
             Medewerkers = data.GetAllMedewerkers();
-            Onderhoudsbeurten = new List<TramOnderhoud>();
+            Onderhoudsbeurten = data.GetAllOnderhoud();
             Sporen = data.GetAllSporen();
             Remises = data.GetAllRemises();
+            string text = "";
         }
     }
 }
