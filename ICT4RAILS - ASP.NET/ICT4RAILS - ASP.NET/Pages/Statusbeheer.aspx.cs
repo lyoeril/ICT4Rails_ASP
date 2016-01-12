@@ -22,6 +22,7 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             int tramnummer = Convert.ToInt32(tbxTramnummer.Text);
             Tram tram = _administratie.FindTram(tramnummer);
+           
             string gevondenStatus = tram.Status.ToString();
             lblGevondenStatus.Text = gevondenStatus;
         }
@@ -30,14 +31,32 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             int tramnummer = Convert.ToInt32(tbxTramnummer.Text);
             string status = ddlNieuweStatus.SelectedItem.Text;
-            _administratie.UpdateTramStatus(tramnummer, status);
+
+            foreach (Tram t in _administratie.GetTrams())
+            {
+                if (t.Nummer == tramnummer)
+                {
+                    _administratie.UpdateTramStatus(t.ID, status);
+
+                    Tram tram = _administratie.FindTram(tramnummer);
+                    string gevondenStatus = tram.Status.ToString();
+                    lblGevondenStatus.Text = gevondenStatus;
+                }
+            }
            
         }
 
         protected void btnBevestigOnderhoud_OnClick(object sender, EventArgs e)
         {
             int tramnummer = Convert.ToInt32(tbxTramnummerOnderhoud.Text);
-            string opmerking = tbxOpmerkingOnderhoud.Text;
+            string onderhoudSoort = ddlVervuildDefect.SelectedItem.Text;
+            _administratie.UpdateTramToOnderhoud(tramnummer, onderhoudSoort);
+
+            lbTramsOnderhoud.Items.Clear();
+            foreach (Tram t in _administratie.GetAllOnderhoudTrams())
+            {
+                lbTramsOnderhoud.Items.Add(t.ToString());
+            }
         }
         */
     }

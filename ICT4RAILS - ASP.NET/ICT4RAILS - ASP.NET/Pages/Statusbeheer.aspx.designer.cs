@@ -67,13 +67,13 @@ namespace ICT4RAILS___ASP.NET.Pages {
         protected global::System.Web.UI.WebControls.TextBox tbxTramnummerOnderhoud;
         
         /// <summary>
-        /// tbxOpmerkingOnderhoud control.
+        /// ddlVervuildDefect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxOpmerkingOnderhoud;
+        protected global::System.Web.UI.WebControls.DropDownList ddlVervuildDefect;
         
         /// <summary>
         /// btnBevestigOnderhoud control.
