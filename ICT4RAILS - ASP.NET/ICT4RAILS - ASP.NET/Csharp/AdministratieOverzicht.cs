@@ -333,7 +333,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
         public List<Tram> GetAllTrams(int remiseid)
         {
-            return data.GetAllTramsRemise(remiseid);
-        } 
+            foreach (Remise remise in Remises)
+            {
+                if (remise.ID == remiseid)
+                {
+                    return remise.Trams;
+                }
+            }
+            return null;
+        }
     }
 }
