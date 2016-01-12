@@ -17,6 +17,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public List<Medewerker> Medewerkers { get; private set; }
         public List<TramOnderhoud> Onderhoudsbeurten { get; private set; }
         public List<TramType> Typen { get; private set; }
+        public Remise Remise { get { return remise; } }
 
         public Administratie()
         {

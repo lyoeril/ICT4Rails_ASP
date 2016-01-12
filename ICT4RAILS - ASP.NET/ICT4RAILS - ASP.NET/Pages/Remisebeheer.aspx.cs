@@ -41,7 +41,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
             ddlTypes.DataSource = admin.Typen;
             ddlTypes.DataBind();
-            ddlTrams.DataSource = admin.GetAllTrams(1);
+            ddlTrams.DataSource = admin.Remise.Trams;
             ddlTrams.DataBind();
             ddlTrambeheer.SelectedIndex = 0;
 
