@@ -15,16 +15,20 @@ namespace ICT4RAILS___ASP.NET.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
             _administratie = new Administratie();
+            loadOnderhoudList();
         }
-        /*
+        
 
         protected void btnCheckStatus_OnClick(object sender, EventArgs e)
         {
             int tramnummer = Convert.ToInt32(tbxTramnummer.Text);
-            Tram tram = _administratie.FindTram(tramnummer);
-           
-            string gevondenStatus = tram.Status.ToString();
-            lblGevondenStatus.Text = gevondenStatus;
+            foreach (Tram t in _administratie.Remise.Trams)
+            {
+                if (t.Nummer == tramnummer)
+                {
+                    lblGevondenStatus.Text = t.Status.ToString();
+                }
+            }
         }
 
         protected void btnBevestig_OnClick(object sender, EventArgs e)
@@ -32,14 +36,12 @@ namespace ICT4RAILS___ASP.NET.Pages
             int tramnummer = Convert.ToInt32(tbxTramnummer.Text);
             string status = ddlNieuweStatus.SelectedItem.Text;
 
-            foreach (Tram t in _administratie.GetTrams())
+            foreach (Tram t in _administratie.Remise.Trams)
             {
                 if (t.Nummer == tramnummer)
                 {
                     _administratie.UpdateTramStatus(t.ID, status);
-
-                    Tram tram = _administratie.FindTram(tramnummer);
-                    string gevondenStatus = tram.Status.ToString();
+                    string gevondenStatus = t.Status.ToString();
                     lblGevondenStatus.Text = gevondenStatus;
                 }
             }
@@ -52,12 +54,25 @@ namespace ICT4RAILS___ASP.NET.Pages
             string onderhoudSoort = ddlVervuildDefect.SelectedItem.Text;
             _administratie.UpdateTramToOnderhoud(tramnummer, onderhoudSoort);
 
+            loadOnderhoudList();
+            
+        }
+
+        public void loadOnderhoudList()
+        {
             lbTramsOnderhoud.Items.Clear();
             foreach (Tram t in _administratie.GetAllOnderhoudTrams())
             {
-                lbTramsOnderhoud.Items.Add(t.ToString());
+                if (t.Defect)
+                {
+                    lbTramsOnderhoud.Items.Add(t.Nummer + ", DEFECT");
+                }
+                else if (t.Vervuild)
+                {
+                    lbTramsOnderhoud.Items.Add(t.Nummer + ", VERVUILD");
+                }
             }
         }
-        */
+        
     }
 }

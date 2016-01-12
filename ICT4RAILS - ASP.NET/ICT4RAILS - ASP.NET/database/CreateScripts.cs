@@ -246,7 +246,12 @@ namespace ICT4RAILS___ASP.NET.database
             List<Spoor> localsporen = sporen.Where(spoor => spoor.RemiseId == id).ToList();
             List<Tram> localtrams = trams.Where(tram => tram.RemiseIdStandplaats == id).ToList();
             List<Lijn> locallijnen = lijnen.Where(lijn => lijn.RemiseId == id).ToList();
-            List<Reservering> localreserveringen = reserveringen.Where(reserv => localtrams.Contains(reserv.Tram) && localsporen.Contains(reserv.Spoor)).ToList();
+            List<Reservering> localreserveringen = new List<Reservering>();
+            foreach (Reservering reserv in from reserv in reserveringen from t in localtrams.Where(t => t.ID == reserv.Tram.ID) select reserv)
+            {
+                localreserveringen.AddRange(from s in localsporen where s.SpoorId == reserv.Spoor.SpoorId select reserv);
+            }
+                reserveringen.Where(reserv => localtrams.Contains(reserv.Tram) && localsporen.Contains(reserv.Spoor)).ToList();
             return new Remise(
                 id,
                 Convert.ToString(reader["Naam"]),
