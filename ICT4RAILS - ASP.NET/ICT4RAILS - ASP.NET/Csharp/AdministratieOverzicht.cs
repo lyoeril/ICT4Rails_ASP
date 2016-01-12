@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -12,6 +13,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         private TableCell[][] SporenArray;
         private string[][] Lijnen;
 
+        // Vult de overzichtstabel
         public void OverzichtInit()
         {
             SporenArray = Sporenarray();
@@ -19,8 +21,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
             VulSpoornummers();
             VulLijnnummers();
             VulSporen();
+            VulTrams();
         }
 
+        // Maakt een 19 bij 23 tabel aan waarbij alle
+        // onnodige 'Cells' leeg worden gelaten
         public Table CreateTable(Table t)
         {
             t.Width = new Unit("100%");
@@ -34,7 +39,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 {
                     TableCell c = new TableCell();
                     //c.Text = col + ", " + row;
-                    c.ID = "c" + row + "-" + col;
+                    c.ID = "c" + col + "-" + row;
                     c.Width = new Unit(Convert.ToString(100 / rowCount) + "%");
                     c.Height = new Unit("35px");
 
@@ -94,9 +99,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return t;
         }
 
+        // Verkort het zoeken naar de 'Cell' op de 'col', 'row' positie
         private TableCell GetCell(int col, int row)
         {
-            string id = "c" + row + "-" + col;
+            string id = "c" + col + "-" + row;
 
             foreach (TableCell tc in tableCells)
             {
@@ -108,6 +114,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return null;
         }
 
+        // Koppelt elke sector van elk spoor aan 'Cells' van de tabel
+        // namens een array. Met deze array is het dus mogelijk om 
+        // met alleen het spoor en sectornummer de bijbehorende 'Cell'
+        // te vinden. (bijv. SporenArray()[12][2] haalt de 'Cell' van de
+        // tweede sector van het 12e spoor op)
         public TableCell[][] Sporenarray()
         {
             TableCell[][] sporenArray = new TableCell[78][];
@@ -157,6 +168,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return sporenArray;
         }
 
+        // Een array om bij te houden welk spoor bij welke lijn hoort
+        // om dit te gebruiken tijdens het sorteeralgoritme van de trams
         private string[][] Lijnenarray()
         {
             string[][] lijnenArray = new string[10][];
@@ -175,6 +188,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return lijnenArray;
         }
 
+        // Vult de 'Cells' in de tabel die de spoornummers bijhouden
+        // met de bijbehorende spoornummers
         private void VulSpoornummers()
         {
             GetCell(0, 0).Text = "38";
@@ -222,6 +237,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             GetCell(17, 22).Text = "21";
         }
 
+        // Vult de 'Cells' in de tabel die de lijnnummers bijhouden
+        // met de bijbehorende lijnnummers
         private void VulLijnnummers()
         {
             for (int spoor = 0; spoor < SporenArray.Length; spoor++)
@@ -242,6 +259,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
+        // Vult de tekst van de 'Cells' van de sectoren in de tabel
         private void VulSporen()
         {
             // Alle tramnummers uit de tabel halen
@@ -272,10 +290,36 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
-        public Tram SorteerTram(Tram t)
+        // Vult de tekst van de 'Cells' van de trams in de tabel
+        private void VulTrams()
         {
-            throw new NotImplementedException();
-            return t;
+            foreach (Spoor sp in Sporen)
+            {
+                foreach (Sector se in sp.Sectoren)
+                {
+                    TableCell tc = SporenArray[sp.Nummer][se.Nummer];
+                    tc.BackColor = Color.White;
+                    if (se.Tram != null)
+                    {
+                        tc.Text = Convert.ToString(se.Tram.Nummer);
+                    }
+                    else if (se.Blokkade)
+                    {
+                        tc.BackColor = Color.Red;
+                    }
+                }
+            }
+
+            //foreach (Reservering r in Reserveringen)
+            //{
+            //    SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length + 1].BackColor = Color.Blue;
+            //}
+        }
+
+        // Sorteert een tram die binnen komt
+        public void SorteerTram(Tram t)
+        {
+            
         }
     }
 }
