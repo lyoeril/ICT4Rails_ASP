@@ -277,5 +277,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
             throw new NotImplementedException();
             return t;
         }
+
+        public List<Tram> GetAllTrams(int remiseid)
+        {
+            return data.GetAllTramsRemise(remiseid);
+        } 
     }
 }
