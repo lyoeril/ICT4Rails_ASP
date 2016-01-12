@@ -110,6 +110,7 @@
     <Compile Include="Csharp\AdministratieFind.cs" />
     <Compile Include="Csharp\AdministratieOverzicht.cs" />
     <Compile Include="Csharp\AdministratieRemove.cs" />
+    <Compile Include="Csharp\AdministratieUpdate.cs" />
     <Compile Include="Csharp\Functie.cs" />
     <Compile Include="Csharp\Lijn.cs" />
     <Compile Include="Csharp\Medewerker.cs" />
