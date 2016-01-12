@@ -40,15 +40,6 @@ namespace ICT4RAILS___ASP.NET.Pages {
         protected global::System.Web.UI.WebControls.Label lblGevondenStatus;
         
         /// <summary>
-        /// Literal1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal Literal1;
-        
-        /// <summary>
         /// ddlNieuweStatus control.
         /// </summary>
         /// <remarks>
@@ -56,5 +47,50 @@ namespace ICT4RAILS___ASP.NET.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlNieuweStatus;
+        
+        /// <summary>
+        /// btnBevestig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBevestig;
+        
+        /// <summary>
+        /// tbxTramnummerOnderhoud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxTramnummerOnderhoud;
+        
+        /// <summary>
+        /// tbxOpmerkingOnderhoud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxOpmerkingOnderhoud;
+        
+        /// <summary>
+        /// btnBevestigOnderhoud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBevestigOnderhoud;
+        
+        /// <summary>
+        /// lbTramsOnderhoud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbTramsOnderhoud;
     }
 }

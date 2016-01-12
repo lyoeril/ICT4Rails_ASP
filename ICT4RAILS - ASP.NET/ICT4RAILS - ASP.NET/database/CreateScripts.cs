@@ -22,8 +22,8 @@ namespace ICT4RAILS___ASP.NET.database
                     localFunctie = functie;
                 }
             }
-            
-            return new Medewerker(id,naam,localFunctie);
+
+            return new Medewerker(id, naam, localFunctie);
         }
 
 
@@ -36,7 +36,7 @@ namespace ICT4RAILS___ASP.NET.database
                 );
         }
 
-        private Functie CreateFunctieFromReader(OracleDataReader reader, List<Recht> rechtenList )
+        private Functie CreateFunctieFromReader(OracleDataReader reader, List<Recht> rechtenList)
         {
             int functieid = Convert.ToInt32(reader["ID"]);
             string naam = Convert.ToString(reader["Naam"]);
@@ -55,11 +55,16 @@ namespace ICT4RAILS___ASP.NET.database
                 );
         }
 
-        private Spoor CreateSpoorFromReader(OracleDataReader reader)
+        private Spoor CreateSpoorFromReader(OracleDataReader reader, List<Sector> sectoren)
         {
             int id = Convert.ToInt32(reader["ID"]);
+            int remiseid = Convert.ToInt32(reader["Remise_ID"]);
+            int localnummer = Convert.ToInt32(reader["Nummer"]);
+            int locallengte = Convert.ToInt32(reader["Lengte"]);
+            int localbeschikbaar = Convert.ToInt32(reader["Beschikbaar"]);
+            int localinuitrijspoor = Convert.ToInt32(reader["InUitRijspoor"]);
             bool beschikbaar;
-            if (Convert.ToInt32(reader["Beschikbaar"]) == 1)
+            if (localbeschikbaar == 1)
             {
                 beschikbaar = true;
             }
@@ -68,7 +73,7 @@ namespace ICT4RAILS___ASP.NET.database
                 beschikbaar = false;
             }
             bool inUitRijSpoor;
-            if (Convert.ToInt32(reader["InUitRijspoor"]) == 1)
+            if (localinuitrijspoor == 1)
             {
                 inUitRijSpoor = true;
             }
@@ -76,12 +81,15 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 inUitRijSpoor = false;
             }
-            return new Spoor(
-                id, 
-                Convert.ToInt32(reader["Nummer"]), 
-                beschikbaar, 
-                inUitRijSpoor, 
-                GetAllSectorenRemise(id));
+            List<Sector> localsectorenList = new List<Sector>();
+            foreach (Sector sector in sectoren)
+            {
+                if (sector.SpoorId == id)
+                {
+                    localsectorenList.Add(sector);
+                }
+            }
+            return new Spoor(id, remiseid, localnummer, locallengte, beschikbaar, inUitRijSpoor, localsectorenList);
         }
         private TramType CreateTramTypeFromReader(OracleDataReader reader)
         {
@@ -90,6 +98,9 @@ namespace ICT4RAILS___ASP.NET.database
 
         private Lijn CreateLijnFromReader(OracleDataReader reader)
         {
+            int id = Convert.ToInt32(reader["ID"]);
+            int remiseid = Convert.ToInt32(reader["Remise_ID"]);
+            int nummer = Convert.ToInt32(reader["Nummer"]);
             bool conducteurrijdtmee;
             if (Convert.ToInt32(reader["ConducteurRijdtMee"]) == 1)
             {
@@ -99,10 +110,7 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 conducteurrijdtmee = false;
             }
-            return new Lijn(
-                Convert.ToInt32(reader["ID"]), 
-                Convert.ToInt32(reader["Nummer"]), 
-                conducteurrijdtmee);
+            return new Lijn(id,remiseid,nummer,conducteurrijdtmee);
         }
 
         private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader)
@@ -126,7 +134,7 @@ namespace ICT4RAILS___ASP.NET.database
                 );
         }
 
-        private Tram CreateTramFromReader(OracleDataReader reader)
+        private Tram CreateTramFromReader(OracleDataReader reader, List<TramType> tramtypes, List<Lijn> lijnen)
         {
             string status = null;
             if (reader["Status"] != DBNull.Value)
@@ -171,24 +179,53 @@ namespace ICT4RAILS___ASP.NET.database
                 beschikbaar = false;
             }
             int id = Convert.ToInt32(reader["ID"]);
+            TramType localTramType = null;
+            foreach (TramType tramtype in tramtypes)
+            {
+                if (tramtype.ID == Convert.ToInt32(reader["Tramtype_ID"]))
+                {
+                    localTramType = tramtype;
+                }
+            }
+            Lijn locallijn = null;
+            var lijnid = reader["Lijn_ID"];
+            if (lijnid != DBNull.Value)
+            {
+                foreach (Lijn lijn in lijnen)
+                {
+                    if (lijn.ID == Convert.ToInt32(lijnid))
+                    {
+                        locallijn = lijn;
+                    }
+                }
+            }
+
             return new Tram(
                 id,
+                Convert.ToInt32(reader["Remise_ID_Standplaats"]),
                 Convert.ToInt32(reader["Nummer"]),
                 Convert.ToInt32(reader["Lengte"]),
-                status, 
+                status,
                 vervuild,
-                defect, 
-                conducteurgeschikt, 
+                defect,
+                conducteurgeschikt,
                 beschikbaar,
-                SelectTramType(Convert.ToInt32(reader["Tramtype_ID"])),
-                SelectLijn(id)
+                localTramType,
+                locallijn
                 );
         }
 
-        private Sector CreateSectorFromReader(OracleDataReader reader)
+        private Sector CreateSectorFromReader(OracleDataReader reader, List<Tram> trams)
         {
+            int localid = Convert.ToInt32(reader["ID"]);
+
+            int spoorid = Convert.ToInt32(reader["Spoor_ID"]);
+            var tramid = reader["Tram_ID"];
+            int localnummer = Convert.ToInt32(reader["Nummer"]);
+            int localbeschikbaar = Convert.ToInt32(reader["Beschikbaar"]);
+            int localblokkade = Convert.ToInt32(reader["Blokkade"]);
             bool beschikbaar;
-            if (Convert.ToInt32(reader["Beschikbaar"]) == 1)
+            if (localbeschikbaar == 1)
             {
                 beschikbaar = true;
             }
@@ -197,7 +234,7 @@ namespace ICT4RAILS___ASP.NET.database
                 beschikbaar = false;
             }
             bool blokkade;
-            if (Convert.ToInt32(reader["Blokkade"]) == 1)
+            if (localblokkade == 1)
             {
                 blokkade = true;
             }
@@ -205,18 +242,55 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 blokkade = false;
             }
-            return new Sector(
-                Convert.ToInt32(reader["ID"]),
-                Convert.ToInt32(reader["Nummer"]), 
-                beschikbaar, 
-                blokkade, 
-                SelectTram(Convert.ToInt32(reader["Tram_ID"]))
-                );
+            Tram localtram = null;
+            if (tramid != DBNull.Value)
+            {
+                foreach (Tram tram in trams)
+                {
+                    if (Convert.ToInt32(tramid) == tram.ID)
+                    {
+                        localtram = tram;
+                    }
+                }
+            }
+            return new Sector(localid, spoorid, localnummer, beschikbaar, blokkade, localtram);
         }
 
-        private Remise CreateRemiseFromReader(OracleDataReader reader)
+        private Remise CreateRemiseFromReader(OracleDataReader reader, List<Spoor> sporen, List<Tram> trams, List<Lijn> lijnen, List<Reservering> reserveringen)
         {
             int id = Convert.ToInt32(reader["ID"]);
+            List<Spoor> localsporen = new List<Spoor>();
+            foreach (Spoor spoor in sporen)
+            {
+                if (spoor.RemiseId == id)
+                {
+                    localsporen.Add(spoor);
+                }
+            }
+            List<Tram> localtrams = new List<Tram>();
+            foreach (Tram tram in trams)
+            {
+                if (tram.RemiseIdStandplaats == id)
+                {
+                    localtrams.Add(tram);
+                }
+            }
+            List<Lijn> locallijnen = new List<Lijn>();
+            foreach (Lijn lijn in lijnen)
+            {
+                if (lijn.RemiseId == id)
+                {
+                    locallijnen.Add(lijn);
+                }
+            }
+            List<Reservering> localreserveringen = new List<Reservering>();
+            foreach (Reservering reserv in reserveringen)
+            {
+                if (localtrams.Contains(reserv.Tram) && localsporen.Contains(reserv.Spoor))
+                {
+                    localreserveringen.Add(reserv);
+                }
+            }
             return new Remise(
                 id,
                 Convert.ToString(reader["Naam"]),
@@ -224,20 +298,36 @@ namespace ICT4RAILS___ASP.NET.database
                 Convert.ToInt32(reader["KleineServiceBeurtenPerDag"]),
                 Convert.ToInt32(reader["GroteSchoonmaakBeurtenPerDag"]),
                 Convert.ToInt32(reader["KleineSchoonmaakBeurtenPerDag"]),
-                GetAllSporenRemise(id),
-                GetAllTramsRemise(id),
-                GetAllLijnenRemise(id),
-                GetAllReserveringenRemise(id)
+                localsporen,
+                localtrams,
+                locallijnen,
+                localreserveringen
                 );
         }
 
-        private Reservering CreateReserveringFromReader(OracleDataReader reader)
+        private Reservering CreateReserveringFromReader(OracleDataReader reader,List<Tram> trams, List<Spoor> sporen)
         {
-            return new Reservering(
-                Convert.ToInt32(reader["ID"]),
-                SelectTram(Convert.ToInt32(reader["Tram_ID"])),
-                SelectSpoor(Convert.ToInt32(reader["Spoor_ID"]))
-                );
+            int id = Convert.ToInt32(reader["Reservering_ID"]);
+            int tramid = Convert.ToInt32(reader["Tram_ID"]);
+            int spoorid = Convert.ToInt32(reader["Spoor_ID"]);
+            Tram localTram = null;
+            foreach (Tram tram in trams)
+            {
+                if (tram.ID == tramid)
+                {
+                    localTram = tram;
+                }
+            }
+            Spoor localSpoor = null;
+            foreach (Spoor spoor in sporen)
+            {
+                if (spoor.SpoorId == spoorid)
+                {
+                    localSpoor = spoor;
+                }
+            }
+            return new Reservering(id, localTram, localSpoor);
+
         }
     }
 }

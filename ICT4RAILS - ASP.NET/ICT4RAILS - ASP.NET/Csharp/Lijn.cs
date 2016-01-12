@@ -8,12 +8,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
     public class Lijn
     {
         public int ID { get; private set; }
+        public int RemiseId { get; private set; }
         public int Nummer { get; set; }
         public bool ConducteurRijdMee { get; set; }
 
-        public Lijn(int id, int nummer, bool conducteurrijdmee)
+        public Lijn(int id, int remiseid, int nummer, bool conducteurrijdmee)
         {
             this.ID = id;
+            this.RemiseId = remiseid;
             this.Nummer = nummer;
             this.ConducteurRijdMee = conducteurrijdmee;
         }

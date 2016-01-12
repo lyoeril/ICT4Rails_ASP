@@ -8,6 +8,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
     public class Tram
     {
         public int ID { get; private set; }
+        public int RemiseIdStandplaats { get; set; }
         public int Nummer { get; set; }
         public int Lengte { get; set; }
         public string Status { get; set; }
@@ -18,10 +19,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public TramType TramType { get; set; }
         public Lijn Lijn { get; set; }
 
-        public Tram(int id, int nummer, int lengte, string status, bool vervuild, bool defect, bool conducteurgeschikt, bool beschikbaar, TramType tramtype, Lijn lijn)
+        public Tram(int id, int remiseidstandplaats,int nummer, int lengte, string status, bool vervuild, bool defect, bool conducteurgeschikt, bool beschikbaar, TramType tramtype, Lijn lijn)
         {
             this.ID = id;
-            
+            this.RemiseIdStandplaats = remiseidstandplaats;
             this.Nummer = nummer;
             this.Lengte = lengte;
             this.Status = status;
