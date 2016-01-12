@@ -319,7 +319,16 @@ namespace ICT4RAILS___ASP.NET.Csharp
         // Sorteert een tram die binnen komt
         public void SorteerTram(Tram t)
         {
-            
+            foreach (Spoor sp in Sporen)
+            {
+                foreach (Sector se in sp.Sectoren)
+                {
+                    if (se.Tram == t)
+                    {
+                        return;
+                    }
+                }
+            }
         }
     }
 }
