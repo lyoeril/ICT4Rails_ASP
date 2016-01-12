@@ -310,10 +310,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 }
             }
 
-            //foreach (Reservering r in Reserveringen)
-            //{
-            //    SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length + 1].BackColor = Color.Blue;
-            //}
+            foreach (Reservering r in remise.Reserveringen)
+            {
+                SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length - 1].BackColor = Color.Blue;
+            }
         }
 
         // Sorteert een tram die binnen komt
