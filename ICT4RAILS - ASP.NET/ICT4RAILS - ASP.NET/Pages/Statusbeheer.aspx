@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <label class=" col-sm-5"></label>
                         <div class="col-md-7">
-                            <asp:Button ID="btnBevestig" CssClass="btn btn-default" runat="server" Text="Bevestig" OnClick="btnBevestig_OnClick"/>
+                            <asp:Button ID="btnBevestig" CssClass="btn btn-default" runat="server" Text="Bevestig" OnClick="btnBevestig_OnClick" />
                         </div>
                     </div>
                 </div>
@@ -48,22 +48,23 @@
                             <asp:TextBox ID="tbxTramnummerOnderhoud" type="number" CssClass="form-control col-sm-5" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-5">Opmerking:</label>
-                        <div class="col-md-7">
-                            <asp:TextBox ID="tbxOpmerkingOnderhoud" TextMode="MultiLine" Width="100%" CssClass="form-control" runat="server"></asp:TextBox>
-                        </div>
+                    <label class="control-label col-sm-5">Nieuw:</label>
+                    <div class="col-md-7">
+                        <asp:DropDownList ID="ddlVervuildDefect" class="form-control" runat="server">
+                            <asp:ListItem Value="Vervuild"></asp:ListItem>
+                            <asp:ListItem Value="Defect"></asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                     <div class="form-group">
                         <label class=" col-sm-5"></label>
                         <div class="col-md-7">
-                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Width="100%" runat="server" Text="Bevestig" OnClick="btnBevestigOnderhoud_OnClick"/>
+                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Width="100%" runat="server" Text="Bevestig" OnClick="btnBevestigOnderhoud_OnClick" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class=" col-sm-5 control-label">Trams in onderhoud:</label>
                         <div class="col-md-7">
-                            <asp:ListBox id="lbTramsOnderhoud" Width="100%" runat="server"/>
+                            <asp:ListBox ID="lbTramsOnderhoud" Width="100%" runat="server" />
                         </div>
                     </div>
                 </div>

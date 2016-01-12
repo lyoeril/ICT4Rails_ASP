@@ -31,7 +31,7 @@ namespace ICT4RAILS___ASP.NET.database
             return medewerkers;
         }
 
-        public List<Recht> GetAllRechten()
+        private List<Recht> GetAllRechten()
         {
             List<Recht> rechtenList = new List<Recht>();
             using (OracleConnection connection = Connection)
@@ -72,7 +72,7 @@ namespace ICT4RAILS___ASP.NET.database
             return functielList;
         }
 
-        public List<Lijn> GetAllLijnen()
+        private List<Lijn> GetAllLijnen()
         {
             List<Lijn> lijnenList = new List<Lijn>();
             using (OracleConnection connection = Connection)
