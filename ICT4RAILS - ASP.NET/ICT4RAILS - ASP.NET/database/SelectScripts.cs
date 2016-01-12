@@ -136,26 +136,55 @@ namespace ICT4RAILS___ASP.NET.database
 
         public List<Tram> GetAllTrams()
         {
-            List<Tram> sectorenlijst = new List<Tram>();
+            List<Tram> tramlijst = new List<Tram>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT T.*, TL.\"Lijn_ID\" FROM TRAM T, TRAM_LIJN TL WHERE TL.\"Tram_ID\" = T.ID ";
+                string query = "SELECT * FROM TRAM";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     List<TramType> tramtypes = GetAllTramtypes();
-                    List<Lijn> lijnen = GetAllLijnen();
+
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            sectorenlijst.Add(CreateTramFromReader(reader, tramtypes, lijnen));
+                            tramlijst.Add(CreateTramFromReader(reader, tramtypes));
                         }
                     }
                 }
             }
-            return sectorenlijst;
+            foreach (Tram tram in tramlijst)
+            {
+                ChangeLijnForTram(tram);
+            }
+            return tramlijst;
         }
 
+        public void ChangeLijnForTram(Tram tram)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT L.ID, L.\"Remise_ID\", TL.\"Tram_ID\",L.\"Nummer\",L.\"ConducteurRijdtMee\" FROM TRAM_LIJN TL, LIJN L WHERE \"Tram_ID\"=:TRAMID and TL.\"Lijn_ID\"=L.ID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    List<TramType> tramtypes = GetAllTramtypes();
+                    command.Parameters.Add(new OracleParameter("TRAMID", tram.ID));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            bool conducteur = false || Convert.ToInt32(reader["ConducteurRijdtMee"]) == 1;
+                            tram.Lijnen.Add(new Lijn(
+                                Convert.ToInt32(reader["ID"]),
+                                Convert.ToInt32(reader["Remise_ID"]),
+                                Convert.ToInt32(reader["Nummer"]),
+                                conducteur
+                                ));
+                        }
+                    }
+                }
+            }
+        }
         public List<Remise> GetAllRemises()
         {
             List<Remise> remiselijst = new List<Remise>();
@@ -305,13 +334,13 @@ namespace ICT4RAILS___ASP.NET.database
                 {
                     command.Parameters.Add((new OracleParameter("ParaID", id)));
                     List<TramType> tramtypes = GetAllTramtypes();
-                    List<Lijn> lijnen = GetAllLijnen();
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        tram = CreateTramFromReader(reader, tramtypes, lijnen);
+                        tram = CreateTramFromReader(reader, tramtypes);
                     }
                 }
             }
+            ChangeLijnForTram(tram);
             return tram;
         }
 

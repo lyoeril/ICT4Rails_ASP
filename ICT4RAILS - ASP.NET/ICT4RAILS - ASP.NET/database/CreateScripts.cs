@@ -127,7 +127,7 @@ namespace ICT4RAILS___ASP.NET.database
             return new TramOnderhoud(id, localdatetime,localbeschikbaardatetime,typeonderhoud,localMedewerker, localtram);
         }
 
-        private Tram CreateTramFromReader(OracleDataReader reader, List<TramType> tramtypes, List<Lijn> lijnen)
+        private Tram CreateTramFromReader(OracleDataReader reader, List<TramType> tramtypes)
         {
             string status = null;
             if (reader["Status"] != DBNull.Value)
@@ -177,16 +177,6 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 localTramType = tramtype;
             }
-            Lijn locallijn = null;
-            var lijnid = reader["Lijn_ID"];
-            if (lijnid != DBNull.Value)
-            {
-                foreach (Lijn lijn in lijnen.Where(lijn => lijn.ID == Convert.ToInt32(lijnid)))
-                {
-                    locallijn = lijn;
-                }
-            }
-
             return new Tram(
                 id,
                 Convert.ToInt32(reader["Remise_ID_Standplaats"]),
@@ -197,8 +187,8 @@ namespace ICT4RAILS___ASP.NET.database
                 defect,
                 conducteurgeschikt,
                 beschikbaar,
-                localTramType,
-                locallijn
+                localTramType
+
                 );
         }
 
