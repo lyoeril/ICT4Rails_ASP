@@ -278,7 +278,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
 
             // De tabel opnieuw vullen met alle aanwezige trams
-            foreach (Spoor sp in Sporen)
+            foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
                 {
@@ -293,7 +293,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         // Vult de tekst van de 'Cells' van de trams in de tabel
         private void VulTrams()
         {
-            foreach (Spoor sp in Sporen)
+            foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
                 {
@@ -319,7 +319,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         // Sorteert een tram die binnen komt
         public void SorteerTram(Tram t)
         {
-            foreach (Spoor sp in Sporen)
+            foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
                 {
@@ -329,18 +329,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     }
                 }
             }
-        }
-
-        public List<Tram> GetAllTrams(int remiseid)
-        {
-            foreach (Remise remise in Remises)
-            {
-                if (remise.ID == remiseid)
-                {
-                    return remise.Trams;
-                }
-            }
-            return null;
         }
     }
 }
