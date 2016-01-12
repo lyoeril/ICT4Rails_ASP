@@ -109,6 +109,7 @@
     <Compile Include="Csharp\AdministratieAdd.cs" />
     <Compile Include="Csharp\AdministratieFind.cs" />
     <Compile Include="Csharp\AdministratieOverzicht.cs" />
+    <Compile Include="Csharp\AdministratieRefresh.cs" />
     <Compile Include="Csharp\AdministratieRemove.cs" />
     <Compile Include="Csharp\AdministratieUpdate.cs" />
     <Compile Include="Csharp\Functie.cs" />

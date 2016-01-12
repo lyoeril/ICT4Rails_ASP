@@ -22,13 +22,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public Administratie()
         {
             tableCells = new List<TableCell>();
-
             data = new Database();
-            Typen = data.GetAllTramtypes();
-            Functies = data.GetAllFuncties();
-            Medewerkers = data.GetAllMedewerkers();
-            Onderhoudsbeurten = new List<TramOnderhoud>();
-            Remises = data.GetAllRemises();
+            RefreshAll();
             foreach (Remise r in Remises) { if (r.ID == 1) { remise = r; } }
         }
     }

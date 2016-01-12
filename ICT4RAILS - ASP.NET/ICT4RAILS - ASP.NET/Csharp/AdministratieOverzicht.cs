@@ -291,7 +291,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         }
 
         // Vult de tekst van de 'Cells' van de trams in de tabel
-        private void VulTrams()
+        public void VulTrams()
         {
             foreach (Spoor sp in remise.Sporen)
             {
@@ -324,72 +324,79 @@ namespace ICT4RAILS___ASP.NET.Csharp
             {
                 foreach (Sector se in sp.Sectoren)
                 {
-                    if (se.Tram == t && t.Status == "REMISE")
+                    if (se.Tram != null)
                     {
-                        t.Status = "DIENST";
-                        //UpdateTram(t);
-                        se.Tram = null;
-                        //UpdateSector(se);
-                        return;
+                        if (se.Tram.Nummer == t.Nummer && t.Status == "REMISE")
+                        {
+                            t.Status = "DIENST";
+                            t.Beschikbaar = false;
+                            UpdateTram(t);
+                            se.Tram = null;
+                            UpdateSector(se);
+                            return;
+                        }
                     }
                 }
             }
 
-            int lijnNummer = t.Lijn.Nummer;
-            for (int lijn = 0; lijn < Lijnen.Length; lijn++)
+            foreach (Lijn l in t.Lijnen)
             {
-                if (lijnNummer == Lijnen[lijn][0])
+                int lijnNummer = l.Nummer;
+                for (int lijn = 0; lijn < Lijnen.Length; lijn++)
                 {
-                    for (int spoor = 1; spoor < Lijnen[lijn].Length; spoor++)
+                    if (lijnNummer == Lijnen[lijn][0])
                     {
-                        // Pakt het eerstvolgende spoornummer dat bij de lijn
-                        // van de meegegeven Tram hoort
-                        int spoornummer = -1;
-                        if (lijn == 2 && t.Nummer >= 2201 && t.Nummer <= 2204)
+                        for (int spoor = 1; spoor < Lijnen[lijn].Length; spoor++)
                         {
-                            spoornummer = Lijnen[2][spoor];
-                        }
-                        else if (lijn == 3 && t.Nummer >= 901 && t.Nummer <= 920)
-                        {
-                            spoornummer = Lijnen[3][spoor];
-                        }
-                        else
-                        {
-                            spoornummer = Lijnen[lijn][spoor];
-                        }
-
-                        // Wanneer het eerstvolgende spoornummer is gevonden
-                        if (spoornummer != -1)
-                        {
-                            // Zoekt het spoor in de list sporen
-                            foreach (Spoor sp in remise.Sporen)
+                            // Pakt het eerstvolgende spoornummer dat bij de lijn
+                            // van de meegegeven Tram hoort
+                            int spoornummer = -1;
+                            if (lijn == 2 && t.Nummer >= 2201 && t.Nummer <= 2204)
                             {
-                                if (sp.Nummer == spoornummer)
+                                spoornummer = Lijnen[2][spoor];
+                            }
+                            else if (lijn == 3 && t.Nummer >= 901 && t.Nummer <= 920)
+                            {
+                                spoornummer = Lijnen[3][spoor];
+                            }
+                            else
+                            {
+                                spoornummer = Lijnen[lijn][spoor];
+                            }
+
+                            // Wanneer het eerstvolgende spoornummer is gevonden
+                            if (spoornummer != -1)
+                            {
+                                // Zoekt het spoor in de list sporen
+                                foreach (Spoor sp in remise.Sporen)
                                 {
-                                    // Controleert of de eerstvolgende sector van dat spoor beschikbaar is
-                                    foreach (Sector se in sp.Sectoren)
+                                    if (sp.Nummer == spoornummer)
                                     {
-                                        if (se.Beschikbaar && se.Tram == null && !se.Blokkade)
+                                        // Controleert of de eerstvolgende sector van dat spoor beschikbaar is
+                                        foreach (Sector se in sp.Sectoren)
                                         {
-                                            t.Status = "REMISE";
-                                            t.Beschikbaar = true;
-                                            //UpdateTram(t);
-                                            se.Tram = t;
-                                            //UpdateSector(se);
-                                            return;
+                                            if (se.Beschikbaar && se.Tram == null && !se.Blokkade)
+                                            {
+                                                t.Status = "REMISE";
+                                                t.Beschikbaar = true;
+                                                UpdateTram(t);
+                                                se.Tram = t;
+                                                UpdateSector(se);
+                                                return;
+                                            }
                                         }
                                     }
                                 }
-                            }
 
+                            }
                         }
                     }
-                }
-                // Wanneer de tram nergens terecht kan, wordt deze
-                // op een reservespoor geplaatst
-                if (lijn == Lijnen.Length - 2)
-                {
-                    lijnNummer = Lijnen[Lijnen.Length - 1][0];
+                    // Wanneer de tram nergens terecht kan, wordt deze
+                    // op een reservespoor geplaatst
+                    if (lijn == Lijnen.Length - 2)
+                    {
+                        lijnNummer = Lijnen[Lijnen.Length - 1][0];
+                    }
                 }
             }
         }

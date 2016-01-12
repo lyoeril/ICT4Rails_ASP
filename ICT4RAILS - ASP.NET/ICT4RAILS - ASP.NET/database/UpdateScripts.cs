@@ -58,7 +58,7 @@ namespace ICT4RAILS___ASP.NET.database
             using (OracleConnection connection = Connection)
             {
 
-                string Update = "UPDATE TRAM SET \"Tramtype_ID\"=:TRAMTYPEID, \"Nummer\"=:NUMMER, \"Lengte\"=:LENGTE, \"Status\"=:STATUS,\"Vervuild\"=:VERVUILD, \"Defect\"=:DEFECT,\"ConducteurGeschikt\"=:CONDUCTEUR,\"Beschikbaar\"=:BESCHIKBAAR WHERE \"ID\"=:TRAMTYPEID";
+                string Update = "UPDATE TRAM SET \"Tramtype_ID\"=:TRAMTYPEID, \"Nummer\"=:NUMMER, \"Lengte\"=:LENGTE, \"Status\"=:STATUS,\"Vervuild\"=:VERVUILD, \"Defect\"=:DEFECT,\"ConducteurGeschikt\"=:CONDUCTEUR,\"Beschikbaar\"=:BESCHIKBAAR WHERE \"ID\"=:ID";
                 using (OracleCommand command = new OracleCommand(Update, connection))
                 {
                     command.Parameters.Add(new OracleParameter("TRAMTYPEID", tram.TramType.ID));
@@ -89,6 +89,7 @@ namespace ICT4RAILS___ASP.NET.database
                         beschikbaar = 1;
                     }
                     command.Parameters.Add(new OracleParameter("BESCHIKBAAR", beschikbaar));
+                    command.Parameters.Add(new OracleParameter("ID", tram.ID));
                     command.ExecuteNonQuery();
                 }
             }
@@ -98,8 +99,7 @@ namespace ICT4RAILS___ASP.NET.database
         {
             using (OracleConnection connection = Connection)
             {
-
-                string Update = "UPDATE SECTOR SET \"Tram_ID\" =:TRAMID,\"Beschikbaar\" =:BESCHIKBAAR,\"Blokkade\"=:BLOKKADE WHERE ID =:SECTORID";
+                string Update = "UPDATE SECTOR SET \"Tram_ID\" =:TRAMID,\"Beschikbaar\" =:BESCHIKBAAR,\"Blokkade\"=:BLOKKADE WHERE \"ID\" =:SECTORID";
                 using (OracleCommand command = new OracleCommand(Update, connection))
                 {
                     command.Parameters.Add(new OracleParameter("SECTORID", sector.ID));
@@ -109,12 +109,12 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         beschikbaar = 1;
                     }
+                    command.Parameters.Add(new OracleParameter("BESCHIKBAAR", beschikbaar));
                     int blokkade = 0;
                     if (sector.Blokkade)
                     {
                         beschikbaar = 1;
                     }
-                    command.Parameters.Add(new OracleParameter("BESCHIKBAAR", beschikbaar));
                     command.Parameters.Add(new OracleParameter("BLOKKADE", blokkade));
                     command.ExecuteNonQuery();
                 }

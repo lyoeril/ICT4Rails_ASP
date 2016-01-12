@@ -174,12 +174,10 @@ namespace ICT4RAILS___ASP.NET.database
                         while (reader.Read())
                         {
                             bool conducteur = false || Convert.ToInt32(reader["ConducteurRijdtMee"]) == 1;
-                            tram.Lijnen.Add(new Lijn(
-                                Convert.ToInt32(reader["ID"]),
-                                Convert.ToInt32(reader["Remise_ID"]),
-                                Convert.ToInt32(reader["Nummer"]),
-                                conducteur
-                                ));
+                            tram.Lijnen.Add(new Lijn(Convert.ToInt32(reader["ID"]),
+                                                     Convert.ToInt32(reader["Remise_ID"]),
+                                                     Convert.ToInt32(reader["Nummer"]),
+                                                     conducteur));
                         }
                     }
                 }
