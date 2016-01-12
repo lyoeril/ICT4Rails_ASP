@@ -102,6 +102,7 @@ namespace ICT4RAILS___ASP.NET.database
                 string Update = "UPDATE SECTOR SET \"Tram_ID\" =:TRAMID,\"Beschikbaar\" =:BESCHIKBAAR,\"Blokkade\"=:BLOKKADE WHERE \"ID\" =:SECTORID";
                 using (OracleCommand command = new OracleCommand(Update, connection))
                 {
+                    
                     command.Parameters.Add(new OracleParameter("SECTORID", sector.ID));
                     command.Parameters.Add(new OracleParameter("TRAMID", sector.Tram.ID));
                     int beschikbaar = 0;
@@ -113,7 +114,7 @@ namespace ICT4RAILS___ASP.NET.database
                     int blokkade = 0;
                     if (sector.Blokkade)
                     {
-                        beschikbaar = 1;
+                        blokkade = 1;
                     }
                     command.Parameters.Add(new OracleParameter("BLOKKADE", blokkade));
                     command.ExecuteNonQuery();
