@@ -18,7 +18,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public List<TramType> Typen { get; private set; }
         public List<Spoor> Sporen { get; private set; }
 
-
         public Administratie()
         {
             tableCells = new List<TableCell>();
@@ -30,7 +29,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Onderhoudsbeurten = data.GetAllOnderhoud();
             Sporen = data.GetAllSporen();
             Remises = data.GetAllRemises();
-            string text = "";
+
+
         }
     }
 }

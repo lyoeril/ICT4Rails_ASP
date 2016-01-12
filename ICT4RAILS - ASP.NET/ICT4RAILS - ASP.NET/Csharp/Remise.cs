@@ -32,6 +32,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Reserveringen = reserveringen;
         }
 
+        public Remise()
+        {
+            
+        }
+
         public override string ToString()
         {
             string idString;
