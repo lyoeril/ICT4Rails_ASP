@@ -9,12 +9,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
     {
         public int ID { get; private set; }
         public DateTime DatumTijdstip { get; set; }
-        public bool BeschikbaarDatum { get; set; }
+        public DateTime BeschikbaarDatum { get; set; }
         public string TypeOnderhoud { get; set; }
         public Medewerker Medewerker { get; set; }
         public Tram Tram { get; set; }
 
-        public TramOnderhoud(int id, DateTime datumtijdstip, bool beschikbaardatum, string typeonderhoud, Medewerker medewerker, Tram tram)
+        public TramOnderhoud(int id, DateTime datumtijdstip, DateTime beschikbaardatum, string typeonderhoud, Medewerker medewerker, Tram tram)
         {
             this.ID = id;
             this.DatumTijdstip = datumtijdstip;
@@ -47,7 +47,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
 
             string beschikbaarString;
-            if (!BeschikbaarDatum)
+            if (BeschikbaarDatum > DateTime.Now)
             {
                 beschikbaarString = "Nee";
             }
