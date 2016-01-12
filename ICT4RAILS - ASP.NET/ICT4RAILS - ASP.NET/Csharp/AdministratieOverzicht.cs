@@ -11,7 +11,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
     {
         private List<TableCell> tableCells;
         private TableCell[][] SporenArray;
-        private string[][] Lijnen;
+        private int[][] Lijnen;
 
         // Vult de overzichtstabel
         public void OverzichtInit()
@@ -170,20 +170,20 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
         // Een array om bij te houden welk spoor bij welke lijn hoort
         // om dit te gebruiken tijdens het sorteeralgoritme van de trams
-        private string[][] Lijnenarray()
+        private int[][] Lijnenarray()
         {
-            string[][] lijnenArray = new string[10][];
+            int[][] lijnenArray = new int[10][];
 
-            lijnenArray[0] = new string[4] { "1", "36", "43", "51" };
-            lijnenArray[1] = new string[5] { "2", "38", "34", "55", "63" };
-            lijnenArray[2] = new string[2] { "5", "42" };
-            lijnenArray[3] = new string[4] { "5", "37", "56", "54" };
-            lijnenArray[4] = new string[4] { "10", "32", "41", "62" };
-            lijnenArray[5] = new string[3] { "13", "44", "53" };
-            lijnenArray[6] = new string[3] { "17", "52", "45" };
-            lijnenArray[7] = new string[5] { "16/24", "30", "35", "33", "57" };
-            lijnenArray[8] = new string[2] { "OCV", "61" };
-            lijnenArray[9] = new string[19] { "RES", "31", "40", "58", "64", "74", "75", "76", "77", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21" };
+            lijnenArray[0] = new int[4] { 1, 36, 43, 51 };
+            lijnenArray[1] = new int[5] { 2, 38, 34, 55, 63 };
+            lijnenArray[2] = new int[2] { 5, 42 };
+            lijnenArray[3] = new int[4] { 5, 37, 56, 54 };
+            lijnenArray[4] = new int[4] { 10, 32, 41, 62 };
+            lijnenArray[5] = new int[3] { 13, 44, 53 };
+            lijnenArray[6] = new int[3] { 17, 52, 45 };
+            lijnenArray[7] = new int[5] { 16, 30, 35, 33, 57 };
+            lijnenArray[8] = new int[5] { 24, 30, 35, 33, 57 };
+            lijnenArray[9] = new int[20] { 0, 31, 40, 58, 61, 64, 74, 75, 76, 77, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 };
 
             return lijnenArray;
         }
@@ -249,9 +249,9 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     {
                         for (int lijnSpoor = 1; lijnSpoor < Lijnen[lijn].Length; lijnSpoor++)
                         {
-                            if (Convert.ToString(spoor) == Lijnen[lijn][lijnSpoor])
+                            if (spoor == Lijnen[lijn][lijnSpoor])
                             {
-                                SporenArray[spoor][0].Text = Lijnen[lijn][0];
+                                SporenArray[spoor][0].Text = Convert.ToString(Lijnen[lijn][0]);
                             }
                         }
                     }
@@ -319,14 +319,77 @@ namespace ICT4RAILS___ASP.NET.Csharp
         // Sorteert een tram die binnen komt
         public void SorteerTram(Tram t)
         {
+            // Controleert of de tram al in de remise staat
             foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
                 {
-                    if (se.Tram == t)
+                    if (se.Tram == t && t.Status == "REMISE")
                     {
+                        t.Status = "DIENST";
+                        //UpdateTram(t);
+                        se.Tram = null;
+                        //UpdateSector(se);
                         return;
                     }
+                }
+            }
+
+            int lijnNummer = t.Lijn.Nummer;
+            for (int lijn = 0; lijn < Lijnen.Length; lijn++)
+            {
+                if (lijnNummer == Lijnen[lijn][0])
+                {
+                    for (int spoor = 1; spoor < Lijnen[lijn].Length; spoor++)
+                    {
+                        // Pakt het eerstvolgende spoornummer dat bij de lijn
+                        // van de meegegeven Tram hoort
+                        int spoornummer = -1;
+                        if (lijn == 2 && t.Nummer >= 2201 && t.Nummer <= 2204)
+                        {
+                            spoornummer = Lijnen[2][spoor];
+                        }
+                        else if (lijn == 3 && t.Nummer >= 901 && t.Nummer <= 920)
+                        {
+                            spoornummer = Lijnen[3][spoor];
+                        }
+                        else
+                        {
+                            spoornummer = Lijnen[lijn][spoor];
+                        }
+
+                        // Wanneer het eerstvolgende spoornummer is gevonden
+                        if (spoornummer != -1)
+                        {
+                            // Zoekt het spoor in de list sporen
+                            foreach (Spoor sp in remise.Sporen)
+                            {
+                                if (sp.Nummer == spoornummer)
+                                {
+                                    // Controleert of de eerstvolgende sector van dat spoor beschikbaar is
+                                    foreach (Sector se in sp.Sectoren)
+                                    {
+                                        if (se.Beschikbaar && se.Tram == null && !se.Blokkade)
+                                        {
+                                            t.Status = "REMISE";
+                                            t.Beschikbaar = true;
+                                            //UpdateTram(t);
+                                            se.Tram = t;
+                                            //UpdateSector(se);
+                                            return;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+                    }
+                }
+                // Wanneer de tram nergens terecht kan, wordt deze
+                // op een reservespoor geplaatst
+                if (lijn == Lijnen.Length - 2)
+                {
+                    lijnNummer = Lijnen[Lijnen.Length - 1][0];
                 }
             }
         }
