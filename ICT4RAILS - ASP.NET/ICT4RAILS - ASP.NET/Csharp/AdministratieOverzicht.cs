@@ -58,6 +58,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                         col == 17 && row >= 13)
                     {
                         c.CssClass = "spoorDefault";
+                        c.BorderWidth = new Unit("1px");
                     }
 
                     // Sectoren de sectorDefault CSS-klasse geven
@@ -69,6 +70,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                         col >= 12 && col <= 15 && row == 14)
                     {
                         c.CssClass = "sectorDefault";
+                        c.BorderWidth = new Unit("1px");
                     }
 
                     //OLD
@@ -318,6 +320,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 foreach (Sector se in sp.Sectoren)
                 {
                     TableCell tc = SporenArray[sp.Nummer][se.Nummer];
+                    tc.BorderWidth = new Unit("1px");
+                    tc.BorderColor = Color.Black;
                     tc.Text = "";
                     tc.BackColor = Color.White;
                     tc.ForeColor = Color.Black;
@@ -399,13 +403,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
                                     UpdateTram(t);
                                     se.Tram = t;
                                     UpdateSector(se);
-                                    for (int i = 1; i < sp.Sectoren.Count; i++)
+                                    for (int i = 1; i < sp.Sectoren.Count + 1; i++)
                                     {
                                         foreach (Sector sector in sp.Sectoren)
                                         {
                                             if (sector.Nummer == i && !sector.Beschikbaar)
                                             {
                                                 sector.Beschikbaar = true;
+                                                UpdateSector(sector);
                                                 RemoveReservering(r);
                                                 remise.Reserveringen.Remove(r);
                                                 return;

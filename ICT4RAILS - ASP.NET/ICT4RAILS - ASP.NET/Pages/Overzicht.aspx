@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
     <div class="tableStyle">
-        <asp:Table ID="OverzichtTable" runat="server" GridLines="Both" CellPadding="10" HorizontalAlign="Center"/>
+        <asp:Table ID="OverzichtTable" runat="server" style="text-align: center" CellPadding="10" HorizontalAlign="Center"/>
     </div>
     <form runat="server">
         <asp:TextBox ID="tbxBarcode" clientidmode="Static" runat="server" onkeypress="return EnterEvent(event)" autofocus="true"/>    

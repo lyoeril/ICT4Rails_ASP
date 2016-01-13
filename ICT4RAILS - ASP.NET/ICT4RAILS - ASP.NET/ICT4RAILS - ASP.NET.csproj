@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\Accountbeheer.css" />
+    <Content Include="CSS\ConducteurScherm.css" />
     <Content Include="CSS\Remisebeheer.css" />
     <Content Include="CSS\SubMaster.css" />
     <Content Include="CSS\Onderhoud.css" />
@@ -86,6 +87,7 @@
     <Content Include="Pages\AccountBeheer\AccountbeheerIndex.aspx" />
     <Content Include="Pages\AccountBeheer\AccountAanmaken.aspx" />
     <Content Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx" />
+    <Content Include="Pages\ConducteurScherm.aspx" />
     <Content Include="Pages\Index.aspx" />
     <Content Include="Pages\MasterPage.Master" />
     <Content Include="Pages\Onderhoud.aspx" />
@@ -163,6 +165,13 @@
     </Compile>
     <Compile Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx.designer.cs">
       <DependentUpon>AccountMedewerkerAanmaken.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ConducteurScherm.aspx.cs">
+      <DependentUpon>ConducteurScherm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\ConducteurScherm.aspx.designer.cs">
+      <DependentUpon>ConducteurScherm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
