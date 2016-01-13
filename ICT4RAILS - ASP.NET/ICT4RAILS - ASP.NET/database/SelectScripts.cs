@@ -209,7 +209,7 @@ namespace ICT4RAILS___ASP.NET.database
         {
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT L.ID, L.\"Remise_ID\", TL.\"Tram_ID\",L.\"Nummer\",L.\"ConducteurRijdtMee\" FROM TRAM_LIJN TL, LIJN L WHERE \"Tram_ID\"=:TRAMID and TL.\"Lijn_ID\"=L.ID";
+                string query = "SELECT L.ID, L.\"Remise_ID\", TL.\"Tram_ID\",L.\"Nummer\",L.\"ConducteurRijdtMee\" FROM TRAM_LIJN TL, LIJN L WHERE \"Tram_ID\"=:TRAMID and TL.\"Lijn_ID\"=L.ID(+)";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     command.Parameters.Add(new OracleParameter("TRAMID", tram.ID));
@@ -217,11 +217,23 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         while (reader.Read())
                         {
-                            bool conducteur = false || Convert.ToInt32(reader["ConducteurRijdtMee"]) == 1;
-                            tram.Lijnen.Add(new Lijn(Convert.ToInt32(reader["ID"]),
-                                                     Convert.ToInt32(reader["Remise_ID"]),
-                                                     Convert.ToInt32(reader["Nummer"]),
-                                                     conducteur));
+                            var id = reader["ID"];
+                            var conducteur = reader["ConducteurRijdtMee"];
+                            var remiseid = reader["Remise_ID"];
+                            var nummer = reader["Nummer"];
+                            if (id == DBNull.Value)
+                            {
+                                tram.Lijnen.Add(new Lijn(0, 0, 0, true));
+                            }
+                            else
+                            {
+                                bool conducteurstat = false || Convert.ToInt32(conducteur) == 1;
+                                tram.Lijnen.Add(new Lijn(Convert.ToInt32(id),
+                                                         Convert.ToInt32(remiseid),
+                                                         Convert.ToInt32(nummer),
+                                                         conducteurstat));
+                            }
+
                         }
                     }
                 }
