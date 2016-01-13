@@ -20,7 +20,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Lijnen = Lijnenarray();
             VulSpoornummers();
             VulLijnnummers();
-            VulSporen();
+            //VulSporen();
             VulTrams();
         }
 
@@ -266,38 +266,40 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
+        // OLD
         // Vult de tekst van de 'Cells' van de sectoren in de tabel
-        private void VulSporen()
-        {
-            // Alle tramnummers uit de tabel halen
-            for (int spoor = 0; spoor < SporenArray.Length; spoor++)
-            {
-                if (SporenArray[spoor] != null)
-                {
-                    for (int sector = 1; sector < SporenArray[spoor].Length; sector++)
-                    {
-                        if (SporenArray[spoor][sector] != null)
-                        {
-                            SporenArray[spoor][sector].Text = "";
-                        }
-                    }
-                }
-            }
+        //private void VulSporen()
+        //{
+        //    // Alle tramnummers uit de tabel halen
+        //    for (int spoor = 0; spoor < SporenArray.Length; spoor++)
+        //    {
+        //        if (SporenArray[spoor] != null)
+        //        {
+        //            for (int sector = 1; sector < SporenArray[spoor].Length; sector++)
+        //            {
+        //                if (SporenArray[spoor][sector] != null)
+        //                {
+        //                    SporenArray[spoor][sector].Text = "";
+        //                }
+        //            }
+        //        }
+        //    }
 
-            // De tabel opnieuw vullen met alle aanwezige trams
-            foreach (Spoor sp in remise.Sporen)
-            {
-                foreach (Sector se in sp.Sectoren)
-                {
-                    if (se.Tram != null)
-                    {
-                        SporenArray[sp.Nummer][se.Nummer].Text = Convert.ToString(se.Tram.Nummer);
-                    }
-                }
-            }
-        }
+        //    // De tabel opnieuw vullen met alle aanwezige trams
+        //    foreach (Spoor sp in remise.Sporen)
+        //    {
+        //        foreach (Sector se in sp.Sectoren)
+        //        {
+        //            if (se.Tram != null)
+        //            {
+        //                SporenArray[sp.Nummer][se.Nummer].Text = Convert.ToString(se.Tram.Nummer);
+        //            }
+        //        }
+        //    }
+        //}
 
         // Vult de tekst van de 'Cells' van de trams in de tabel
+
         public void VulTrams()
         {
             foreach (Spoor sp in remise.Sporen)
