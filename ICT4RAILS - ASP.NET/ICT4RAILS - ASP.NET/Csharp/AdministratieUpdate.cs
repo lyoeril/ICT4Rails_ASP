@@ -10,13 +10,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
         private void UpdateTram(Tram tram)
         {
             data.UpdateTram(tram);
-            RefreshRemises();
+            //RefreshRemises();
         }
 
         private void UpdateSector(Sector sector)
         {
             data.UpdateSector(sector);
-            RefreshRemises();
+            //RefreshRemises();
         }
 
         //---------------------------------------------
