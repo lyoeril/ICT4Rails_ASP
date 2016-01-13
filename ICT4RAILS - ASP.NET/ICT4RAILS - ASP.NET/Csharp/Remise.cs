@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace ICT4RAILS___ASP.NET.Csharp
@@ -18,7 +19,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public List<Lijn> Lijnen { get; set; }
         public List<Reservering> Reserveringen { get; set; }
 
-        public Remise(int id, string naam, int groteServiceBeurtenPerDag, int kleineServiceBeurtenPerDag, int groteSchoonmaakBeurtenPerDag, int kleineSchoonmaakBeurtenPerDag, List<Spoor> sporen, List<Tram> trams, List<Lijn> lijnen, List<Reservering> reserveringen)
+        public Remise(int id, string naam, int groteServiceBeurtenPerDag, int kleineServiceBeurtenPerDag, int groteSchoonmaakBeurtenPerDag, int kleineSchoonmaakBeurtenPerDag)
         {
             ID = id;
             Naam = naam;
@@ -26,15 +27,21 @@ namespace ICT4RAILS___ASP.NET.Csharp
             KleineServiceBeurtenPerDag = kleineServiceBeurtenPerDag;
             GroteSchoonmaakBeurtenPerDag = groteSchoonmaakBeurtenPerDag;
             KleineSchoonmaakBeurtenPerDag = kleineSchoonmaakBeurtenPerDag;
-            Sporen = sporen;
-            Trams = trams;
-            Lijnen = lijnen;
-            Reserveringen = reserveringen;
+            Sporen = new List<Spoor>();
+            Trams = new List<Tram>();
+            Lijnen = new List<Lijn>();
+            Reserveringen = new List<Reservering>();
         }
 
         public Remise()
         {
             
+        }
+
+        public void AddTrams(List<Tram> trams)
+        {
+            Trams = new List<Tram>();
+            Trams.AddRange(trams);
         }
 
         public override string ToString()
