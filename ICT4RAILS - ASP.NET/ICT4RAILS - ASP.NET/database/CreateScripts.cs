@@ -10,17 +10,14 @@ namespace ICT4RAILS___ASP.NET.database
 {
     public partial class Database
     {
-        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader, List<Functie> functies)
+        private Medewerker CreateMedewerkerFromReader(OracleDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string naam = Convert.ToString(reader["Naam"]);
-            Functie localFunctie = null;
-            foreach (Functie functie in functies.Where(functie => functie.ID == Convert.ToInt32(reader["Functie_ID"])))
-            {
-                localFunctie = functie;
-            }
+            int functieid = Convert.ToInt32(reader["Functie_ID"]);
+ 
 
-            return new Medewerker(id, naam, localFunctie);
+            return new Medewerker(id, naam, functieid);
         }
 
 
@@ -33,19 +30,17 @@ namespace ICT4RAILS___ASP.NET.database
                 );
         }
 
-        private Functie CreateFunctieFromReader(OracleDataReader reader, List<Recht> rechtenList)
+        private Functie CreateFunctieFromReader(OracleDataReader reader)
         {
             int functieid = Convert.ToInt32(reader["ID"]);
             string naam = Convert.ToString(reader["Naam"]);
-            List<Recht> rechten = rechtenList.Where(recht => recht.FunctieId == functieid).ToList();
             return new Functie(
                 functieid,
-                naam,
-                rechten
+                naam
                 );
         }
 
-        private Spoor CreateSpoorFromReader(OracleDataReader reader, List<Sector> sectoren)
+        private Spoor CreateSpoorFromReader(OracleDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             int remiseid = Convert.ToInt32(reader["Remise_ID"]);
@@ -71,8 +66,8 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 inUitRijSpoor = false;
             }
-            List<Sector> localsectorenList = sectoren.Where(sector => sector.SpoorId == id).ToList();
-            return new Spoor(id, remiseid, localnummer, locallengte, beschikbaar, inUitRijSpoor, localsectorenList);
+
+            return new Spoor(id, remiseid, localnummer, locallengte, beschikbaar, inUitRijSpoor);
         }
         private TramType CreateTramTypeFromReader(OracleDataReader reader)
         {
@@ -96,7 +91,7 @@ namespace ICT4RAILS___ASP.NET.database
             return new Lijn(id, remiseid, nummer, conducteurrijdtmee);
         }
 
-        private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader, List<Medewerker> medewerkers, List<Tram> trams)
+        private TramOnderhoud CreateTramOnderhoudFromReader(OracleDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             int medewerkerid = Convert.ToInt32(reader["Medewerker_ID"]);
@@ -104,30 +99,21 @@ namespace ICT4RAILS___ASP.NET.database
             var datetime = reader["DatumTijdstip"];
             var beschikbaardatetime = reader["BeschikbaarDatum"];
             string typeonderhoud = Convert.ToString(reader["TypeOnderhoud"]);
-            DateTime localdatetime = new DateTime(0, 0, 0, 0, 0, 0);
+            DateTime? localdatetime = null;
             if (datetime != DBNull.Value)
             {
                 localdatetime = Convert.ToDateTime(datetime);
             }
-            DateTime localbeschikbaardatetime = new DateTime(0, 0, 0, 0, 0, 0);
+            DateTime localbeschikbaardatetime = new DateTime(0,0,0);
             if (beschikbaardatetime != DBNull.Value)
             {
                 localbeschikbaardatetime = Convert.ToDateTime(beschikbaardatetime);
             }
-            Medewerker localMedewerker= null;
-            foreach (Medewerker mede in medewerkers.Where(mede => mede.ID == medewerkerid))
-            {
-                localMedewerker = mede;
-            }
-            Tram localtram = null;
-            foreach (Tram tram in trams.Where(tram => tram.ID == tramid))
-            {
-                localtram = tram;
-            }
-            return new TramOnderhoud(id, localdatetime,localbeschikbaardatetime,typeonderhoud,localMedewerker, localtram);
+
+            return new TramOnderhoud(id, localdatetime, localbeschikbaardatetime, typeonderhoud,medewerkerid, tramid);
         }
 
-        private Tram CreateTramFromReader(OracleDataReader reader, List<TramType> tramtypes)
+        private Tram CreateTramFromReader(OracleDataReader reader)
         {
             string status = null;
             if (reader["Status"] != DBNull.Value)
@@ -172,11 +158,9 @@ namespace ICT4RAILS___ASP.NET.database
                 beschikbaar = false;
             }
             int id = Convert.ToInt32(reader["ID"]);
-            TramType localTramType = null;
-            foreach (TramType tramtype in tramtypes.Where(tramtype => tramtype.ID == Convert.ToInt32(reader["Tramtype_ID"])))
-            {
-                localTramType = tramtype;
-            }
+            int tramtypeid = Convert.ToInt32(reader["Tramtype_ID"]);
+
+
             return new Tram(
                 id,
                 Convert.ToInt32(reader["Remise_ID_Standplaats"]),
@@ -187,12 +171,11 @@ namespace ICT4RAILS___ASP.NET.database
                 defect,
                 conducteurgeschikt,
                 beschikbaar,
-                localTramType
-
+                tramtypeid
                 );
         }
 
-        private Sector CreateSectorFromReader(OracleDataReader reader, List<Tram> trams)
+        private Sector CreateSectorFromReader(OracleDataReader reader)
         {
             int localid = Convert.ToInt32(reader["ID"]);
 
@@ -219,41 +202,25 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 blokkade = false;
             }
-            Tram localtram = null;
+            int localtram = 0;
             if (tramid != DBNull.Value)
             {
-                foreach (Tram tram in trams.Where(tram => Convert.ToInt32(tramid) == tram.ID))
-                {
-                    localtram = tram;
-                }
+                localtram = Convert.ToInt32(tramid);
             }
             return new Sector(localid, spoorid, localnummer, beschikbaar, blokkade, localtram);
         }
 
-        private Remise CreateRemiseFromReader(OracleDataReader reader, List<Spoor> sporen, List<Tram> trams, List<Lijn> lijnen, List<Reservering> reserveringen)
+        private Remise CreateRemiseFromReader(OracleDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            List<Spoor> localsporen = sporen.Where(spoor => spoor.RemiseId == id).ToList();
-            List<Tram> localtrams = trams.Where(tram => tram.RemiseIdStandplaats == id).ToList();
-            List<Lijn> locallijnen = lijnen.Where(lijn => lijn.RemiseId == id).ToList();
-            List<Reservering> localreserveringen = new List<Reservering>();
-            foreach (Reservering reserv in from reserv in reserveringen from t in localtrams.Where(t => t.ID == reserv.Tram.ID) select reserv)
-            {
-                localreserveringen.AddRange(from s in localsporen where s.SpoorId == reserv.Spoor.SpoorId select reserv);
-            }
-                reserveringen.Where(reserv => localtrams.Contains(reserv.Tram) && localsporen.Contains(reserv.Spoor)).ToList();
             return new Remise(
-                id,
-                Convert.ToString(reader["Naam"]),
-                Convert.ToInt32(reader["GroteServiceBeurtenPerDag"]),
-                Convert.ToInt32(reader["KleineServiceBeurtenPerDag"]),
-                Convert.ToInt32(reader["GroteSchoonmaakBeurtenPerDag"]),
-                Convert.ToInt32(reader["KleineSchoonmaakBeurtenPerDag"]),
-                localsporen,
-                localtrams,
-                locallijnen,
-                localreserveringen
-                );
+                 id,
+                 Convert.ToString(reader["Naam"]),
+                 Convert.ToInt32(reader["GroteServiceBeurtenPerDag"]),
+                 Convert.ToInt32(reader["KleineServiceBeurtenPerDag"]),
+                 Convert.ToInt32(reader["GroteSchoonmaakBeurtenPerDag"]),
+                 Convert.ToInt32(reader["KleineSchoonmaakBeurtenPerDag"])
+                 );
         }
 
         private Reservering CreateReserveringFromReader(OracleDataReader reader, List<Tram> trams, List<Spoor> sporen)

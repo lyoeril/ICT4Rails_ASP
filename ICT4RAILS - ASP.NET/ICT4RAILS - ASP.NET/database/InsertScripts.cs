@@ -26,7 +26,7 @@ namespace ICT4RAILS___ASP.NET.database
 
             using (OracleConnection connection = Connection)
             {
-                string insert = "INSERT INTO \"TRAM_ONDERHOUD\" VALUES (TRAM_ONDERHOUD_FCSEQ, :MedewerkerID, :TramID, null, O_DATE(:BeschikbaarDatum, 'DD-MM-YYYY HH24:MI:SS'), :TypeOnderhoud)";
+                string insert = "INSERT INTO \"TRAM_ONDERHOUD\" VALUES (TRAM_ONDERHOUD_FCSEQ.nextval, :MedewerkerID, :TramID, null, TO_DATE(:BeschikbaarDatum, 'DD-MM-YYYY HH24:MI:SS'), :TypeOnderhoud)";
                 using (OracleCommand command = new OracleCommand(insert, connection))
                 {
                     command.Parameters.Add(new OracleParameter("MedewerkerID", tramOnderhoud.Medewerker.ID));
