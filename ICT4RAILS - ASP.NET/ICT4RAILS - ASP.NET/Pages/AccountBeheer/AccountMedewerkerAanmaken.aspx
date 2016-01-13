@@ -11,6 +11,7 @@
                     </div>
                      <div class="form-group">
                         <label for="txtMederwerkerAchternaam">Achternaam:</label>
+                        <asp:TextBox CssClass="form-control" ID="tbxAchternaam" required="" runat="server"></asp:TextBox>
                     </div>
                     <hr />
                      <div class="form-group">
@@ -25,6 +26,7 @@
                     </div>
                 <div class="form-group">
                         <label for="txtMederwerkerWachtwoord">Medewerker wachtwoord:</label>
+                        <asp:TextBox CssClass="form-control" ID="txtMederwerkerWachtwoord" required="" runat="server"></asp:TextBox>
                     </div>
                     <br />
                     <div class="form-group">
