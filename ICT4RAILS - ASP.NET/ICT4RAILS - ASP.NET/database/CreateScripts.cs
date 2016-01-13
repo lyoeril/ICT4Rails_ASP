@@ -104,7 +104,7 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 localdatetime = Convert.ToDateTime(datetime);
             }
-            DateTime? localbeschikbaardatetime = null;
+            DateTime localbeschikbaardatetime = new DateTime(0,0,0);
             if (beschikbaardatetime != DBNull.Value)
             {
                 localbeschikbaardatetime = Convert.ToDateTime(beschikbaardatetime);
