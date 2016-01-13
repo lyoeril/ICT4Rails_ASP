@@ -266,40 +266,42 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
-        // OLD
-        // Vult de tekst van de 'Cells' van de sectoren in de tabel
-        //private void VulSporen()
-        //{
-        //    // Alle tramnummers uit de tabel halen
-        //    for (int spoor = 0; spoor < SporenArray.Length; spoor++)
-        //    {
-        //        if (SporenArray[spoor] != null)
-        //        {
-        //            for (int sector = 1; sector < SporenArray[spoor].Length; sector++)
-        //            {
-        //                if (SporenArray[spoor][sector] != null)
-        //                {
-        //                    SporenArray[spoor][sector].Text = "";
-        //                }
-        //            }
-        //        }
-        //    }
+        /*OLD
+        Vult de tekst van de 'Cells' van de sectoren in de tabel
+        private void VulSporen()
+        {
+            // Alle tramnummers uit de tabel halen
+            for (int spoor = 0; spoor < SporenArray.Length; spoor++)
+            {
+                if (SporenArray[spoor] != null)
+                {
+                    for (int sector = 1; sector < SporenArray[spoor].Length; sector++)
+                    {
+                        if (SporenArray[spoor][sector] != null)
+                        {
+                            SporenArray[spoor][sector].Text = "";
+                        }
+                    }
+                }
+            }
 
-        //    // De tabel opnieuw vullen met alle aanwezige trams
-        //    foreach (Spoor sp in remise.Sporen)
-        //    {
-        //        foreach (Sector se in sp.Sectoren)
-        //        {
-        //            if (se.Tram != null)
-        //            {
-        //                SporenArray[sp.Nummer][se.Nummer].Text = Convert.ToString(se.Tram.Nummer);
-        //            }
-        //        }
-        //    }
-        //}
+            // De tabel opnieuw vullen met alle aanwezige trams
+            foreach (Spoor sp in remise.Sporen)
+            {
+                foreach (Sector se in sp.Sectoren)
+                {
+                    if (se.Tram != null)
+                    {
+                        SporenArray[sp.Nummer][se.Nummer].Text = Convert.ToString(se.Tram.Nummer);
+                    }
+                }
+            }
+        }*/
 
-        // Vult de tekst van de 'Cells' van de trams in de tabel
-
+        // Vult de tekst van de 'Cells' van de sectoren in de tabel, maakt
+        // gereserveerde sectoren blauw, geblokkeerde sectoren rood, defecte
+        // trams rood, vervuilde trams blauw, en wanneer een tram defect
+        // en vervuild is, paars
         public void VulTrams()
         {
             foreach (Spoor sp in remise.Sporen)
@@ -311,21 +313,28 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     tc.BackColor = Color.White;
                     if (se.Tram != null)
                     {
+                        if (se.Tram.Defect) { tc.ForeColor = Color.Red; }
+                        if (se.Tram.Vervuild) { tc.ForeColor = Color.Blue; }
+                        if (se.Tram.Defect && se.Tram.Vervuild) { tc.ForeColor = Color.Purple; }
                         tc.Text = Convert.ToString(se.Tram.Nummer);
                     }
                     else if (se.Blokkade)
                     {
                         tc.BackColor = Color.Red;
                     }
+                    else if (!se.Beschikbaar)
+                    {
+                        tc.BackColor = Color.Blue;
+                    }
                 }
             }
-
-            foreach (Reservering r in remise.Reserveringen)
-            {
-                int resSpoor = r.Spoor.Nummer;
-                int resSector = SporenArray[resSpoor].Length - 1;
-                SporenArray[resSpoor][resSector].BackColor = Color.Blue;
-            }
+            //OLD
+            //foreach (Reservering r in remise.Reserveringen)
+            //{
+            //    int resSpoor = r.Spoor.Nummer;
+            //    int resSector = SporenArray[resSpoor].Length - 1;
+            //    SporenArray[resSpoor][resSector].BackColor = Color.Blue;
+            //}
         }
 
         // Sorteert een tram die binnen komt
