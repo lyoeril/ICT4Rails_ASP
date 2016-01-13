@@ -81,6 +81,7 @@
     <Content Include="Images\Backgrounds\Railroad_Rails.jpg" />
     <Content Include="Images\Backgrounds\Railroad_Rails_Colorsplash_1920x1080.jpg" />
     <Content Include="Images\Icons\TramIcon.png" />
+    <Content Include="JS\Overzicht.js" />
     <Content Include="packages.config" />
     <Content Include="Pages\AccountBeheer\AccountbeheerIndex.aspx" />
     <Content Include="Pages\AccountBeheer\AccountAanmaken.aspx" />
