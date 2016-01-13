@@ -12,7 +12,6 @@ namespace ICT4RAILS___ASP.NET.database
     {
         public List<Medewerker> GetAllMedewerkers()
         {
-            List<Functie> functies = GetAllFuncties();
             List<Medewerker> medewerkers = new List<Medewerker>();
             using (OracleConnection connection = Connection)
             {
@@ -23,15 +22,21 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         while (reader.Read())
                         {
-                            medewerkers.Add(CreateMedewerkerFromReader(reader, functies));
+                            medewerkers.Add(CreateMedewerkerFromReader(reader));
                         }
                     }
                 }
             }
+            foreach (Medewerker mede in medewerkers)
+            {
+                mede.Functie = SelectFunctie(mede.FunctieId);
+            }
+            
             return medewerkers;
         }
 
-        public List<Recht> GetAllRechten()
+
+        private List<Recht> GetAllRechten()
         {
             List<Recht> rechtenList = new List<Recht>();
             using (OracleConnection connection = Connection)
@@ -64,25 +69,29 @@ namespace ICT4RAILS___ASP.NET.database
                     {
                         while (reader.Read())
                         {
-                            functielList.Add(CreateFunctieFromReader(reader, rechten));
+                            functielList.Add(CreateFunctieFromReader(reader));
                         }
                     }
                 }
             }
+            foreach (Functie functie in functielList)
+            {
+                functie.Rechten = SelectRechtenForFunctie(functie);
+            }
             return functielList;
         }
 
-        public List<Lijn> GetAllLijnenRemise(int remiseId)
+        private List<Lijn> GetAllLijnen(int remiseid)
         {
             List<Lijn> lijnenList = new List<Lijn>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT L.ID, L.\"Nummer\", L.\"ConducteurRijdtMee\" FROM LIJN L WHERE L.\"Remise_ID\" = :ParaID";
+                string query = "SELECT * FROM LIJN L WHERE \"Remise_ID\"= :REMISEID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
+                    command.Parameters.Add(new OracleParameter("REMISEID", remiseid));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.Add(new OracleParameter("ParaID", remiseId));
                         while (reader.Read())
                         {
                             lijnenList.Add(CreateLijnFromReader(reader));
@@ -93,17 +102,18 @@ namespace ICT4RAILS___ASP.NET.database
             return lijnenList;
         }
 
-        public List<Spoor> GetAllSporenRemise(int remiseId)
+        public List<Spoor> GetAllSporen(int remiseid)
         {
             List<Spoor> sporenlijst = new List<Spoor>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT S.ID, S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE S.\"Remise_ID\" = :ParaID";
+                string query = "SELECT S.ID, S.\"Remise_ID\", S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE \"Remise_ID\" = :REMISEID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
+
+                    command.Parameters.Add(new OracleParameter("REMISEID", remiseid));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.Add(new OracleParameter("ParaID", remiseId));
                         while (reader.Read())
                         {
                             sporenlijst.Add(CreateSpoorFromReader(reader));
@@ -111,20 +121,25 @@ namespace ICT4RAILS___ASP.NET.database
                     }
                 }
             }
+            foreach (Spoor spoor in sporenlijst)
+            {
+                spoor.Sectoren = GetAllSectoren(spoor.SpoorId);
+            }
             return sporenlijst;
         }
 
-        public List<Sector> GetAllSectorenRemise(int spoorId)
+        public List<Sector> GetAllSectoren(int spoorid)
         {
             List<Sector> sectorenlijst = new List<Sector>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT S.ID, S.\"Spoor_ID\", S.\"Tram_ID\", S.\"Nummer\", S.\"Beschikbaar\", S.\"Blokkade\" FROM Sector S WHERE S.\"Spoor_ID\" = :ParaID";
+                string query = "SELECT S.ID, S.\"Spoor_ID\", S.\"Tram_ID\", S.\"Nummer\", S.\"Beschikbaar\", S.\"Blokkade\" FROM Sector S WHERE S.\"Spoor_ID\" = :SPOORID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
+
+                    command.Parameters.Add("SPOORID", spoorid);
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        command.Parameters.Add(new OracleParameter("ParaID", spoorId));
                         while (reader.Read())
                         {
                             sectorenlijst.Add(CreateSectorFromReader(reader));
@@ -132,30 +147,98 @@ namespace ICT4RAILS___ASP.NET.database
                     }
                 }
             }
-            return sectorenlijst;
-        }
-
-        public List<Tram> GetAllTramsRemise(int remiseId)
-        {
-            List<Tram> sectorenlijst = new List<Tram>();
-            using (OracleConnection connection = Connection)
+            foreach (Sector sector in sectorenlijst)
             {
-                string query = "SELECT * FROM TRAM WHERE \"Remise_ID_Standplaats\" = :ParaID";
-                using (OracleCommand command = new OracleCommand(query, connection))
+                if (sector.TramId != 0)
                 {
-                    using (OracleDataReader reader = command.ExecuteReader())
-                    {
-                        command.Parameters.Add(new OracleParameter("ParaID", remiseId));
-                        while (reader.Read())
-                        {
-                            sectorenlijst.Add(CreateTramFromReader(reader));
-                        }
-                    }
+                    sector.Tram = SelectTram(sector.TramId);
                 }
+                
             }
             return sectorenlijst;
         }
 
+        public List<Tram> GetAllTrams(int remisestandplaats)
+        {
+            List<Tram> tramlijst = new List<Tram>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAM WHERE \"Remise_ID_Standplaats\"= :REMISEID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    ;
+                    command.Parameters.Add(new OracleParameter("REMISEID", remisestandplaats));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tramlijst.Add(CreateTramFromReader(reader));
+                        }
+                    }
+                }
+            }
+            foreach (Tram tram in tramlijst)
+            {
+                ChangeLijnForTram(tram);
+                ChangeTramTypeForTram(tram);
+            }
+            return tramlijst;
+        }
+
+        private void ChangeTramTypeForTram(Tram tram)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAMTYPE WHERE ID = :TRAMTYPEID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("TRAMTYPEID", tram.Tramtypeid));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tram.TramType = new TramType(Convert.ToInt32(reader["ID"]), Convert.ToString(reader["Omschrijving"]));
+                        }
+
+                    }
+                }
+            }
+        }
+
+        public void ChangeLijnForTram(Tram tram)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT L.ID, L.\"Remise_ID\", TL.\"Tram_ID\",L.\"Nummer\",L.\"ConducteurRijdtMee\" FROM TRAM_LIJN TL, LIJN L WHERE \"Tram_ID\"=:TRAMID and TL.\"Lijn_ID\"=L.ID(+)";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("TRAMID", tram.ID));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var id = reader["ID"];
+                            var conducteur = reader["ConducteurRijdtMee"];
+                            var remiseid = reader["Remise_ID"];
+                            var nummer = reader["Nummer"];
+                            if (id == DBNull.Value)
+                            {
+                                tram.Lijnen.Add(new Lijn(0, 0, 0, true));
+                            }
+                            else
+                            {
+                                bool conducteurstat = false || Convert.ToInt32(conducteur) == 1;
+                                tram.Lijnen.Add(new Lijn(Convert.ToInt32(id),
+                                                         Convert.ToInt32(remiseid),
+                                                         Convert.ToInt32(nummer),
+                                                         conducteurstat));
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
         public List<Remise> GetAllRemises()
         {
             List<Remise> remiselijst = new List<Remise>();
@@ -173,23 +256,31 @@ namespace ICT4RAILS___ASP.NET.database
                     }
                 }
             }
+            foreach (Remise remise in remiselijst)
+            {
+                remise.Lijnen = GetAllLijnen(remise.ID);
+                remise.Trams = GetAllTrams(remise.ID);
+                remise.Sporen = GetAllSporen(remise.ID);
+                remise.Reserveringen = GetAllReserveringen(remise.Trams, remise.Sporen);
+
+            }
             return remiselijst;
         }
 
-        public List<Reservering> GetAllReserveringenRemise(int remiseId)
+        public List<Reservering> GetAllReserveringen(List<Tram> trams, List<Spoor> sporen)
         {
             List<Reservering> reserveringslijst = new List<Reservering>();
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT * FROM RESERVERING R WHERE R.\"Tram_ID\" IN (SELECT ID FROM TRAM T WHERE T.\"Remise_ID_Standplaats\" = :paraID) and R.\"Spoor_ID\" IN (SELECT ID FROM SPOOR S WHERE S.\"Remise_ID\" = :paraID)";
+                string query = "SELECT * FROM RESERVERING R";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
-                    command.Parameters.Add(new OracleParameter("paraID", remiseId));
+
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            reserveringslijst.Add(CreateReserveringFromReader(reader));
+                            reserveringslijst.Add(CreateReserveringFromReader(reader, trams, sporen));
                         }
                     }
                 }
@@ -229,16 +320,41 @@ namespace ICT4RAILS___ASP.NET.database
                     command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        localFunctie = CreateFunctieFromReader(reader, rechten);
+                        while (reader.Read())
+                        {
+                            localFunctie = CreateFunctieFromReader(reader);
+                        }
+                        
                     }
                 }
             }
+            localFunctie.Rechten = SelectRechtenForFunctie(localFunctie);
+            
             return localFunctie;
+        }
+        public List<Recht> SelectRechtenForFunctie(Functie functie)
+        {
+            List<Recht> rechten = new List<Recht>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM FUNCTIE_RECHT FR, RECHT R WHERE R.ID = FR.\"Recht_ID\" and FR.\"Functie_ID\" = :FUNCTIEID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("FUNCTIEID", functie.ID));
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            rechten.Add(CreateRechtFromReader(reader));
+                        }
+                    }
+                }
+            }
+            return rechten;
         }
 
         public Medewerker SelectMedewerker(int id)
         {
-            List<Functie> functies = GetAllFuncties();
             Medewerker medewerker = null;
             using (OracleConnection connection = Connection)
             {
@@ -248,10 +364,14 @@ namespace ICT4RAILS___ASP.NET.database
                     command.Parameters.Add(new OracleParameter("paraID", id));
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        medewerker = CreateMedewerkerFromReader(reader, functies);
+                        while (reader.Read())
+                        {
+                            medewerker = CreateMedewerkerFromReader(reader);
+                        }
                     }
                 }
             }
+            medewerker.Functie = SelectFunctie(medewerker.FunctieId);
             return medewerker;
         }
 
@@ -299,12 +419,18 @@ namespace ICT4RAILS___ASP.NET.database
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     command.Parameters.Add((new OracleParameter("ParaID", id)));
+
                     using (OracleDataReader reader = command.ExecuteReader())
                     {
-                        tram = CreateTramFromReader(reader);
+                        while (reader.Read())
+                        {
+                            tram = CreateTramFromReader(reader);
+                        }              
                     }
                 }
             }
+            ChangeLijnForTram(tram);
+            ChangeTramTypeForTram(tram);
             return tram;
         }
 
@@ -313,7 +439,7 @@ namespace ICT4RAILS___ASP.NET.database
             Spoor spoor = null;
             using (OracleConnection connection = Connection)
             {
-                string query = "SELECT S.ID, S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE S.ID = :ParaID and ROWNUM <=1";
+                string query = "SELECT S.ID, S.\"Remise_ID\", S.\"Nummer\", S.\"Lengte\", S.\"Beschikbaar\", S.\"InUitRijspoor\" FROM SPOOR S WHERE S.ID = :ParaID and ROWNUM <=1";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     command.Parameters.Add((new OracleParameter("ParaID", id)));
@@ -323,7 +449,35 @@ namespace ICT4RAILS___ASP.NET.database
                     }
                 }
             }
+            spoor.Sectoren = GetAllSectoren(spoor.SpoorId);
             return spoor;
+        }
+
+        public List<TramOnderhoud> GetAllOnderhoud()
+        {
+            List<TramOnderhoud> tramonderhoudslist = new List<TramOnderhoud>();
+            using (OracleConnection connection = Connection)
+            {
+                string query = "SELECT * FROM TRAM_ONDERHOUD";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+
+                    using (OracleDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            tramonderhoudslist.Add(CreateTramOnderhoudFromReader(reader));
+                        }
+                    }
+                }
+
+            }
+            foreach (TramOnderhoud tramonderhoud in tramonderhoudslist)
+            {
+                tramonderhoud.Medewerker = SelectMedewerker(tramonderhoud.MedewerkerId);
+                tramonderhoud.Tram = SelectTram(tramonderhoud.TramId);
+            }
+            return tramonderhoudslist;
         }
     }
 }

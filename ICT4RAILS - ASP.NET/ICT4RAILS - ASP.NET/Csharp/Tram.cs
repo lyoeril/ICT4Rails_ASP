@@ -8,6 +8,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
     public class Tram
     {
         public int ID { get; private set; }
+        public int RemiseIdStandplaats { get; set; }
         public int Nummer { get; set; }
         public int Lengte { get; set; }
         public string Status { get; set; }
@@ -15,13 +16,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public bool Defect { get; set; }
         public bool ConducteurGeschikt { get; set; }
         public bool Beschikbaar { get; set; }
+        public int Tramtypeid { get; set; }
         public TramType TramType { get; set; }
-        public Lijn Lijn { get; set; }
+        public List<Lijn> Lijnen { get; set; }
 
-        public Tram(int id, int nummer, int lengte, string status, bool vervuild, bool defect, bool conducteurgeschikt, bool beschikbaar, TramType tramtype, Lijn lijn)
+        public Tram(int id, int remiseidstandplaats,int nummer, int lengte, string status, bool vervuild, bool defect, bool conducteurgeschikt, bool beschikbaar, int tramtypeid)
         {
             this.ID = id;
-            
+            this.RemiseIdStandplaats = remiseidstandplaats;
             this.Nummer = nummer;
             this.Lengte = lengte;
             this.Status = status;
@@ -29,8 +31,9 @@ namespace ICT4RAILS___ASP.NET.Csharp
             this.Defect = defect;
             this.ConducteurGeschikt = conducteurgeschikt;
             this.Beschikbaar = beschikbaar;
-            this.TramType = tramtype;
-            this.Lijn = lijn;
+            this.Tramtypeid = tramtypeid;
+            TramType = null;
+            this.Lijnen = new List<Lijn>();
         }
 
         public override string ToString()

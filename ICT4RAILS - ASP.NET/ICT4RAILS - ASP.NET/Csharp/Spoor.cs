@@ -7,19 +7,23 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public class Spoor
     {
+        public int SpoorId { get; private set; }
+        public int RemiseId { get; private set; }
         public int Nummer { get; set; }
         public int Lengte { get; set; }
         public bool Beschikbaar { get; set; }
         public bool InUitrijSpoor { get; set; }
         public List<Sector> Sectoren { get; set; }
 
-        public Spoor(int nummer, int lengte, bool beschikbaar, bool inuitrijspoor, List<Sector> sectoren )
+        public Spoor(int spoorid, int remiseid, int nummer, int lengte, bool beschikbaar, bool inuitrijspoor )
         {
+            this.SpoorId = spoorid;
+            this.RemiseId = remiseid;
             this.Nummer = nummer;
             this.Lengte = lengte;
             this.Beschikbaar = beschikbaar;
             this.InUitrijSpoor = inuitrijspoor;
-            this.Sectoren = sectoren;
+            this.Sectoren = new List<Sector>();
         }
 
         public override string ToString()
