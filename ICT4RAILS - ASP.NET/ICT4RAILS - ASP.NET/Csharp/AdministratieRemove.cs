@@ -17,5 +17,16 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
             return false;
         }
+
+        public bool RemoveReservering(Reservering reservering)
+        {
+            if (FindReservering(reservering.ID) != null)
+            {
+                data.RemoveReservering(reservering);
+                Refresh();
+                return true;
+            }
+            return false;
+        }
     }
 }

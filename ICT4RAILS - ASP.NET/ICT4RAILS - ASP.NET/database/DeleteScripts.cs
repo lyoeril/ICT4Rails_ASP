@@ -22,5 +22,18 @@ namespace ICT4RAILS___ASP.NET.database
                 }
             }
         }
+
+        public void RemoveReservering(Reservering reservering)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string Delete = "DELETE FROM RESERVERING WHERE ID =" + reservering.ID;
+
+                using (OracleCommand command = new OracleCommand(Delete, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

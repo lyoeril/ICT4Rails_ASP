@@ -8,7 +8,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public partial class Administratie
     {
-
         public Medewerker FindMedewerker(int id)
         {
             if (Medewerkers != null)
@@ -23,6 +22,18 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
             return null;
         }
+
+         public Reservering FindReservering(int id)
+         {
+             foreach (Reservering r in remise.Reserveringen)
+             {
+                 if (r.ID == id)
+                 {
+                     return r;
+                 }
+             }
+             return null;
+         }
         /* public Functie FindFunctie(int id)
          {
              foreach (Functie f in functies)
@@ -62,18 +73,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
         public Recht FindRecht(int id)
          {
              foreach (Recht r in rechten)
-             {
-                 if (r.ID == id)
-                 {
-                     return r;
-                 }
-             }
-             return null;
-         }
-
-         public Reservering FindReservering(int id)
-         {
-             foreach (Reservering r in reserveringen)
              {
                  if (r.ID == id)
                  {
