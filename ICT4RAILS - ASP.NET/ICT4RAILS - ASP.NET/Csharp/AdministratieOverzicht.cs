@@ -20,8 +20,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Lijnen = Lijnenarray();
             VulSpoornummers();
             VulLijnnummers();
-            VulSporen();
+            //VulSporen();
             VulTrams();
+        }
+
+        public void LijnenInit()
+        {
+            Lijnen = Lijnenarray();
         }
 
         // Maakt een 19 bij 23 tabel aan waarbij alle
@@ -243,7 +248,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         {
             for (int spoor = 0; spoor < SporenArray.Length; spoor++)
             {
-                for (int lijn = 0; lijn < Lijnen.Length - 1; lijn++)
+                for (int lijn = 0; lijn < Lijnen.Length; lijn++)
                 {
                     if (SporenArray[spoor] != null && SporenArray[spoor][0] != null)
                     {
@@ -254,6 +259,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
                                 if (Lijnen[lijn][0] == 16 || Lijnen[lijn][0] == 24)
                                 {
                                     SporenArray[spoor][0].Text = "16/24";
+                                }
+                                else if (Lijnen[lijn][0] == 0)
+                                {
+                                    SporenArray[spoor][0].Text = "RES";
                                 }
                                 else
                                 {
@@ -266,7 +275,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
-        // Vult de tekst van de 'Cells' van de sectoren in de tabel
+        /*OLD
+        Vult de tekst van de 'Cells' van de sectoren in de tabel
         private void VulSporen()
         {
             // Alle tramnummers uit de tabel halen
@@ -295,9 +305,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     }
                 }
             }
-        }
+        }*/
 
-        // Vult de tekst van de 'Cells' van de trams in de tabel
+        // Vult de tekst van de 'Cells' van de sectoren in de tabel, maakt
+        // gereserveerde sectoren blauw, geblokkeerde sectoren rood, defecte
+        // trams rood, vervuilde trams blauw, en wanneer een tram defect
+        // en vervuild is, paars
         public void VulTrams()
         {
             foreach (Spoor sp in remise.Sporen)
@@ -307,27 +320,47 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     TableCell tc = SporenArray[sp.Nummer][se.Nummer];
                     tc.Text = "";
                     tc.BackColor = Color.White;
+                    tc.ForeColor = Color.Black;
                     if (se.Tram != null)
                     {
+                        if (se.Tram.Defect) { tc.ForeColor = Color.Red; }
+                        if (se.Tram.Vervuild) { tc.ForeColor = Color.Blue; }
+                        if (se.Tram.Defect && se.Tram.Vervuild) { tc.ForeColor = Color.DeepPink; }
                         tc.Text = Convert.ToString(se.Tram.Nummer);
                     }
                     else if (se.Blokkade)
                     {
                         tc.BackColor = Color.Red;
                     }
+                    else if (!se.Beschikbaar)
+                    {
+                        tc.BackColor = Color.Blue;
+                    }
                 }
             }
-
+            
             foreach (Reservering r in remise.Reserveringen)
             {
-                SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length - 1].BackColor = Color.Blue;
+                int resSpoor = r.Spoor.Nummer;
+                int resSector = SporenArray[resSpoor].Length - 1;
+                if (SporenArray[resSpoor][resSector].ForeColor == Color.Yellow)
+                {
+                    resSector -= 1;
+                    if (resSector == 0)
+                    {
+                        break;
+                    }
+                }
+                SporenArray[resSpoor][resSector].ForeColor = Color.Yellow;
+                SporenArray[resSpoor][resSector].Text = r.Tram.Nummer.ToString();
             }
         }
 
         // Sorteert een tram die binnen komt
         public void SorteerTram(Tram t)
         {
-            // Controleert of de tram al in de remise staat
+            // Controleert of de tram al in de remise staat en haalt deze
+            // uit de remise wanneer dit het geval is
             foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
@@ -342,6 +375,45 @@ namespace ICT4RAILS___ASP.NET.Csharp
                             se.Tram = null;
                             UpdateSector(se);
                             return;
+                        }
+                    }
+                }
+            }
+
+            // Controleert of de tram een reservering heeft en plaatst deze
+            // vervolgens op de eerstvolgende vrije sector op dat spoor
+            foreach (Reservering r in remise.Reserveringen)
+            {
+                if (r.Tram.Nummer == t.Nummer)
+                {
+                    foreach (Spoor sp in remise.Sporen)
+                    {
+                        if (sp.Nummer == r.Spoor.Nummer)
+                        {
+                            foreach (Sector se in sp.Sectoren)
+                            {
+                                if (se.Tram == null && !se.Blokkade)
+                                {
+                                    t.Status = "REMISE";
+                                    t.Beschikbaar = true;
+                                    UpdateTram(t);
+                                    se.Tram = t;
+                                    UpdateSector(se);
+                                    for (int i = 1; i < sp.Sectoren.Count; i++)
+                                    {
+                                        foreach (Sector sector in sp.Sectoren)
+                                        {
+                                            if (sector.Nummer == i && !sector.Beschikbaar)
+                                            {
+                                                sector.Beschikbaar = true;
+                                                RemoveReservering(r);
+                                                remise.Reserveringen.Remove(r);
+                                                return;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

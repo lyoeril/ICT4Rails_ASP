@@ -118,8 +118,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 conducteurString = "Ja";
             }
 
-            string info = "TramID: " + idString
-                          + ", Nummer: " + nummerString
+            string info = "Nummer: " + nummerString
                           + ", Lengte: " + lengteString
                           + ", Status: " + statusString
                           + ", Vervuild: " + vervuildString

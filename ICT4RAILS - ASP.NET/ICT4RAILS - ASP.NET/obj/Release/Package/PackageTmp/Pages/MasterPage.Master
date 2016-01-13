@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="/Images/Icons/TramIcon.png"/>
+    <link rel="stylesheet" href="/CSS/bootstrap.css" />
+
+    <!--CSS files!-->
+    <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+    <title>Insert Title</title>
+</head>
+
+<body>
+    <asp:ContentPlaceHolder ID="Body" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

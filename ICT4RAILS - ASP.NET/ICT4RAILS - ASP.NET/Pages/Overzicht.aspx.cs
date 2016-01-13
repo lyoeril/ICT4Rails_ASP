@@ -17,14 +17,31 @@ namespace ICT4RAILS___ASP.NET.Pages
             admin = new Administratie();
             OverzichtTable = admin.CreateTable(OverzichtTable);
             admin.OverzichtInit();
+            //foreach (Tram t in admin.Remise.Trams)
+            //{
+            //    //if (t.Nummer == 2001)
+            //    //{
+            //    admin.SorteerTram(t);
+            //    //}
+            //}
+            //admin.VulTrams();
+        }
+
+        protected void btnBarcode_Click(object sender, EventArgs e)
+        {
+            int barcode = 0;
+            Int32.TryParse(tbxBarcode.Text, out barcode);
+            tbxBarcode.Text = "";
             foreach (Tram t in admin.Remise.Trams)
             {
-                //if (t.Nummer == 2001)
-                //{
-                admin.SorteerTram(t);
-                //}
+                if (t.Nummer == barcode)
+                {
+                    admin.SorteerTram(t);
+                    admin.VulTrams();
+                    return;
+                }
             }
-            admin.VulTrams();
+            Response.Write("<script language=\"javascript\">alert('" + "Ongeldig Tram Nummer!" + "');</script>");
         }
     }
 }

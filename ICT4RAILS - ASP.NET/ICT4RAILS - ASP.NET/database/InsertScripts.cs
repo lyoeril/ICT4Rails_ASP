@@ -38,5 +38,20 @@ namespace ICT4RAILS___ASP.NET.database
                 }
             }
         }
+
+        public void InsertReservering(Reservering reservering)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string Update = "insert into reservering values(RESERVERING_FCSEQ.nextval, :TRAMID, :SPOORID)";
+                using (OracleCommand command = new OracleCommand(Update, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("TRAMID", reservering.Tram.ID));
+                    command.Parameters.Add(new OracleParameter("SPOORID", reservering.Spoor.SpoorId));
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

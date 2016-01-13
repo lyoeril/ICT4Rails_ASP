@@ -26,5 +26,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
             RefreshAll();
             foreach (Remise r in Remises) { if (r.ID == 1) { remise = r; } }
         }
+
+        public void Refresh()
+        {
+            Typen = data.GetAllTramtypes();
+            Functies = data.GetAllFuncties();
+            Medewerkers = data.GetAllMedewerkers();
+        }
     }
 }
