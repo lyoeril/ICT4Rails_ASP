@@ -103,13 +103,22 @@ namespace ICT4RAILS___ASP.NET.Pages {
         protected global::System.Web.UI.WebControls.Button btnBevestigOnderhoud;
         
         /// <summary>
-        /// lbHuidigeOnderhouden control.
+        /// Table1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbHuidigeOnderhouden;
+        protected global::System.Web.UI.WebControls.Table Table1;
+        
+        /// <summary>
+        /// tbxOnderhoudIdToEnd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxOnderhoudIdToEnd;
         
         /// <summary>
         /// btnBevestigEindOnderhoud control.
@@ -119,5 +128,14 @@ namespace ICT4RAILS___ASP.NET.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBevestigEindOnderhoud;
+        
+        /// <summary>
+        /// tableGeschiedenis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tableGeschiedenis;
     }
 }
