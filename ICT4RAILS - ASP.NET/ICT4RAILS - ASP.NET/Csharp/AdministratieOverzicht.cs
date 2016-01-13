@@ -251,7 +251,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
                         {
                             if (spoor == Lijnen[lijn][lijnSpoor])
                             {
-                                SporenArray[spoor][0].Text = Convert.ToString(Lijnen[lijn][0]);
+                                if (Lijnen[lijn][0] == 16 || Lijnen[lijn][0] == 24)
+                                {
+                                    SporenArray[spoor][0].Text = "16/24";
+                                }
+                                else
+                                {
+                                    SporenArray[spoor][0].Text = Convert.ToString(Lijnen[lijn][0]);
+                                }
                             }
                         }
                     }
@@ -362,7 +369,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
                             }
                             else
                             {
-                                spoornummer = Lijnen[lijn][spoor];
+                                if (lijnNummer != 5)
+                                {
+                                    spoornummer = Lijnen[lijn][spoor];
+                                }
                             }
 
                             // Wanneer het eerstvolgende spoornummer is gevonden

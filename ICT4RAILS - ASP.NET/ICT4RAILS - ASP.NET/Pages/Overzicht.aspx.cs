@@ -19,10 +19,10 @@ namespace ICT4RAILS___ASP.NET.Pages
             admin.OverzichtInit();
             foreach (Tram t in admin.Remise.Trams)
             {
-                if (t.Nummer == 2001)
-                {
-                    admin.SorteerTram(t);
-                }
+                //if (t.Nummer == 2001)
+                //{
+                admin.SorteerTram(t);
+                //}
             }
             admin.VulTrams();
         }
