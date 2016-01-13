@@ -16,6 +16,8 @@ namespace ICT4RAILS___ASP.NET.Pages
 
             if (!IsPostBack)
             {
+                SetTimeToday();
+
                 List<Medewerker> medewerkers = admin.Medewerkers;
                 List<int>medewerkwerIds = new List<int>();
                 foreach (Medewerker medewerker in medewerkers)
@@ -63,7 +65,26 @@ namespace ICT4RAILS___ASP.NET.Pages
                     }
                 }
             }
+        }
 
+        public void SetTimeToday()
+        {
+            tbxStartDay.Text = DateTime.Today.Day.ToString();
+            tbxStartMonth.Text = DateTime.Today.Month.ToString();
+            tbxStartYear.Text = DateTime.Today.Year.ToString();
+            tbxStartHour.Text = DateTime.Today.Hour.ToString();
+            tbxStartMinute.Text = DateTime.Today.Minute.ToString();
+
+            tbxEndDay.Text = DateTime.Today.Day.ToString();
+            tbxEndMonth.Text = DateTime.Today.Month.ToString();
+            tbxEndYear.Text = DateTime.Today.Year.ToString();
+            tbxEndHour.Text = DateTime.Today.Hour.ToString();
+            tbxEndMinute.Text = DateTime.Today.Minute.ToString();
+        }
+
+        protected void btnBevestigOnderhoud_OnClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }
