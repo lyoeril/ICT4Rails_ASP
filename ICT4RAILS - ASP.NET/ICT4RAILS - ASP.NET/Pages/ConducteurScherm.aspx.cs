@@ -13,7 +13,15 @@ namespace ICT4RAILS___ASP.NET.Pages
         private Administratie admin;
         protected void Page_Load(object sender, EventArgs e)
         {
-            admin = new Administratie(); 
+            try
+            {
+                admin = new Administratie();
+            }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
         }
 
         protected void btnBevestig_OnClick(object sender, EventArgs e)

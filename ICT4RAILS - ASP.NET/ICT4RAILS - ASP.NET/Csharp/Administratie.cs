@@ -23,6 +23,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         {
             tableCells = new List<TableCell>();
             data = new Database();
+
             RefreshAll();
             foreach (Remise r in Remises) { if (r.ID == 1) { remise = r; } }
         }

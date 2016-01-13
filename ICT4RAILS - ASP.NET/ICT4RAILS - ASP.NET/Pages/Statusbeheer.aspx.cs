@@ -14,12 +14,20 @@ namespace ICT4RAILS___ASP.NET.Pages
         private Administratie _administratie;
         protected void Page_Load(object sender, EventArgs e)
         {
-            _administratie = new Administratie();
-
-            if (!IsPostBack)
+            try
             {
-                LoadOnderhoudList();
+                _administratie = new Administratie();
+                if (!IsPostBack)
+                {
+                    LoadOnderhoudList();
+                }
             }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
+
         }
 
 

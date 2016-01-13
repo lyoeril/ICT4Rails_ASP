@@ -13,17 +13,31 @@ namespace ICT4RAILS___ASP.NET.Pages
         private Administratie admin;
         protected void Page_Load(object sender, EventArgs e)
         {
-            VulLijsten();
-            ddlSpoorTrams.Enabled = false;
-            RequiredFieldValidator7.Enabled = false;
-            // Tram DropDownList + FieldValidator enablen wanneer 'Reserveren' is geselecteerd
-            ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
-            RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+            try
+            {
+                VulLijsten();
+                ddlSpoorTrams.Enabled = false;
+                RequiredFieldValidator7.Enabled = false;
+                // Tram DropDownList + FieldValidator enablen wanneer 'Reserveren' is geselecteerd
+                ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+                RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+            }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
         }
 
         protected void trambeheerbevestig_Click(object sender, EventArgs e)
         {
-            admin = new Administratie();
+            try
+            {
+                admin = new Administratie();
+            }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
             Tram t = null;
 
             foreach (Tram tram in admin.Remise.Trams.Where(tram => tram.ID.ToString() == ddlTrams.SelectedItem.Value))
