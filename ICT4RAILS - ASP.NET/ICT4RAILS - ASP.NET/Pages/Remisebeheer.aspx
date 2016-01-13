@@ -99,29 +99,6 @@
                     <div class="form-group">
                         <asp:Button ID="spoorbeheerbevestig" CssClass="btn btn-default" ValidationGroup="2" runat="server" Text="Bevestig" OnClick="spoorbeheerbevestig_Click" />
                     </div>
-                    <br />
-                    <hr />
-                    <h1>Nieuw Tram Type</h1>
-                    <div class="form-group">
-                        <asp:ValidationSummary ID="ValidationSummary3" HeaderText="Vul eerst alle velden correct in."
-                            DisplayMode="BulletList" ValidationGroup="3" EnableClientScript="true" ForeColor="Red" runat="server" />
-                        <label>Type naam:</label>
-                        <input type="text" class="form-control" id="RemiseInputTypeNaam" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator9" ControlToValidate="RemiseInputTypeNaam" ForeColor="Red" ValidationGroup="3" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <label>Beschrijving:</label>
-                        <input type="text" class="form-control" id="RemiseInputTypeBeschrijving" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator10" ControlToValidate="RemiseInputTypeBeschrijving" ForeColor="Red" ValidationGroup="3" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <label>Lengte:</label>
-                        <input type="number" class="form-control" id="RemiseInputTypeLengte" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator11" ControlToValidate="RemiseInputTypeLengte" ForeColor="Red" ValidationGroup="3" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <asp:Button ID="typebevestig" CssClass="btn btn-default" ValidationGroup="3" runat="server" Text="Bevestig" OnClick="typebevestig_Click" />
-                    </div>
                 </div>
             </div>
         </div>
