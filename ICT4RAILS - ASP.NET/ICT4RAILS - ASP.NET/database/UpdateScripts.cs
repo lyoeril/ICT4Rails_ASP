@@ -10,6 +10,47 @@ namespace ICT4RAILS___ASP.NET.database
 {
     public partial class Database
     {
+        public bool UpdateTramOnderhoudToDone(int tramOnderhoudId, string status, int tramId)
+        {
+            
+            string datumString = DateTime.Now.Day.ToString() +
+                '-' + DateTime.Now.Month.ToString() +
+                '-' + DateTime.Now.Year.ToString() +
+                ' ' + DateTime.Now.Hour.ToString() +
+                ':' + DateTime.Now.Minute.ToString() +
+                ':' + DateTime.Now.Second.ToString();
+
+            using (OracleConnection connection = Connection)
+            {
+                string query = "UPDATE TRAM_ONDERHOUD SET \"DatumTijdstip\" = TO_DATE(:Einddatum, 'DD-MM-YYYY HH24:MI:SS') WHERE ID = :TRAMONDERHOUDID";
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("Einddatum", datumString));
+                    command.Parameters.Add(new OracleParameter("TRAMONDERHOUDID", tramOnderhoudId));
+                    command.ExecuteNonQuery();
+                }
+            }
+            using (OracleConnection connection = Connection)
+            {
+                string query;
+                if (status == "DEFECT")
+                {
+                    query = "UPDATE TRAM SET \"Defect\" = 0 WHERE ID = :ID";
+                }
+                else
+                {
+                    query = "UPDATE TRAM SET \"Vervuild\" = 0 WHERE ID = :ID";
+                }
+                using (OracleCommand command = new OracleCommand(query, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("ID", tramId));
+                    command.ExecuteNonQuery();
+                    return true;
+                }
+            }
+
+        }
+
         public bool UpdateTramStatus(int tramnummer, string status)
         {
             using (OracleConnection connection = Connection)

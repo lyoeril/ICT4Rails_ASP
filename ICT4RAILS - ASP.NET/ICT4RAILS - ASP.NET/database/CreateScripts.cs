@@ -86,7 +86,7 @@ namespace ICT4RAILS___ASP.NET.database
             }
             else
             {
-                conducteurrijdtmee = false; 
+                conducteurrijdtmee = false;
             }
             return new Lijn(id, remiseid, nummer, conducteurrijdtmee);
         }
@@ -104,7 +104,7 @@ namespace ICT4RAILS___ASP.NET.database
             {
                 localdatetime = Convert.ToDateTime(datetime);
             }
-
+     
 
             return new TramOnderhoud(id, localdatetime, beschikbaardatetime, typeonderhoud,medewerkerid, tramid);
         }

@@ -76,8 +76,9 @@ namespace ICT4RAILS___ASP.NET.Pages
                 int tramnummer = Convert.ToInt32(tbxTramnummerOnderhoud.Text);
                 string onderhoudSoort = ddlVervuildDefect.SelectedItem.Text;
                 _administratie.UpdateTramToOnderhoud(tramnummer, onderhoudSoort);
-                    LoadOnderhoudList();
-                    Response.Redirect(Request.RawUrl);
+                LoadOnderhoudList();
+                Response.Redirect(Request.RawUrl);
+                    
             }
             
         }
@@ -102,6 +103,8 @@ namespace ICT4RAILS___ASP.NET.Pages
                 }
             }
         }
+
+        
 
     }
 }

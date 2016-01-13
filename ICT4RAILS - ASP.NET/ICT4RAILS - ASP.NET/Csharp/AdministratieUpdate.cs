@@ -36,6 +36,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return false;
         }
 
+        public bool UpdateTramOnderhoudToDone(int tramonderhoudId, string status, int tramId)
+        {
+            data.UpdateTramOnderhoudToDone(tramonderhoudId, status, tramId);
+            return true;
+        }
+
         public List<Tram> GetAllOnderhoudTrams()
         {
             foreach (Remise remise in Remises)
