@@ -27,9 +27,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
             data.UpdateTramStatus(tramId, status);
         }
 
-        public void UpdateTramToOnderhoud(int tramnummer, string onderhoudsoort)
+        public bool UpdateTramToOnderhoud(int tramnummer, string onderhoudsoort)
         {
-            data.UpdateTramToOnderhoud(tramnummer, onderhoudsoort);
+            if (data.UpdateTramToOnderhoud(tramnummer, onderhoudsoort))
+            {
+                return true;
+            };
+            return false;
         }
 
         public List<Tram> GetAllOnderhoudTrams()
