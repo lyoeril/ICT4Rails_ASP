@@ -16,7 +16,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
             this.ID = id;
             this.Tram = tram;
             this.Spoor = spoor;
+        }
 
+        public Reservering(Tram tram, Spoor spoor)
+        {
+            this.Tram = tram;
+            this.Spoor = spoor;
         }
 
         public override string ToString()

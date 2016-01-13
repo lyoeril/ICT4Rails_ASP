@@ -12,5 +12,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
             data.InsertTramOnderhoud(tramOnderhoud);
             return true;
         }
+
+        public void InsertReservering(Reservering reservering)
+        {
+            if (reservering.Spoor != null && reservering.Tram != null)
+            {
+                data.InsertReservering(reservering);
+            }
+        }
     }
 }

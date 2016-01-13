@@ -7,13 +7,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public partial class Administratie
     {
-        private void UpdateTram(Tram tram)
+        public void UpdateTram(Tram tram)
         {
             data.UpdateTram(tram);
             //RefreshRemises();
         }
 
-        private void UpdateSector(Sector sector)
+        public void UpdateSector(Sector sector)
         {
             data.UpdateSector(sector);
             //RefreshRemises();
