@@ -35,7 +35,7 @@
                             <asp:TextBox type="number" ID="tbxEndMinute" Width="40px" runat="server"></asp:TextBox>
                             <br/>
                             <br/>
-                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server"/>
+                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server" OnClick="btnBevestigOnderhoud_OnClick"/>
                         </div>
                         <h1>Huidige onderhouden</h1>
                         <div class="form-group">

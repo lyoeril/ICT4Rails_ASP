@@ -27,12 +27,15 @@ namespace ICT4RAILS___ASP.NET.Pages
                 ddlMedewerkers.DataSource = medewerkerNaam;
                 ddlMedewerkers.DataBind();
 
-                List<Tram> datalijst = admin.GetAllOnderhoudTrams();
+                List<Tram> datalijst = admin.Remise.Trams;
                 List<int> tramIds = new List<int>();
 
                 foreach (Tram t in datalijst)
                 {
-                    tramIds.Add(t.Nummer);
+                    if (t.Defect || t.Vervuild)
+                    {
+                        tramIds.Add(t.Nummer);
+                    }
                 }
                 ddlOnderhoudsIDs.DataSource = tramIds;
                 ddlOnderhoudsIDs.DataBind();
@@ -93,6 +96,11 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         protected void btnBevestigEindOnderhoud_OnClick(object sender, EventArgs e)
         {
+            
+        }
+
+        protected void btnBevestigOnderhoud_OnClick(object sender, EventArgs e)
+        {
             int dag = Convert.ToInt32(tbxEndDay.Text);
             int maand = Convert.ToInt32(tbxEndMonth.Text);
             int jaar = Convert.ToInt32(tbxEndYear.Text);
@@ -113,6 +121,26 @@ namespace ICT4RAILS___ASP.NET.Pages
                         }
                     }
                 }
+            }
+
+            Medewerker medewerker = null;
+            foreach (Medewerker m in admin.Medewerkers)
+            {
+                if (ddlMedewerkers.SelectedValue == m.Naam)
+                {
+                    medewerker = new Medewerker(m.ID, m.Naam, m.Functie);
+                }
+            }
+
+            TramOnderhoud tramOnderhoud = new TramOnderhoud(0, null, beschikbaarDatum, ddlOnderhoudSoort.SelectedValue, medewerker, insertTram);
+            admin.AddTramOnderhoud(tramOnderhoud);
+        }
+
+        public void reloadOnderhoudlist()
+        {
+            foreach (TramOnderhoud th in admin.Onderhoudsbeurten)
+            {
+                lbHuidigeOnderhouden.Items.Add(th.ToString());
             }
         }
     }
