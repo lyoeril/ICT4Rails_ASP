@@ -32,6 +32,11 @@ namespace ICT4RAILS___ASP.NET.Pages
 
                 t.Vervuild = cbVervuild.Checked == true;
 
+                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Remise")
+                {
+                    admin.LijnenInit();
+                    admin.SorteerTram(t);
+                }
                 admin.UpdateTram(t);
                 break;
             }
@@ -59,12 +64,12 @@ namespace ICT4RAILS___ASP.NET.Pages
 
                 foreach (Sector sectorToUpdate in _sectoren)
                 {
-                    sectorToUpdate.Beschikbaar = false;
+                    sectorToUpdate.Blokkade = true;
                     if (sectorToUpdate.Tram != null)
                     {
                         sectorToUpdate.Tram.Beschikbaar = true;
-                        sectorToUpdate.Tram = null;
                         admin.UpdateTram(sectorToUpdate.Tram);
+                        sectorToUpdate.Tram = null;
                     }
                     admin.UpdateSector(sectorToUpdate);
                 }
@@ -90,7 +95,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
                 foreach (Sector sectorToUpdate in _sectoren)
                 {
-                    sectorToUpdate.Beschikbaar = true;
+                    sectorToUpdate.Blokkade = true;
                     sectorToUpdate.Tram = null;
                     admin.UpdateSector(sectorToUpdate);
                 }

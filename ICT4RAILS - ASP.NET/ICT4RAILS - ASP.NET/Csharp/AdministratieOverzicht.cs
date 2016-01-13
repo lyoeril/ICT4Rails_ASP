@@ -24,6 +24,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
             VulTrams();
         }
 
+        public void LijnenInit()
+        {
+            Lijnen = Lijnenarray();
+        }
+
         // Maakt een 19 bij 23 tabel aan waarbij alle
         // onnodige 'Cells' leeg worden gelaten
         public Table CreateTable(Table t)
