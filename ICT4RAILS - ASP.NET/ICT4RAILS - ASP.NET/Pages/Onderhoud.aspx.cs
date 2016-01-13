@@ -128,12 +128,12 @@ namespace ICT4RAILS___ASP.NET.Pages
             {
                 if (ddlMedewerkers.SelectedValue == m.Naam)
                 {
-                   // medewerker = new Medewerker(m.ID, m.Naam, m.Functie);
+                   medewerker = new Medewerker(m.ID, m.Naam, m.Functie.ID);
                 }
             }
 
-            //TramOnderhoud tramOnderhoud = new TramOnderhoud(0, null, beschikbaarDatum, ddlOnderhoudSoort.SelectedValue, medewerker, insertTram);
-            //admin.AddTramOnderhoud(tramOnderhoud);
+            TramOnderhoud tramOnderhoud = new TramOnderhoud(0, null, beschikbaarDatum, ddlOnderhoudSoort.SelectedValue, medewerker.ID, insertTram.ID);
+            admin.AddTramOnderhoud(tramOnderhoud);
         }
 
         public void reloadOnderhoudlist()
