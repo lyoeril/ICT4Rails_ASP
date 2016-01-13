@@ -119,7 +119,7 @@ namespace ICT4RAILS___ASP.NET.database
                     int blokkade = 0;
                     if (sector.Blokkade)
                     {
-                        beschikbaar = 1;
+                        blokkade = 1;
                     }
                     command.Parameters.Add(new OracleParameter("BLOKKADE", blokkade));
                     command.Parameters.Add(new OracleParameter("SECTORID", sector.ID));
