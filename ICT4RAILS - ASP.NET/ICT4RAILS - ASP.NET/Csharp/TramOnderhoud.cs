@@ -9,14 +9,14 @@ namespace ICT4RAILS___ASP.NET.Csharp
     {
         public int ID { get; private set; }
         public DateTime? DatumTijdstip { get; set; }
-        public DateTime? BeschikbaarDatum { get; set; }
+        public DateTime BeschikbaarDatum { get; set; }
         public string TypeOnderhoud { get; set; }
         public int MedewerkerId { get; set; }
         public int TramId { get; set; }
         public Medewerker Medewerker { get; set; }
         public Tram Tram { get; set; }
 
-        public TramOnderhoud(int id, DateTime? datumtijdstip, DateTime? beschikbaardatum, string typeonderhoud, int medewerkerid, int tramid)
+        public TramOnderhoud(int id, DateTime? datumtijdstip, DateTime beschikbaardatum, string typeonderhoud, int medewerkerid, int tramid)
         {
             this.ID = id;
             this.DatumTijdstip = datumtijdstip;
