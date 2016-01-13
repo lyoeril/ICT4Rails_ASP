@@ -316,6 +316,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     TableCell tc = SporenArray[sp.Nummer][se.Nummer];
                     tc.Text = "";
                     tc.BackColor = Color.White;
+                    tc.ForeColor = Color.Black;
                     if (se.Tram != null)
                     {
                         if (se.Tram.Defect) { tc.ForeColor = Color.Red; }
@@ -333,19 +334,31 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     }
                 }
             }
-            //OLD
-            //foreach (Reservering r in remise.Reserveringen)
-            //{
-            //    int resSpoor = r.Spoor.Nummer;
-            //    int resSector = SporenArray[resSpoor].Length - 1;
-            //    SporenArray[resSpoor][resSector].BackColor = Color.Blue;
-            //}
+
+            Spoor prevSpoor = null;
+            foreach (Reservering r in remise.Reserveringen)
+            {
+                prevSpoor = r.Spoor;
+                int resSpoor = r.Spoor.Nummer;
+                int resSector = SporenArray[resSpoor].Length - 1;
+                if (SporenArray[resSpoor][resSector].ForeColor == Color.Yellow)
+                {
+                    resSector -= 1;
+                    if (resSector == 0)
+                    {
+                        break;
+                    }
+                }
+                SporenArray[resSpoor][resSector].ForeColor = Color.Yellow;
+                SporenArray[resSpoor][resSector].Text = r.Tram.Nummer.ToString();
+            }
         }
 
         // Sorteert een tram die binnen komt
         public void SorteerTram(Tram t)
         {
-            // Controleert of de tram al in de remise staat
+            // Controleert of de tram al in de remise staat en haalt deze
+            // uit de remise wanneer dit het geval is
             foreach (Spoor sp in remise.Sporen)
             {
                 foreach (Sector se in sp.Sectoren)
@@ -360,6 +373,35 @@ namespace ICT4RAILS___ASP.NET.Csharp
                             se.Tram = null;
                             UpdateSector(se);
                             return;
+                        }
+                    }
+                }
+            }
+
+            // Controleert of de tram een reservering heeft en plaatst deze
+            // vervolgens op de eerstvolgende vrije sector op dat spoor
+            foreach (Reservering r in remise.Reserveringen)
+            {
+                if (r.Tram.Nummer == t.Nummer)
+                {
+                    foreach (Spoor sp in remise.Sporen)
+                    {
+                        if (sp.Nummer == r.Spoor.Nummer)
+                        {
+                            foreach (Sector se in sp.Sectoren)
+                            {
+                                if (se.Tram == null && !se.Blokkade)
+                                {
+                                    t.Status = "REMISE";
+                                    t.Beschikbaar = true;
+                                    UpdateTram(t);
+                                    se.Tram = t;
+                                    se.Beschikbaar = true;
+                                    UpdateSector(se);
+                                    RemoveReservering(r);
+                                    return;
+                                }
+                            }
                         }
                     }
                 }
