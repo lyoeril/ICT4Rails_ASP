@@ -30,5 +30,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Sporen = new List<Spoor>();
             //Remises = data.GetAllRemises();
         }
+
+        public void Refresh()
+        {
+            Typen = data.GetAllTramtypes();
+            Functies = data.GetAllFuncties();
+            Medewerkers = data.GetAllMedewerkers();
+        }
     }
 }

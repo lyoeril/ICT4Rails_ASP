@@ -22,7 +22,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             string Username = txtInputUsername.Text;
             string Password = txtInputPassword.Text;
 
-
+            
             if (active.ValidateUser(Username, Password))
             {
                 Response.Redirect("~/Pages/Overzicht.aspx");
@@ -31,7 +31,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             {
                 txtInputUsername.Text = "Username is verkeerd";
             }
-            
+
         }
     }
 }
