@@ -322,7 +322,9 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
             foreach (Reservering r in remise.Reserveringen)
             {
-                SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length - 1].BackColor = Color.Blue;
+                int resSpoor = r.Spoor.Nummer;
+                int resSector = SporenArray[resSpoor].Length - 1;
+                SporenArray[resSpoor][resSector].BackColor = Color.Blue;
             }
         }
 
