@@ -20,8 +20,13 @@ namespace ICT4RAILS___ASP.NET.Csharp
             Lijnen = Lijnenarray();
             VulSpoornummers();
             VulLijnnummers();
-            VulSporen();
+            //VulSporen();
             VulTrams();
+        }
+
+        public void LijnenInit()
+        {
+            Lijnen = Lijnenarray();
         }
 
         // Maakt een 19 bij 23 tabel aan waarbij alle
@@ -266,7 +271,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
             }
         }
 
-        // Vult de tekst van de 'Cells' van de sectoren in de tabel
+        /*OLD
+        Vult de tekst van de 'Cells' van de sectoren in de tabel
         private void VulSporen()
         {
             // Alle tramnummers uit de tabel halen
@@ -295,9 +301,12 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     }
                 }
             }
-        }
+        }*/
 
-        // Vult de tekst van de 'Cells' van de trams in de tabel
+        // Vult de tekst van de 'Cells' van de sectoren in de tabel, maakt
+        // gereserveerde sectoren blauw, geblokkeerde sectoren rood, defecte
+        // trams rood, vervuilde trams blauw, en wanneer een tram defect
+        // en vervuild is, paars
         public void VulTrams()
         {
             foreach (Spoor sp in remise.Sporen)
@@ -309,19 +318,28 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     tc.BackColor = Color.White;
                     if (se.Tram != null)
                     {
+                        if (se.Tram.Defect) { tc.ForeColor = Color.Red; }
+                        if (se.Tram.Vervuild) { tc.ForeColor = Color.Blue; }
+                        if (se.Tram.Defect && se.Tram.Vervuild) { tc.ForeColor = Color.Purple; }
                         tc.Text = Convert.ToString(se.Tram.Nummer);
                     }
                     else if (se.Blokkade)
                     {
                         tc.BackColor = Color.Red;
                     }
+                    else if (!se.Beschikbaar)
+                    {
+                        tc.BackColor = Color.Blue;
+                    }
                 }
             }
-
-            foreach (Reservering r in remise.Reserveringen)
-            {
-                SporenArray[r.Spoor.Nummer][SporenArray[r.Spoor.Nummer].Length - 1].BackColor = Color.Blue;
-            }
+            //OLD
+            //foreach (Reservering r in remise.Reserveringen)
+            //{
+            //    int resSpoor = r.Spoor.Nummer;
+            //    int resSector = SporenArray[resSpoor].Length - 1;
+            //    SporenArray[resSpoor][resSector].BackColor = Color.Blue;
+            //}
         }
 
         // Sorteert een tram die binnen komt

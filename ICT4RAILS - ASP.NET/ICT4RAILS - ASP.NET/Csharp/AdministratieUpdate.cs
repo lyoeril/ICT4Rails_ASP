@@ -13,7 +13,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             RefreshRemises();
         }
 
-        private void UpdateSector(Sector sector)
+        public void UpdateSector(Sector sector)
         {
             data.UpdateSector(sector);
             //RefreshRemises();

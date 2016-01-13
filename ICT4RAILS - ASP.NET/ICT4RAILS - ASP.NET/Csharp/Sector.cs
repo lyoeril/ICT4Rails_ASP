@@ -77,8 +77,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 beschikbaarString = "Ja";
             }
 
-            string info = "SectorID: " + idString
-                 + ", TramID: " + tramString
+            string info = "TramID: " + tramString
                  + ", Nummer: " + nummerString
                  + ", Beschikbaar: " + beschikbaarString
                  + ", Geblokkeerd:" + blokkadeString;

@@ -35,7 +35,6 @@ namespace ICT4RAILS___ASP.NET.database
             return medewerkers;
         }
 
-
         private List<Recht> GetAllRechten()
         {
             List<Recht> rechtenList = new List<Recht>();
@@ -56,6 +55,7 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return rechtenList;
         }
+
         public List<Functie> GetAllFuncties()
         {
             List<Recht> rechten = GetAllRechten();
@@ -239,6 +239,7 @@ namespace ICT4RAILS___ASP.NET.database
                 }
             }
         }
+
         public List<Remise> GetAllRemises()
         {
             List<Remise> remiselijst = new List<Remise>();
@@ -288,6 +289,7 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return reserveringslijst;
         }
+
         public List<TramType> GetAllTramtypes()
         {
             List<TramType> tramtypelist = new List<TramType>();
@@ -308,6 +310,7 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return tramtypelist;
         }
+
         public Functie SelectFunctie(int id)
         {
             List<Recht> rechten = GetAllRechten();
@@ -332,6 +335,7 @@ namespace ICT4RAILS___ASP.NET.database
             
             return localFunctie;
         }
+
         public List<Recht> SelectRechtenForFunctie(Functie functie)
         {
             List<Recht> rechten = new List<Recht>();
@@ -410,6 +414,7 @@ namespace ICT4RAILS___ASP.NET.database
             }
             return lijn;
         }
+
         public Tram SelectTram(int id)
         {
             Tram tram = null;
