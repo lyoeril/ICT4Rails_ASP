@@ -27,11 +27,6 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             admin = new Administratie();
 
-        }
-
-        protected void typebevestig_Click(object sender, EventArgs e)
-        {
-            admin = new Administratie();
 
         }
 

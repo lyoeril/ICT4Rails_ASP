@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <asp:ValidationSummary ID="ValidationSummary1" HeaderText="Vul eerst alle velden correct in."
                                 DisplayMode="BulletList" ValidationGroup="1" EnableClientScript="true" ForeColor="Red" runat="server" />
-                            <label>TramID:</label>
+                            <label>Tramnummer:</label>
                             <asp:DropDownList ID="ddlOnderhoudsIDs" CssClass="form-control" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlOnderhoudsIDs_OnSelectedIndexChanged">
                             </asp:DropDownList>
                             <br />
@@ -25,26 +25,22 @@
                             <label>MedewerkerID:</label>
                             <asp:DropDownList ID="ddlMedewerkers" CssClass="form-control" runat="server" />
                             <br />
-                            <label>Startdatum:</label>
-                            <asp:TextBox type="number" ID="tbxStartDay" Width="40px" runat="server"></asp:TextBox>
-                            <asp:TextBox type="number" ID="tbxStartMonth" Width="40px" runat="server"></asp:TextBox>
-                            <asp:TextBox type="number" ID="tbxStartYear" Width="60px" runat="server"></asp:TextBox>
-                            <label>Starttijd:</label>
-                            <asp:TextBox type="number" ID="tbxStartHour" Width="40px" runat="server"></asp:TextBox>
-                            <label>:</label>
-                            <asp:TextBox type="number" ID="tbxStartMinute" Width="40px" runat="server"></asp:TextBox>
-                            <br />
-                            <label>Einddatum:</label>
+                            <label>Verwachte Einddatum:</label>
                             <asp:TextBox type="number" ID="tbxEndDay" Width="40px" runat="server"></asp:TextBox>
                             <asp:TextBox type="number" ID="tbxEndMonth" Width="40px" runat="server"></asp:TextBox>
                             <asp:TextBox type="number" ID="tbxEndYear" Width="60px" runat="server"></asp:TextBox>
-                            <label>Eindtijd:</label>
+                            <label>Verwachte Eindtijd:</label>
                             <asp:TextBox type="number" ID="tbxEndHour" Width="40px" runat="server"></asp:TextBox>
                             <label>:</label>
                             <asp:TextBox type="number" ID="tbxEndMinute" Width="40px" runat="server"></asp:TextBox>
                             <br/>
                             <br/>
-                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server" OnClick="btnBevestigOnderhoud_OnClick"/>
+                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server"/>
+                        </div>
+                        <h1>Huidige onderhouden</h1>
+                        <div class="form-group">
+                            <asp:ListBox id="lbHuidigeOnderhouden" CssClass="form-control" runat="server"/>
+                            <asp:Button ID="btnBevestigEindOnderhoud" CssClass="btn btn-default" runat="server" OnClick="btnBevestigEindOnderhoud_OnClick"/>
                         </div>
                     </div>
                 </div>

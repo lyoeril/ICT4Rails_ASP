@@ -298,6 +298,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 foreach (Sector se in sp.Sectoren)
                 {
                     TableCell tc = SporenArray[sp.Nummer][se.Nummer];
+                    tc.Text = "";
                     tc.BackColor = Color.White;
                     if (se.Tram != null)
                     {
@@ -387,7 +388,6 @@ namespace ICT4RAILS___ASP.NET.Csharp
                                         }
                                     }
                                 }
-
                             }
                         }
                     }

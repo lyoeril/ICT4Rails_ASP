@@ -17,6 +17,14 @@ namespace ICT4RAILS___ASP.NET.Pages
             admin = new Administratie();
             OverzichtTable = admin.CreateTable(OverzichtTable);
             admin.OverzichtInit();
+            foreach (Tram t in admin.Remise.Trams)
+            {
+                if (t.Nummer == 2001)
+                {
+                    admin.SorteerTram(t);
+                }
+            }
+            admin.VulTrams();
         }
     }
 }

@@ -86,7 +86,7 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             
             lbTramsOnderhoud.Items.Clear();
-            foreach (Tram t in _administratie.GetAllOnderhoudTrams())
+            foreach (Tram t in _administratie.Remise.Trams)
             {
                 if (t.Defect && t.Vervuild)
                 {
