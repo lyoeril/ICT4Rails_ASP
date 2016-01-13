@@ -7,5 +7,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
 {
     public partial class Administratie
     {
+        public bool AddTramOnderhoud(TramOnderhoud tramOnderhoud)
+        {
+            data.InsertTramOnderhoud(tramOnderhoud);
+            return true;
+        }
     }
 }

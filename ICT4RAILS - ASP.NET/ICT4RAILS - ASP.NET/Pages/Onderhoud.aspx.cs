@@ -19,12 +19,12 @@ namespace ICT4RAILS___ASP.NET.Pages
                 SetTimeToday();
 
                 List<Medewerker> medewerkers = admin.Medewerkers;
-                List<int>medewerkwerIds = new List<int>();
+                List<string>medewerkerNaam = new List<string>();
                 foreach (Medewerker medewerker in medewerkers)
                 {
-                    medewerkwerIds.Add(medewerker.ID);   
+                    medewerkerNaam.Add(medewerker.Naam);   
                 }
-                ddlMedewerkers.DataSource = medewerkwerIds;
+                ddlMedewerkers.DataSource = medewerkerNaam;
                 ddlMedewerkers.DataBind();
 
                 List<Tram> datalijst = admin.GetAllOnderhoudTrams();
@@ -32,7 +32,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
                 foreach (Tram t in datalijst)
                 {
-                    tramIds.Add(t.ID);
+                    tramIds.Add(t.Nummer);
                 }
                 ddlOnderhoudsIDs.DataSource = tramIds;
                 ddlOnderhoudsIDs.DataBind();
@@ -49,32 +49,41 @@ namespace ICT4RAILS___ASP.NET.Pages
         public void RefreshOnderhoudsoortList()
         {
             ddlOnderhoudSoort.Items.Clear();
-            foreach (Tram tram in admin.GetAllOnderhoudTrams())
+            foreach (Tram tram in admin.Remise.Trams)
             {
-                if (ddlOnderhoudsIDs.SelectedValue == tram.ID.ToString())
+                if (tram.Nummer.ToString() == ddlOnderhoudsIDs.SelectedValue)
                 {
-                    if (tram.Defect)
+                    foreach (Tram tram2 in admin.GetAllOnderhoudTrams())
                     {
-                        ddlOnderhoudSoort.Items.Add("DEFECT");
-                        ddlOnderhoudSoort.Items[0].Selected = true;
-                    }
-                    if (tram.Vervuild)
-                    {
-                        ddlOnderhoudSoort.Items.Add("VERVUILD");
-                        ddlOnderhoudSoort.Items[0].Selected = true;
+                        if (tram2.ID.ToString() == tram.ID.ToString())
+                        {
+                            if (tram.Defect)
+                            {
+                                ddlOnderhoudSoort.Items.Add("DEFECT");
+                                ddlOnderhoudSoort.Items[0].Selected = true;
+                            }
+                            if (tram.Vervuild)
+                            {
+                                ddlOnderhoudSoort.Items.Add("VERVUILD");
+                                ddlOnderhoudSoort.Items[0].Selected = true;
+                            }
+                        }
                     }
                 }
+            }
+            
+        }
+
+        public void loadHuidigeOnderhoudenList()
+        {
+            foreach (TramOnderhoud to in admin.Onderhoudsbeurten)
+            {
+                
             }
         }
 
         public void SetTimeToday()
         {
-            tbxStartDay.Text = DateTime.Today.Day.ToString();
-            tbxStartMonth.Text = DateTime.Today.Month.ToString();
-            tbxStartYear.Text = DateTime.Today.Year.ToString();
-            tbxStartHour.Text = DateTime.Today.Hour.ToString();
-            tbxStartMinute.Text = DateTime.Today.Minute.ToString();
-
             tbxEndDay.Text = DateTime.Today.Day.ToString();
             tbxEndMonth.Text = DateTime.Today.Month.ToString();
             tbxEndYear.Text = DateTime.Today.Year.ToString();
@@ -82,9 +91,29 @@ namespace ICT4RAILS___ASP.NET.Pages
             tbxEndMinute.Text = DateTime.Today.Minute.ToString();
         }
 
-        protected void btnBevestigOnderhoud_OnClick(object sender, EventArgs e)
+        protected void btnBevestigEindOnderhoud_OnClick(object sender, EventArgs e)
         {
-            
+            int dag = Convert.ToInt32(tbxEndDay.Text);
+            int maand = Convert.ToInt32(tbxEndMonth.Text);
+            int jaar = Convert.ToInt32(tbxEndYear.Text);
+            int hour = Convert.ToInt32(tbxEndHour.Text);
+            int minute = Convert.ToInt32(tbxEndMinute.Text);
+            DateTime beschikbaarDatum = new DateTime(jaar, maand, dag, hour, minute, 0);
+
+            Tram insertTram = null;
+            foreach (Tram tram in admin.Remise.Trams)
+            {
+                if (tram.Nummer.ToString() == ddlOnderhoudsIDs.SelectedValue)
+                {
+                    foreach (Tram tram2 in admin.GetAllOnderhoudTrams())
+                    {
+                        if (tram2.ID.ToString() == tram.ID.ToString())
+                        {
+                            insertTram = tram2;
+                        }
+                    }
+                }
+            }
         }
     }
 }
