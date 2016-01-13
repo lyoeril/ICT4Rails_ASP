@@ -248,7 +248,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
         {
             for (int spoor = 0; spoor < SporenArray.Length; spoor++)
             {
-                for (int lijn = 0; lijn < Lijnen.Length - 1; lijn++)
+                for (int lijn = 0; lijn < Lijnen.Length; lijn++)
                 {
                     if (SporenArray[spoor] != null && SporenArray[spoor][0] != null)
                     {
@@ -259,6 +259,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
                                 if (Lijnen[lijn][0] == 16 || Lijnen[lijn][0] == 24)
                                 {
                                     SporenArray[spoor][0].Text = "16/24";
+                                }
+                                else if (Lijnen[lijn][0] == 0)
+                                {
+                                    SporenArray[spoor][0].Text = "RES";
                                 }
                                 else
                                 {
@@ -321,7 +325,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     {
                         if (se.Tram.Defect) { tc.ForeColor = Color.Red; }
                         if (se.Tram.Vervuild) { tc.ForeColor = Color.Blue; }
-                        if (se.Tram.Defect && se.Tram.Vervuild) { tc.ForeColor = Color.Purple; }
+                        if (se.Tram.Defect && se.Tram.Vervuild) { tc.ForeColor = Color.DeepPink; }
                         tc.Text = Convert.ToString(se.Tram.Nummer);
                     }
                     else if (se.Blokkade)
@@ -334,11 +338,9 @@ namespace ICT4RAILS___ASP.NET.Csharp
                     }
                 }
             }
-
-            Spoor prevSpoor = null;
+            
             foreach (Reservering r in remise.Reserveringen)
             {
-                prevSpoor = r.Spoor;
                 int resSpoor = r.Spoor.Nummer;
                 int resSector = SporenArray[resSpoor].Length - 1;
                 if (SporenArray[resSpoor][resSector].ForeColor == Color.Yellow)
@@ -396,10 +398,20 @@ namespace ICT4RAILS___ASP.NET.Csharp
                                     t.Beschikbaar = true;
                                     UpdateTram(t);
                                     se.Tram = t;
-                                    se.Beschikbaar = true;
                                     UpdateSector(se);
-                                    RemoveReservering(r);
-                                    return;
+                                    for (int i = 1; i < sp.Sectoren.Count; i++)
+                                    {
+                                        foreach (Sector sector in sp.Sectoren)
+                                        {
+                                            if (sector.Nummer == i && !sector.Beschikbaar)
+                                            {
+                                                sector.Beschikbaar = true;
+                                                RemoveReservering(r);
+                                                remise.Reserveringen.Remove(r);
+                                                return;
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }

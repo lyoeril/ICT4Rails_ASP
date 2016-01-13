@@ -16,6 +16,9 @@ namespace ICT4RAILS___ASP.NET.Pages
             VulLijsten();
             ddlSpoorTrams.Enabled = false;
             RequiredFieldValidator7.Enabled = false;
+            // Tram DropDownList + FieldValidator enablen wanneer 'Reserveren' is geselecteerd
+            ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+            RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
         }
 
         protected void trambeheerbevestig_Click(object sender, EventArgs e)
@@ -52,7 +55,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
             if (_spoor != null)
             {
-                foreach (Sector sector in _spoor.Sectoren.Where(sector => sector.Nummer.ToString() == ddlSectoren.SelectedItem.Value))
+                foreach (Sector sector in _spoor.Sectoren.Where(sector => sector.Nummer == Convert.ToInt32(ddlSectoren.SelectedItem.Value)))
                 {
                     _sector = sector;
                 }
@@ -76,18 +79,35 @@ namespace ICT4RAILS___ASP.NET.Pages
             }
             else if (ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren")
             {
-                foreach (Sector sector in _spoor.Sectoren)
+                //OLD TEUN
+                //foreach (Sector sector in _spoor.Sectoren)
+                //{
+                //    if (sector.Nummer < _sector.Nummer && sector.Beschikbaar)
+                //    {
+                //        _sector = sector;
+                //    }
+                //}
+
+                //_sector.Beschikbaar = false;
+                //admin.UpdateSector(_sector);
+
+                //admin.InsertReservering(new Reservering(_tram, _spoor));
+
+                for (int i = _spoor.Sectoren.Count; i > 0; i--)
                 {
-                    if (sector.Nummer < _sector.Nummer && sector.Beschikbaar == true)
+                    foreach (Sector sector in _spoor.Sectoren)
                     {
-                        _sector = sector;
+                        if (sector.Nummer == i && sector.Beschikbaar && sector.Tram == null)
+                        {
+                            _sector = sector;
+                            _sector.Beschikbaar = false;
+                            admin.UpdateSector(_sector);
+
+                            admin.InsertReservering(new Reservering(_tram, _spoor));
+                            return;
+                        }
                     }
                 }
-
-                _sector.Beschikbaar = false;
-                admin.UpdateSector(_sector);
-
-                admin.InsertReservering(new Reservering(_tram, _spoor));
             }
             else if (ddlSpoorbeheerBewerking.SelectedItem.Text == "Deblokkeren")
             {

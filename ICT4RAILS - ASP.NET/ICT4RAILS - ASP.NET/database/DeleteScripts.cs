@@ -14,7 +14,7 @@ namespace ICT4RAILS___ASP.NET.database
         {
             using (OracleConnection connection = Connection)
             {
-                string Delete = "DELETE FROM MEDEWERKER WHERE ID =" + mederwerker.ID;
+                string Delete = "DELETE FROM MEDEWERKER WHERE \"ID\" =" + mederwerker.ID;
 
                 using (OracleCommand command = new OracleCommand(Delete, connection))
                 {
@@ -27,7 +27,7 @@ namespace ICT4RAILS___ASP.NET.database
         {
             using (OracleConnection connection = Connection)
             {
-                string Delete = "DELETE FROM RESERVERING WHERE ID =" + reservering.ID;
+                string Delete = "DELETE FROM RESERVERING WHERE \"Reservering_ID\" = " + reservering.ID;
 
                 using (OracleCommand command = new OracleCommand(Delete, connection))
                 {
