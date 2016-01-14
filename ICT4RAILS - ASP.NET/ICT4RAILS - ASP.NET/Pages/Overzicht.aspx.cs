@@ -14,9 +14,17 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            admin = new Administratie();
-            OverzichtTable = admin.CreateTable(OverzichtTable);
-            admin.OverzichtInit();
+            try
+            {
+                admin = new Administratie();
+                OverzichtTable = admin.CreateTable(OverzichtTable);
+                admin.OverzichtInit();
+            }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
             //foreach (Tram t in admin.Remise.Trams)
             //{
             //    //if (t.Nummer == 2001)

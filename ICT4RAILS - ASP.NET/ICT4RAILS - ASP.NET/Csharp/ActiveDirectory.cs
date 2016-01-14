@@ -24,6 +24,7 @@ namespace ICT4RAILS___ASP.NET.Csharp
             isValid = pc.ValidateCredentials(userName, password);
             return isValid;
         }
+
         public bool AddUser(string username, string firstname, string lastname, string password)
         {
             DirectoryEntry objADAM; // Binding object.
@@ -40,8 +41,8 @@ namespace ICT4RAILS___ASP.NET.Csharp
 
             AuthenticationTypes AuthTypes;
             AuthTypes = AuthenticationTypes.Signing |
-                            AuthenticationTypes.Sealing |
-                            AuthenticationTypes.Secure;
+                        AuthenticationTypes.Sealing |
+                        AuthenticationTypes.Secure;
 
             string strServer = sDomain; //ip van de server
             string strUserOu = sDefaultOU;
@@ -68,24 +69,32 @@ namespace ICT4RAILS___ASP.NET.Csharp
                 {
                     samacct = strUser;
                 }
-                //NIeuwe gebruiker aanmaken
+                //Nieuwe gebruiker aanmaken
                 objUser = objADAM.Children.Add("CN=" + strUser + ",ou=corp", "user");
+                objUser.Properties["displayName"].Remove(strDisplayName);
                 objUser.Properties["displayName"].Add(strDisplayName);
+                objUser.Properties["userPrincipalName"].Remove(strUserPrincipalName);
                 objUser.Properties["userPrincipalName"].Add(strUserPrincipalName);
+                objUser.Properties["mail"].Remove(strUserPrincipalName);
                 objUser.Properties["mail"].Add(strUserPrincipalName);
+                objUser.Properties["sAMAccountName"].Remove(samacct);
                 objUser.Properties["sAMAccountName"].Add(samacct);
+                objUser.Properties["givenName"].Remove(firstname);
                 objUser.Properties["givenName"].Add(firstname);
+                objUser.Properties["sn"].Remove(lastname);
                 objUser.Properties["sn"].Add(lastname);
                 objUser.CommitChanges();
                 objUser.RefreshCache();
 
                 //Het wachtwoord instellen van het account
                 objUser.Properties["LockOutTime"].Value = 0; //unlock account
-                objUser.Invoke("SetOption", new object[] { ADS_OPTION_PASSWORD_PORTNUMBER, intPort });
+                objUser.Invoke("SetOption", new object[] {ADS_OPTION_PASSWORD_PORTNUMBER, intPort});
                 objUser.Invoke("SetOption", new object[]
-                    {ADS_OPTION_PASSWORD_METHOD,
-                     ADS_PASSWORD_ENCODE_CLEAR});
-                objUser.Invoke("SetPassword", new object[] { password });
+                {
+                    ADS_OPTION_PASSWORD_METHOD,
+                    ADS_PASSWORD_ENCODE_CLEAR
+                });
+                objUser.Invoke("SetPassword", new object[] {password});
 
                 //Account enablen en zorgen dat het wachtwoord niet gereset hoeft te worden
                 objUser.Properties["userAccountControl"].Value = 0x200;

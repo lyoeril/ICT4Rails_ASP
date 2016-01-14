@@ -34,18 +34,19 @@ namespace ICT4RAILS___ASP.NET.Csharp
              }
              return null;
          }
-        /* public Functie FindFunctie(int id)
+         public Medewerker FindFunctie(string naamMedewerker)
          {
-             foreach (Functie f in functies)
+             foreach (Medewerker m in Medewerkers)
              {
-                 if (f.ID == id)
+                 if (m.Naam == naamMedewerker)
                  {
-                     return f;
+                     return m;
                  }
              }
              return null;
          }
 
+        /*
          public Lijn FindLijn(int id)
          {
              foreach (Lijn l in lijnen)

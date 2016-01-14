@@ -4,11 +4,9 @@
     <link rel="stylesheet" href="/css/Onderhoud.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
-    <div class="jumbotron">
         <form runat="server">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-2"></div>
                     <div class="col-md-6">
                         <h1>Onderhoud</h1>
                         <div class="form-group">
@@ -47,7 +45,6 @@
                                 CellPadding="15"
                                 CellSpacing="0"
                                 runat="server" />
-                            </br>
                             <label>Te voltooien onderhoudID:</label>
                             <asp:TextBox runat="server" type="number" CssClass="form-control" ID="tbxOnderhoudIdToEnd"></asp:TextBox> 
                             <asp:Button ID="btnBevestigEindOnderhoud" Text="Bevestig geslaagd onderhoud" CssClass="btn btn-default" runat="server" OnClick="btnBevestigEindOnderhoud_OnClick" />
@@ -63,12 +60,9 @@
                                 CellPadding="15"
                                 CellSpacing="0"
                                 runat="server" />
-                            </br>
-                            
                         </div>
                     </div>
                 </div>
             </div>
         </form>
-    </div>
 </asp:Content>

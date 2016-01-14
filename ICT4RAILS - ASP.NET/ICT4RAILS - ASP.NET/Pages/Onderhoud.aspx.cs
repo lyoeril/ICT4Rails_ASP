@@ -13,27 +13,38 @@ namespace ICT4RAILS___ASP.NET.Pages
         private Administratie admin;
         protected void Page_Load(object sender, EventArgs e)
         {
-            admin = new Administratie();
-            reloadOnderhoudlist();
-            loadGeschiedenis();
-
-            if (!IsPostBack)
+            try
             {
-                SetTimeToday();
+                admin = new Administratie();
                 reloadOnderhoudlist();
-                List<Medewerker> medewerkers = admin.Medewerkers;
-                List<string>medewerkerNaam = new List<string>();
-                foreach (Medewerker medewerker in medewerkers)
-                {
-                    medewerkerNaam.Add(medewerker.Naam);   
-                }
-                ddlMedewerkers.DataSource = medewerkerNaam;
-                ddlMedewerkers.DataBind();
+                loadGeschiedenis();
 
-                loadIdsAndSoorten();
-                
-                
+                if (!IsPostBack)
+                {
+                    SetTimeToday();
+                    reloadOnderhoudlist();
+                    List<Medewerker> medewerkers = admin.Medewerkers;
+                    List<string> medewerkerNaam = new List<string>();
+                    foreach (Medewerker medewerker in medewerkers)
+                    {
+                        medewerkerNaam.Add(medewerker.Naam);
+                    }
+                    ddlMedewerkers.DataSource = medewerkerNaam;
+                    ddlMedewerkers.DataBind();
+
+                    loadIdsAndSoorten();
+
+
+                }
             }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
+
+
+
         }
 
         protected void ddlOnderhoudsIDs_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +77,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                     }
                 }
             }
-            
+
         }
 
         public void SetTimeToday()
@@ -94,7 +105,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                     Response.Redirect(Request.RawUrl);
                 }
             }
-            
+
         }
 
         protected void btnBevestigOnderhoud_OnClick(object sender, EventArgs e)
@@ -119,7 +130,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                         }
                     }
                 }
-                
+
             }
 
             Medewerker medewerker = null;
@@ -127,7 +138,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             {
                 if (ddlMedewerkers.SelectedValue == m.Naam)
                 {
-                   medewerker = new Medewerker(m.ID, m.Naam, m.Functie.ID);
+                    medewerker = new Medewerker(m.ID, m.Naam, m.Functie.ID);
                 }
             }
 
@@ -140,7 +151,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             }
             catch
             {
-                
+
             }
         }
 
@@ -183,7 +194,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                 Table1.Rows.Add(r);
             }
 
-            
+
 
 
         }

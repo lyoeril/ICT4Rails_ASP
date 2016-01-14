@@ -30,7 +30,6 @@
                         <div class="col-md-7">
                             <asp:DropDownList ID="ddlNieuweStatus" class="form-control" runat="server">
                                 <asp:ListItem Value="Remise"></asp:ListItem>
-                                <asp:ListItem Value="Dienst"></asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

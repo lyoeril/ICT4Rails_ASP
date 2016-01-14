@@ -5,9 +5,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
     <form class="form-horizontal" role="form" runat="server">
-        <div class="row">
-            <div class="container">
-                <div class="col-md-offset-1 col-md-5" style="border: 2px solid grey;">
+         <div class="container">
+            <div class="row">
+                <div class="col-md-6">
                     <h2>Tramstatus aanpassen</h2>
                     <div class="form-group">
                         <label class="control-label col-sm-5">Tramnummer:</label>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,26 +11,44 @@ namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class Index : System.Web.UI.Page
     {
-        private ActiveDirectory active;
+        private ActiveDirectory _active;
+        private Administratie _admin;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            active = new ActiveDirectory();
+            _active = new ActiveDirectory();
+            _admin = new Administratie();
+
+            if (Request.Url.ToString().EndsWith("?logout"))
+            {
+                Response.Write("<script language=\"javascript\">alert('" + "You have succesfully logged out!" + "');</script>");
+            }
         }
 
         protected void bttnInloggen_Click(object sender, EventArgs e)
         {
-            string Username = txtInputUsername.Text;
-            string Password = txtInputPassword.Text;
+            string username = txtInputUsername.Text;
+            string password = txtInputPassword.Text;
 
-            
-            if (active.ValidateUser(Username, Password))
+            try
             {
-                Response.Redirect("~/Pages/Overzicht.aspx");
+                if (_active.ValidateUser(username, password))
+                {
+                    Medewerker m = null;
+                    m = _admin.FindFunctie(txtInputUsername.Text);
+                    Session["functieID"] = m.FunctieId;
+                    Session["functie"] = m.Functie;
+                    Session["loginName"] = txtInputUsername.Text;
+                    Response.Redirect("~/Pages/Overzicht.aspx");
+                }
+                else
+                {
+                    txtInputUsername.Text = "Username is verkeerd";
+                }
             }
-            else
+            catch
             {
-                txtInputUsername.Text = "Username is verkeerd";
+                Response.Write("<script language=\"javascript\">alert('" + "Het systeem kan geen verbinding maken met de Active Directory. Vraag naar uw beheerders." + "');</script>");
             }
 
         }
