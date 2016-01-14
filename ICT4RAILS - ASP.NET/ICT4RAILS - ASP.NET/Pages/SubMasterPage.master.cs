@@ -32,7 +32,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             NavButton conducteur = (NavButton)LoadControl("UserControls/NavButton.ascx");
             overzicht.Title = "ConducteurScherm";
 
-            if (functie != null)
+            if (functie != 0)
             {
                 if (functie == 1)
                 {
