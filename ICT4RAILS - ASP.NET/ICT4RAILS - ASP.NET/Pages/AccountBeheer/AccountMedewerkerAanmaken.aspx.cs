@@ -30,15 +30,27 @@ namespace ICT4RAILS___ASP.NET.Pages.AccountBeheer
         {
             try
             {
-                bool gelukt = _active.AddUser(txtMederwerkerNaam.Text, txtMederwerkerNaam.Text, tbxAchternaam.Text, txtMederwerkerWachtwoord.Text);
+                bool gelukt = _active.AddUser(txtMederwerkerNaam.Text, txtMederwerkerNaam.Text, tbxAchternaam.Text, txtMederwerkerWachtwoord1.Text);
                 if (gelukt)
                 {
-                    //bool databaseGelukt = _admin.
+                    Medewerker medewerker = new Medewerker(0, txtMederwerkerNaam.Text, Convert.ToInt32(dllFuncties.SelectedItem.Value));
+                    bool databaseGelukt = _admin.AddMedeweker(medewerker);
+
+                    if (databaseGelukt)
+                    {
+                        Response.Write("<script language=\"javascript\">alert('" + " Het account" + txtMederwerkerNaam.Text + " is toegevoegd aan het systeem" + "');</script>");
+
+                        txtMederwerkerNaam.Text = "";
+                        txtMederwerkerWachtwoord1.Text = "";
+                        txtMederwerkerWachtwoord2.Text = "";
+                        tbxAchternaam.Text = "";
+                        dllFuncties.SelectedIndex = 0;
+                    }
                 }
             }
             catch
             {
-
+                Response.Write("<script language=\"javascript\">alert('" + "Het systeem kan geen verbinding maken met de Active Directory. Vraag naar uw beheerders." + "');</script>");
             }
         }
     }

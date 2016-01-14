@@ -85,7 +85,6 @@
     <Content Include="JS\Overzicht.js" />
     <Content Include="packages.config" />
     <Content Include="Pages\AccountBeheer\AccountbeheerIndex.aspx" />
-    <Content Include="Pages\AccountBeheer\AccountAanmaken.aspx" />
     <Content Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx" />
     <Content Include="Pages\ConducteurScherm.aspx" />
     <Content Include="Pages\Index.aspx" />
@@ -95,7 +94,7 @@
     <Content Include="Pages\Remisebeheer.aspx" />
     <Content Include="Pages\Statusbeheer.aspx" />
     <Content Include="Pages\SubMasterPage.master" />
-    <Content Include="Pages\AccountBeheer\AccountBeheerMaster.master" />
+    <Content Include="Pages\AccountBeheerMaster.master" />
     <None Include="Properties\PublishProfiles\123.pubxml" />
     <None Include="Properties\PublishProfiles\Jemoeder.pubxml" />
     <None Include="Web.Debug.config">
@@ -145,19 +144,12 @@
     <Compile Include="Pages\AccountBeheer\AccountbeheerIndex.aspx.designer.cs">
       <DependentUpon>AccountbeheerIndex.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountBeheerMaster.master.cs">
+    <Compile Include="Pages\AccountBeheerMaster.master.cs">
       <DependentUpon>AccountBeheerMaster.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountBeheerMaster.master.designer.cs">
+    <Compile Include="Pages\AccountBeheerMaster.master.designer.cs">
       <DependentUpon>AccountBeheerMaster.master</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountAanmaken.aspx.cs">
-      <DependentUpon>AccountAanmaken.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountAanmaken.aspx.designer.cs">
-      <DependentUpon>AccountAanmaken.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx.cs">
       <DependentUpon>AccountMedewerkerAanmaken.aspx</DependentUpon>

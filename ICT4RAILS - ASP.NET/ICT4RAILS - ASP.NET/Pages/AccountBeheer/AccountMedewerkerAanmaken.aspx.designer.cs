@@ -40,13 +40,22 @@ namespace ICT4RAILS___ASP.NET.Pages.AccountBeheer {
         protected global::System.Web.UI.WebControls.DropDownList dllFuncties;
         
         /// <summary>
-        /// txtMederwerkerWachtwoord control.
+        /// txtMederwerkerWachtwoord1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMederwerkerWachtwoord;
+        protected global::System.Web.UI.WebControls.TextBox txtMederwerkerWachtwoord1;
+        
+        /// <summary>
+        /// txtMederwerkerWachtwoord2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtMederwerkerWachtwoord2;
         
         /// <summary>
         /// MedewerkerBevestig control.

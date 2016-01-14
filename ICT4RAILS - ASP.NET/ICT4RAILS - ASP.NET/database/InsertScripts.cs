@@ -39,6 +39,18 @@ namespace ICT4RAILS___ASP.NET.database
             }
         }
 
+        public bool InsertMedewerker(Medewerker medewerker)
+        {
+            using (OracleConnection connection = Connection)
+            {
+                string insert = "INSERT INTO MEDEWERKER VALUES (MEDEWERKER_FCSEQ.nextval, :FUNCTIEID, :ACCOUNTNAAM)";
+                using (OracleCommand command = new OracleCommand(insert, connection))
+                {
+                    command.Parameters.Add(new OracleParameter("FUNCTIEID", medewerker.FunctieId));
+                    command.Parameters.Add(new OracleParameter("ACCOUNTNAAM", medewerker.Naam));
+                    command.ExecuteNonQuery();
+                    return true;
+
         public void InsertReservering(Reservering reservering)
         {
             using (OracleConnection connection = Connection)

@@ -1,8 +1,9 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Pages/SubMasterPage.master" AutoEventWireup="true" CodeBehind="AccountBeheerMaster.master.cs" Inherits="ICT4RAILS___ASP.NET.Pages.SubMasterPage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
     <link href="../../CSS/Accountbeheer.css" rel="stylesheet" />
+    <title>Account beheer</title>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
+<asp:Content ID="Content3" ContentPlaceHolderID="CPHBody" runat="server">
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
@@ -11,12 +12,6 @@
                 </li>
                 <li>
                     <a href="/Pages/AccountBeheer/AccountMedewerkerAanmaken.aspx">Medewerker aanmaken</a>
-                </li>
-                <li>
-                    <a href="#">Medewerker updaten</a>
-                </li>
-                <li>
-                    <a href="/Pages/AccountBeheer/AccountAanmaken.aspx">Account aanmaken</a>
                 </li>
             </ul>
         </div>

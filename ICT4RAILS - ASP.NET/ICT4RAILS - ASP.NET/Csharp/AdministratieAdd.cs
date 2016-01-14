@@ -13,6 +13,10 @@ namespace ICT4RAILS___ASP.NET.Csharp
             return true;
         }
 
+        public bool AddMedeweker(Medewerker medewerker)
+        {
+            data.InsertMedewerker(medewerker);
+            return true;
         public void InsertReservering(Reservering reservering)
         {
             if (reservering.Spoor != null && reservering.Tram != null)
