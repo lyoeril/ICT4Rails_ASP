@@ -17,20 +17,21 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         private void LoadNav()
         {
-            int functie = (int)Session["functieID"];
+            //int functie = (int)Session["functieID"];
+            int functie = 1;
 
-            NavButton overzicht = (NavButton)LoadControl("UserControls/NavButton.ascx");
+            NavButton overzicht = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
             overzicht.Title = "Overzicht";
-            NavButton onderhoud = (NavButton)LoadControl("UserControls/NavButton.ascx");
-            overzicht.Title = "Onderhoud";
-            NavButton status = (NavButton)LoadControl("UserControls/NavButton.ascx");
-            overzicht.Title = "StatusBeheer";
-            NavButton account = (NavButton)LoadControl("UserControls/NavButton.ascx");
-            overzicht.Title = "AccountBeheer";
-            NavButton remise = (NavButton)LoadControl("UserControls/NavButton.ascx");
-            overzicht.Title = "RemiseBeheer";
-            NavButton conducteur = (NavButton)LoadControl("UserControls/NavButton.ascx");
-            overzicht.Title = "ConducteurScherm";
+            NavButton onderhoud = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
+            onderhoud.Title = "Onderhoud";
+            NavButton status = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
+            status.Title = "StatusBeheer";
+            NavButton account = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
+            account.Title = "AccountBeheer";
+            NavButton remise = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
+            remise.Title = "RemiseBeheer";
+            NavButton conducteur = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
+            conducteur.Title = "ConducteurScherm";
 
             if (functie != 0)
             {
