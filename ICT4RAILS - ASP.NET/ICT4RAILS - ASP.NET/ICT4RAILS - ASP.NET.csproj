@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CSS\Accountbeheer.css" />
+    <Content Include="CSS\ConducteurScherm.css" />
     <Content Include="CSS\Remisebeheer.css" />
     <Content Include="CSS\SubMaster.css" />
     <Content Include="CSS\Onderhoud.css" />
@@ -81,6 +82,7 @@
     <Content Include="Images\Backgrounds\Railroad_Rails.jpg" />
     <Content Include="Images\Backgrounds\Railroad_Rails_Colorsplash_1920x1080.jpg" />
     <Content Include="Images\Icons\TramIcon.png" />
+    <Content Include="JS\Overzicht.js" />
     <Content Include="packages.config" />
     <Content Include="Pages\AccountBeheer\AccountbeheerIndex.aspx" />
     <Content Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx" />

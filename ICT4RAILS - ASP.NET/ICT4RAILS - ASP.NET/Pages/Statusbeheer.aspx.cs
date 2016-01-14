@@ -14,12 +14,20 @@ namespace ICT4RAILS___ASP.NET.Pages
         private Administratie _administratie;
         protected void Page_Load(object sender, EventArgs e)
         {
-            _administratie = new Administratie();
-
-            if (!IsPostBack)
+            try
             {
-                LoadOnderhoudList();
+                _administratie = new Administratie();
+                if (!IsPostBack)
+                {
+                    LoadOnderhoudList();
+                }
             }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
+
         }
 
 
@@ -76,8 +84,9 @@ namespace ICT4RAILS___ASP.NET.Pages
                 int tramnummer = Convert.ToInt32(tbxTramnummerOnderhoud.Text);
                 string onderhoudSoort = ddlVervuildDefect.SelectedItem.Text;
                 _administratie.UpdateTramToOnderhoud(tramnummer, onderhoudSoort);
-                    LoadOnderhoudList();
-                    Response.Redirect(Request.RawUrl);
+                LoadOnderhoudList();
+                Response.Redirect(Request.RawUrl);
+                    
             }
             
         }
@@ -102,6 +111,8 @@ namespace ICT4RAILS___ASP.NET.Pages
                 }
             }
         }
+
+        
 
     }
 }

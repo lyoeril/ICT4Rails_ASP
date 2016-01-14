@@ -14,8 +14,16 @@ namespace ICT4RAILS___ASP.NET.Pages.AccountBeheer
         private ActiveDirectory _active;
         protected void Page_Load(object sender, EventArgs e)
         {
-            _admin = new Administratie();
-            _active = new ActiveDirectory();
+            try
+            {
+                _admin = new Administratie();
+                _active = new ActiveDirectory();
+            }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+            
         }
 
         protected void MedewerkerBevestig_OnClick(object sender, EventArgs e)

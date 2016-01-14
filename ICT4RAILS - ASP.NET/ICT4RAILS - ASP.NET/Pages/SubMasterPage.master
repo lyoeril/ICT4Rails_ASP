@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/CSS/SubMaster.css" />
     <asp:ContentPlaceHolder ID="CSS" runat="server"></asp:ContentPlaceHolder>
     </asp:Content>
-        <asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="Body" runat="server">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -19,7 +19,6 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="login"><a href="/Pages/Index.aspx">Uitloggen</a></li>
-                <li class="top-left"><asp:Label ID="Labelname" runat="server" Text=""></asp:Label></li>
             </ul>
         </div>
     </nav>

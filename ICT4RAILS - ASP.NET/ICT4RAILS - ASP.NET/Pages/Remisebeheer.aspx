@@ -14,41 +14,26 @@
                         <asp:ValidationSummary ID="ValidationSummary1" HeaderText="Vul eerst alle velden correct in."
                             DisplayMode="BulletList" ValidationGroup="1" EnableClientScript="true" ForeColor="Red" runat="server" />
                         <label>Tramnummer:</label>
-                        <input type="text" class="form-control" id="RemiseInputTramnr" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="RemiseInputTramnr" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage="" />
+                        <asp:DropDownList ID="ddlTrams" CssClass="form-control" ValidationGroup="1" runat="server">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="ddlTrams" InitialValue="0" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage="" />
                     </div>
                     <div class="form-group">
                         <label>Tram Bewerking:</label>
-                        <asp:DropDownList ID="ddlTrambeheer" CssClass="form-control" ValidationGroup="1" runat="server">
+                        <asp:DropDownList ID="ddlTrambeheerBewerking" CssClass="form-control" ValidationGroup="1" runat="server">
                             <asp:ListItem Text="--Kies Bewerking--" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="Reparatie" Value="1"></asp:ListItem>
+                            <asp:ListItem Text="Dienst" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Remise" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Dienst" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Schoonmaak" Value="4"></asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" InitialValue="0" ControlToValidate="ddlTrambeheer" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" InitialValue="0" ControlToValidate="ddlTrambeheerBewerking" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group">
-                        <label>Lijn:</label>
-                        <asp:DropDownList ID="ddlLijnen1" CssClass="form-control" ValidationGroup="1" runat="server">
-                            <asp:ListItem Text="--Kies Lijn--" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="5" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="10" Value="4"></asp:ListItem>
-                            <asp:ListItem Text="13" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="17" Value="6"></asp:ListItem>
-                            <asp:ListItem Text="16/24" Value="7"></asp:ListItem>
-                            <asp:ListItem Text="OCV" Value="8"></asp:ListItem>
-                            <asp:ListItem Text="RES" Value="9"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" ControlToValidate="ddlLijnen1" InitialValue="0" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                        <label>Vervuild</label>
+                        <asp:CheckBox ID="cbVervuild" runat="server" />
                     </div>
                     <div class="form-group">
-                        <label>Type:</label>
-                        <asp:DropDownList ID="ddlTypes" CssClass="form-control" ValidationGroup="1" runat="server">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" ControlToValidate="ddlTypes" InitialValue="0" ForeColor="Red" ValidationGroup="1" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                        <label>Defect</label>
+                        <asp:CheckBox ID="cbDefect" runat="server" />
                     </div>
                     <div class="form-group">
                         <asp:Button ID="trambeheerbevestig" CssClass="btn btn-default" ValidationGroup="1" runat="server" Text="Bevestig" OnClick="trambeheerbevestig_Click" />
@@ -59,42 +44,32 @@
                     <div class="form-group">
                         <asp:ValidationSummary ID="ValidationSummary2" HeaderText="Vul eerst alle velden correct in."
                             DisplayMode="BulletList" ValidationGroup="2" EnableClientScript="true" ForeColor="Red" runat="server" />
-                        <label>Spoornummer:</label>
-                        <input type="text" class="form-control" id="RemiseInputSpoornr" runat="server" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="RemiseInputSpoornr" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <label>Lijnnummer:</label>
-                        <asp:DropDownList ID="ddlLijnen2" CssClass="form-control" ValidationGroup="2" runat="server">
-                            <asp:ListItem Text="--Kies Lijn--" Value="0"></asp:ListItem>
-                            <asp:ListItem Text="1" Value="1"></asp:ListItem>
-                            <asp:ListItem Text="2" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="5" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="10" Value="4"></asp:ListItem>
-                            <asp:ListItem Text="13" Value="5"></asp:ListItem>
-                            <asp:ListItem Text="17" Value="6"></asp:ListItem>
-                            <asp:ListItem Text="16/24" Value="7"></asp:ListItem>
-                            <asp:ListItem Text="OCV" Value="8"></asp:ListItem>
-                            <asp:ListItem Text="RES" Value="9"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" InitialValue="0" ControlToValidate="ddlLijnen2" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
-                        <label>Tramnummer:</label>
-                        <asp:DropDownList ID="ddlTrams" CssClass="form-control" ValidationGroup="2" runat="server">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" InitialValue="0" ControlToValidate="ddlTrams" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
-                    </div>
-                    <div class="form-group">
                         <label>Spoor Bewerking:</label>
-                        <asp:DropDownList ID="ddlSpoorbeheer" CssClass="form-control" ValidationGroup="2" runat="server">
+                        <asp:DropDownList ID="ddlSpoorbeheerBewerking" CssClass="form-control" ValidationGroup="2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSpoorbeheerBewerking_SelectedIndexChanged">
                             <asp:ListItem Text="--Kies Bewerking--" Value="0"></asp:ListItem>
                             <asp:ListItem Text="Blokkeren" Value="1"></asp:ListItem>
                             <asp:ListItem Text="Reserveren" Value="2"></asp:ListItem>
-                            <asp:ListItem Text="Dienst" Value="3"></asp:ListItem>
-                            <asp:ListItem Text="Beschikbaar" Value="4"></asp:ListItem>
+                            <asp:ListItem Text="Deblokkeren" Value="3"></asp:ListItem>
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="ddlSpoorbeheer" ForeColor="Red" InitialValue="0" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" ControlToValidate="ddlSpoorbeheerBewerking" ForeColor="Red" InitialValue="0" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-group">
+                        <label>Spoor:</label>
+                        <asp:DropDownList ID="ddlSporen" CssClass="form-control" ValidationGroup="2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSporen_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" InitialValue="0" ControlToValidate="ddlSporen" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-group">
+                        <label>Sector:</label>
+                        <asp:DropDownList ID="ddlSectoren" CssClass="form-control" ValidationGroup="2" runat="server">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" InitialValue="0" ControlToValidate="ddlSectoren" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="form-group">
+                        <label>Tramnummer:</label>
+                        <asp:DropDownList ID="ddlSpoorTrams" CssClass="form-control" ValidationGroup="2" runat="server">
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" InitialValue="0" ControlToValidate="ddlSpoorTrams" ForeColor="Red" ValidationGroup="2" runat="server" ErrorMessage=""></asp:RequiredFieldValidator>
                     </div>
                     <div class="form-group">
                         <asp:Button ID="spoorbeheerbevestig" CssClass="btn btn-default" ValidationGroup="2" runat="server" Text="Bevestig" OnClick="spoorbeheerbevestig_Click" />

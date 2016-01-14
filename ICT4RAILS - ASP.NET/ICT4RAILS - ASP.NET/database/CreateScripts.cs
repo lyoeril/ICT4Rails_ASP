@@ -97,20 +97,16 @@ namespace ICT4RAILS___ASP.NET.database
             int medewerkerid = Convert.ToInt32(reader["Medewerker_ID"]);
             int tramid = Convert.ToInt32(reader["Tram_ID"]);
             var datetime = reader["DatumTijdstip"];
-            var beschikbaardatetime = reader["BeschikbaarDatum"];
+            DateTime beschikbaardatetime = Convert.ToDateTime( reader["BeschikbaarDatum"]);
             string typeonderhoud = Convert.ToString(reader["TypeOnderhoud"]);
             DateTime? localdatetime = null;
             if (datetime != DBNull.Value)
             {
                 localdatetime = Convert.ToDateTime(datetime);
             }
-            DateTime localbeschikbaardatetime = new DateTime(0,0,0);
-            if (beschikbaardatetime != DBNull.Value)
-            {
-                localbeschikbaardatetime = Convert.ToDateTime(beschikbaardatetime);
-            }
+     
 
-            return new TramOnderhoud(id, localdatetime, localbeschikbaardatetime, typeonderhoud,medewerkerid, tramid);
+            return new TramOnderhoud(id, localdatetime, beschikbaardatetime, typeonderhoud,medewerkerid, tramid);
         }
 
         private Tram CreateTramFromReader(OracleDataReader reader)

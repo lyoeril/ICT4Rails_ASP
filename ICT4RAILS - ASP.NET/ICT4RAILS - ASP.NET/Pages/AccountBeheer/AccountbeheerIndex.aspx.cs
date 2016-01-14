@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ICT4RAILS___ASP.NET.Csharp;
 using System.Configuration;
+using System.Runtime.CompilerServices;
 
 namespace ICT4RAILS___ASP.NET.Pages
 {
@@ -20,9 +21,24 @@ namespace ICT4RAILS___ASP.NET.Pages
             _active = new ActiveDirectory();
 
             if (!this.IsPostBack)
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            try
             {
-                this.LoadInfo();
+                _admin = new Administratie();
+                if (!this.IsPostBack)
+                {
+                    this.LoadInfo();
+                }
             }
+            catch (Exception en)
+            {
+                Console.WriteLine(en.Message);
+            }
+
+
+
+
         }
 
         public void LoadInfo()

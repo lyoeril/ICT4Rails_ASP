@@ -33,14 +33,38 @@
                             <asp:TextBox type="number" ID="tbxEndHour" Width="40px" runat="server"></asp:TextBox>
                             <label>:</label>
                             <asp:TextBox type="number" ID="tbxEndMinute" Width="40px" runat="server"></asp:TextBox>
-                            <br/>
-                            <br/>
-                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server" OnClick="btnBevestigOnderhoud_OnClick"/>
+                            <br />
+                            <br />
+                            <asp:Button ID="btnBevestigOnderhoud" CssClass="btn btn-default" Text="Bevestig Onderhoud" runat="server" OnClick="btnBevestigOnderhoud_OnClick" />
                         </div>
                         <h1>Huidige onderhouden</h1>
                         <div class="form-group">
-                            <asp:ListBox id="lbHuidigeOnderhouden" CssClass="form-control" runat="server"/>
-                            <asp:Button ID="btnBevestigEindOnderhoud" CssClass="btn btn-default" runat="server" OnClick="btnBevestigEindOnderhoud_OnClick"/>
+                            <asp:Table ID="Table1"
+                                GridLines="Both"
+                                HorizontalAlign="Center"
+                                Font-Names="Verdana"
+                                Font-Size="8pt"
+                                CellPadding="15"
+                                CellSpacing="0"
+                                runat="server" />
+                            </br>
+                            <label>Te voltooien onderhoudID:</label>
+                            <asp:TextBox runat="server" type="number" CssClass="form-control" ID="tbxOnderhoudIdToEnd"></asp:TextBox> 
+                            <asp:Button ID="btnBevestigEindOnderhoud" Text="Bevestig geslaagd onderhoud" CssClass="btn btn-default" runat="server" OnClick="btnBevestigEindOnderhoud_OnClick" />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Geschiedenis</label>
+                            <asp:Table ID="tableGeschiedenis"
+                                GridLines="Both"
+                                HorizontalAlign="Center"
+                                Font-Names="Verdana"
+                                Font-Size="8pt"
+                                CellPadding="15"
+                                CellSpacing="0"
+                                runat="server" />
+                            </br>
+                            
                         </div>
                     </div>
                 </div>
