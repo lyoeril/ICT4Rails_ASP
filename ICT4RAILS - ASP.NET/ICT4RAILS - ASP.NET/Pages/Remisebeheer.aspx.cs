@@ -138,7 +138,7 @@ namespace ICT4RAILS___ASP.NET.Pages
 
                 foreach (Sector sectorToUpdate in _sectoren)
                 {
-                    sectorToUpdate.Blokkade = true;
+                    sectorToUpdate.Blokkade = false;
                     sectorToUpdate.Tram = null;
                     admin.UpdateSector(sectorToUpdate);
                 }
