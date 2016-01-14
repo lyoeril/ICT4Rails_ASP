@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-offset-1 col-md-5" style="border: 2px solid grey; float: left;">
+                <div class="col-md-offset-1 col-md-5" float: left"/>
                     <h2>Onderhoud toevoegen</h2>
                     <div class="form-group">
                         <label class="control-label col-sm-5">Tramnummer:</label>
@@ -67,7 +67,7 @@
                             <asp:ListBox ID="lbTramsOnderhoud" Width="100%" runat="server" />
                         </div>
                     </div>
-                </div>
+                
             </div>
         </div>
     </form>

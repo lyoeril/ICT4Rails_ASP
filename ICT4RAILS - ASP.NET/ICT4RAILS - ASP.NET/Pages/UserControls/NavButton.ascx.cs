@@ -18,7 +18,7 @@ namespace ICT4RAILS___ASP.NET.Pages.UserControls
             string navUrl = title;
             if (title == "AccountBeheer")
             {
-                navUrl = "AccountBeheer/AccountbeheerIndex";
+                navUrl = "AccountIndex";
             }
             navLi.Attributes.Add("class", title.ToLower());
             HyperLink hyper = new HyperLink

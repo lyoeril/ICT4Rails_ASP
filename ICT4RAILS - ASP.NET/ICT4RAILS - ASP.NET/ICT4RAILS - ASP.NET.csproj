@@ -84,8 +84,7 @@
     <Content Include="Images\Icons\TramIcon.png" />
     <Content Include="JS\Overzicht.js" />
     <Content Include="packages.config" />
-    <Content Include="Pages\AccountBeheer\AccountbeheerIndex.aspx" />
-    <Content Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx" />
+    <Content Include="Pages\AccountMedewerkerAanmaken.aspx" />
     <Content Include="Pages\ConducteurScherm.aspx" />
     <Content Include="Pages\Index.aspx" />
     <Content Include="Pages\MasterPage.Master" />
@@ -94,7 +93,6 @@
     <Content Include="Pages\Remisebeheer.aspx" />
     <Content Include="Pages\Statusbeheer.aspx" />
     <Content Include="Pages\SubMasterPage.master" />
-    <Content Include="Pages\AccountBeheerMaster.master" />
     <None Include="Properties\PublishProfiles\123.pubxml" />
     <None Include="Properties\PublishProfiles\Jemoeder.pubxml" />
     <None Include="Web.Debug.config">
@@ -109,6 +107,8 @@
     <Content Include="CSS\Login.css" />
     <Content Include="JS\bootstrap.js" />
     <Content Include="Pages\UserControls\NavButton.ascx" />
+    <Content Include="Pages\AccountIndex.aspx" />
+    <Content Include="Pages\AccountAanmaken.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -138,25 +138,11 @@
     <Compile Include="Database\InsertScripts.cs" />
     <Compile Include="Database\SelectScripts.cs" />
     <Compile Include="Database\UpdateScripts.cs" />
-    <Compile Include="Pages\AccountBeheer\AccountbeheerIndex.aspx.cs">
-      <DependentUpon>AccountbeheerIndex.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountbeheerIndex.aspx.designer.cs">
-      <DependentUpon>AccountbeheerIndex.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AccountBeheerMaster.master.cs">
-      <DependentUpon>AccountBeheerMaster.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\AccountBeheerMaster.master.designer.cs">
-      <DependentUpon>AccountBeheerMaster.master</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx.cs">
+    <Compile Include="Pages\AccountMedewerkerAanmaken.aspx.cs">
       <DependentUpon>AccountMedewerkerAanmaken.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\AccountBeheer\AccountMedewerkerAanmaken.aspx.designer.cs">
+    <Compile Include="Pages\AccountMedewerkerAanmaken.aspx.designer.cs">
       <DependentUpon>AccountMedewerkerAanmaken.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\ConducteurScherm.aspx.cs">
@@ -221,6 +207,20 @@
     </Compile>
     <Compile Include="Pages\UserControls\NavButton.ascx.designer.cs">
       <DependentUpon>NavButton.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountIndex.aspx.cs">
+      <DependentUpon>AccountIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AccountIndex.aspx.designer.cs">
+      <DependentUpon>AccountIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AccountAanmaken.aspx.cs">
+      <DependentUpon>AccountAanmaken.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AccountAanmaken.aspx.designer.cs">
+      <DependentUpon>AccountAanmaken.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

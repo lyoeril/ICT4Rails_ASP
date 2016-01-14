@@ -10,7 +10,7 @@
 namespace ICT4RAILS___ASP.NET.Pages {
     
     
-    public partial class Accountbeheer {
+    public partial class WebForm1 {
         
         /// <summary>
         /// GridMedewerker1 control.
@@ -20,5 +20,14 @@ namespace ICT4RAILS___ASP.NET.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridMedewerker1;
+        
+        /// <summary>
+        /// NaarAccountAanmaken control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button NaarAccountAanmaken;
     }
 }

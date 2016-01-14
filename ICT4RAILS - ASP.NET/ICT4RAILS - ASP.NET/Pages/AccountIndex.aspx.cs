@@ -5,15 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ICT4RAILS___ASP.NET.Csharp;
-using System.Configuration;
-using System.Runtime.CompilerServices;
 
 namespace ICT4RAILS___ASP.NET.Pages
 {
-    public partial class Accountbeheer : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         private Administratie _admin;
-        private ActiveDirectory _active;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,8 +43,8 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             int medewerkerid = Convert.ToInt32(GridMedewerker1.DataKeys[e.RowIndex].Values[0]);
             Medewerker medewerker = _admin.FindMedewerker(medewerkerid);
-                _admin.RemoveMedewerker(medewerker);
-                this.LoadInfo();
+            _admin.RemoveMedewerker(medewerker);
+            this.LoadInfo();
         }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -62,6 +59,11 @@ namespace ICT4RAILS___ASP.NET.Pages
         {
             GridMedewerker1.EditIndex = e.NewEditIndex; // turn to edit mode
             LoadInfo();
+        }
+
+        protected void NaarAccountAanmaken_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Pages/AccountAanmaken.aspx");
         }
     }
 }
