@@ -12,13 +12,18 @@ namespace ICT4RAILS___ASP.NET.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string user = (string)Session["loginName"];
+            if (user == null)
+            {
+                Session.Clear();
+                Response.Redirect("~/Pages/Index.aspx");
+            }
             LoadNav();
         }
 
         private void LoadNav()
         {
-            //int functie = (int)Session["functieID"];
-            int functie = 1;
+            int functie = (int)Session["functieID"];
 
             NavButton overzicht = (NavButton)LoadControl("~/Pages/UserControls/NavButton.ascx");
             overzicht.Title = "Overzicht";

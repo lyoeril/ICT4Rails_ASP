@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/SubMasterPage.master" AutoEventWireup="true" CodeBehind="AccountIndex.aspx.cs" Inherits="ICT4RAILS___ASP.NET.Pages.WebForm1" %>
+﻿<%@ Page Title="Account Beheer" Language="C#" MasterPageFile="~/Pages/SubMasterPage.master" AutoEventWireup="true" CodeBehind="AccountIndex.aspx.cs" Inherits="ICT4RAILS___ASP.NET.Pages.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="CSS" runat="server">
+    <link rel="stylesheet" href="/css/Accountbeheer.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPHBody" runat="server">
     <form runat="server">
