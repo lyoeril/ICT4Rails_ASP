@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NavButton.ascx.cs" Inherits="ICT4RAILS___ASP.NET.Pages.UserControls.NavButton" %>
+<li id="navLi" runat="server"><asp:PlaceHolder ID="navPH" runat="server"/></li>
