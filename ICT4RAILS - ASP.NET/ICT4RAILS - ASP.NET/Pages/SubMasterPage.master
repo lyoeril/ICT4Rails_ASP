@@ -7,20 +7,21 @@
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand logo" href="/Pages/Overzicht.aspx"><img src="/Images/Icons/TramIcon.png"/></a>
+                <a class="navbar-brand logo" href="/Pages/Index.aspx"><img src="/Images/Icons/TramIcon.png"/></a>
                 <!--<a class="navbar-brand" href="Overzicht.aspx">ICT4Rails</a>!-->
             </div>
             <ul class="nav navbar-nav">
-                <li class="overzicht"><a href="/Pages/Overzicht.aspx">Overzicht</a></li>
+                <%--<li class="overzicht"><a href="/Pages/Overzicht.aspx">Overzicht</a></li>
                 <li class="onderhoud"><a href="/Pages/Onderhoud.aspx">Onderhoud</a></li>
                 <li class="statusbeheer"><a href="/Pages/Statusbeheer.aspx">Statusbeheer</a></li>
                 <li class="accountbeheer"><a href="/Pages/AccountBeheer/AccountbeheerIndex.aspx">Accountbeheer</a></li>
-                <li class="remisebeheer"><a href="/Pages/Remisebeheer.aspx">Remisebeheer</a></li>
+                <li class="remisebeheer"><a href="/Pages/Remisebeheer.aspx">Remisebeheer</a></li>--%>
+                <asp:PlaceHolder ID="navBar" runat="server"/>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="login"><a href="/Pages/Index.aspx">Uitloggen</a></li>
             </ul>
         </div>
     </nav>
-    <asp:ContentPlaceHolder ID="CPHBody" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="CPHBody" runat="server"/>
 </asp:Content>
