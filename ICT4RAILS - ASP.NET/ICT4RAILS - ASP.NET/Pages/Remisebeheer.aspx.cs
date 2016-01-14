@@ -43,19 +43,28 @@ namespace ICT4RAILS___ASP.NET.Pages
             foreach (Tram tram in admin.Remise.Trams.Where(tram => tram.ID.ToString() == ddlTrams.SelectedItem.Value))
             {
                 t = tram;
-                t.Status = ddlTrambeheerBewerking.SelectedItem.Text;
-
-                t.Defect = cbDefect.Checked == true;
-
-                t.Vervuild = cbVervuild.Checked == true;
-
-                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Remise")
+                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Remise" && t.Status =="DIENST")
+                {
+                    t.Status = ddlTrambeheerBewerking.SelectedItem.Text;
+                    t.Defect = cbDefect.Checked;
+                    t.Vervuild = cbVervuild.Checked;
+                    admin.LijnenInit();
+                    admin.SorteerTram(t);
+                    admin.UpdateTram(t);
+                    break;
+                }
+                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Dienst" && t.Status =="REMISE")
                 {
                     admin.LijnenInit();
                     admin.SorteerTram(t);
+                    t.Status = ddlTrambeheerBewerking.SelectedItem.Text;
+                    t.Defect = cbDefect.Checked;
+                    t.Vervuild = cbVervuild.Checked;
+                    admin.UpdateTram(t);
+                    break;
                 }
-                admin.UpdateTram(t);
-                break;
+
+                Response.Write("<script>alert('De tram heeft moet een andere status krijgen!')</script>");
             }
         }
 
