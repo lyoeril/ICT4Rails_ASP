@@ -12,5 +12,11 @@ namespace ICT4RAILS___ASP.NET.Csharp
             data.InsertTramOnderhoud(tramOnderhoud);
             return true;
         }
+
+        public bool AddMedeweker(Medewerker medewerker)
+        {
+            data.InsertMedewerker(medewerker);
+            return true;
+        }
     }
 }

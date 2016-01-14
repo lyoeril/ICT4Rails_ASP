@@ -6,9 +6,9 @@
      <form class="form-signin" runat="server">
             <h2 class="form-signin-heading">Inloggen</h2>
             <label for="inputEmail" class="sr-only">Email address</label>
-            <asp:TextBox ID="txtInputUsername" runat="server" CssClass="form-control" placeholder ="Gebruikersnaam" required="" autofocus=""></asp:TextBox>
+            <asp:TextBox ID="txtInputUsername" runat="server" CssClass="form-control" placeholder ="Gebruikersnaam" required="" autofocus="" > </asp:TextBox>
             <label for="inputPassword" class="sr-only">Password</label>
-            <asp:TextBox ID="txtInputPassword" runat="server" CssClass="form-control" placeholder ="Wachtwoord" required="" autofocus=""></asp:TextBox>
+            <asp:TextBox ID="txtInputPassword" runat="server" CssClass="form-control" placeholder ="Wachtwoord" required="" autofocus="" TextMode="password"></asp:TextBox>
             <div class="checkbox">
              </div>
             <asp:Button ID="bttnInloggen" runat="server" Text="Inloggen" CssClass="btn btn-lg btn-primary btn-block" type ="submit" OnClick="bttnInloggen_Click"/>

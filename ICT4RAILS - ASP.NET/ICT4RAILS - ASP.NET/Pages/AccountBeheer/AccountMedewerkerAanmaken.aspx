@@ -25,8 +25,14 @@
                         </asp:DropDownList>
                     </div>
                 <div class="form-group">
-                        <label for="txtMederwerkerWachtwoord">Medewerker wachtwoord:</label>
-                        <asp:TextBox CssClass="form-control" ID="txtMederwerkerWachtwoord" required="" runat="server"></asp:TextBox>
+                        <label for="txtMederwerkerWachtwoord1">Medewerker wachtwoord:</label>
+                        <asp:TextBox CssClass="form-control" ID="txtMederwerkerWachtwoord1" required="" runat="server" TextMode="password" ></asp:TextBox>
+                        <label for="txtMederwerkerWachtwoord2">Bevestig wachtwoord:</label>
+                        <asp:TextBox CssClass="form-control" ID="txtMederwerkerWachtwoord2" required="" runat="server" TextMode="password" ></asp:TextBox>
+                        <asp:CompareValidator runat=server
+                                controltovalidate="txtMederwerkerWachtwoord1"
+                                controltocompare="txtMederwerkerWachtwoord2" 
+                                CssClass="Error" errormessage="Wachtwoorden komen niet overheen."/>
                     </div>
                     <br />
                     <div class="form-group">

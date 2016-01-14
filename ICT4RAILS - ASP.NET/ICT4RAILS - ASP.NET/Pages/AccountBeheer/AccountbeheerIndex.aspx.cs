@@ -12,10 +12,12 @@ namespace ICT4RAILS___ASP.NET.Pages
     public partial class Accountbeheer : System.Web.UI.Page
     {
         private Administratie _admin;
+        private ActiveDirectory _active;
         
         protected void Page_Load(object sender, EventArgs e)
         {
             _admin = new Administratie();
+            _active = new ActiveDirectory();
 
             if (!this.IsPostBack)
             {
@@ -37,16 +39,16 @@ namespace ICT4RAILS___ASP.NET.Pages
         protected void GridMedewerker1_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int medewerkerid = Convert.ToInt32(GridMedewerker1.DataKeys[e.RowIndex].Values[0]);
-
-            _admin.RemoveMedewerker(_admin.FindMedewerker((medewerkerid)));
-            this.LoadInfo();
+            Medewerker medewerker = _admin.FindMedewerker(medewerkerid);
+                _admin.RemoveMedewerker(medewerker);
+                this.LoadInfo();
         }
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridMedewerker1.EditIndex)
             {
-                (e.Row.Cells[0].Controls[0] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
+                (e.Row.Cells[0].Controls[0] as LinkButton).Attributes["onclick"] = "return confirm('Wilt u deze medewerker verwijderen?');";
             }
         }
 
