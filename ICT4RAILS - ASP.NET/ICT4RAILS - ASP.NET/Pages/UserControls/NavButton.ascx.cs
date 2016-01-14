@@ -9,16 +9,18 @@ namespace ICT4RAILS___ASP.NET.Pages.UserControls
 {
     public partial class NavButton : System.Web.UI.UserControl
     {
-        private string title;
+        private string title = "";
 
-        public string Title { get { return title;} set { title = value; } }
+        public string Title { get { return title; } set { title = value; } }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             navLi.Attributes.Add("class", title.ToLower());
-            HyperLink hyper = new HyperLink();
-            hyper.Target = "/Pages/" + title + ".aspx";
-            hyper.Text = title;
+            HyperLink hyper = new HyperLink
+            {
+                Target = "/Pages/" + title + ".aspx",
+                Text = title
+            };
             navPH.Controls.Add(hyper);
         }
     }
