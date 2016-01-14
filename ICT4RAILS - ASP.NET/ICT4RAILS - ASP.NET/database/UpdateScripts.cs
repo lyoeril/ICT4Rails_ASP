@@ -55,7 +55,7 @@ namespace ICT4RAILS___ASP.NET.database
         {
             using (OracleConnection connection = Connection)
             {
-                string query = "UPDATE TRAM SET \"Status\" = :STATUS WHERE ID = :TRAMID";
+                string query = "UPDATE TRAM SET \"Status\" = UPPER(:STATUS) WHERE ID = :TRAMID";
                 using (OracleCommand command = new OracleCommand(query, connection))
                 {
                     command.Parameters.Add(new OracleParameter("STATUS", status));
@@ -99,7 +99,7 @@ namespace ICT4RAILS___ASP.NET.database
             using (OracleConnection connection = Connection)
             {
 
-                string Update = "UPDATE TRAM SET \"Tramtype_ID\"=:TRAMTYPEID, \"Nummer\"=:NUMMER, \"Lengte\"=:LENGTE, \"Status\"=:STATUS,\"Vervuild\"=:VERVUILD, \"Defect\"=:DEFECT,\"ConducteurGeschikt\"=:CONDUCTEUR,\"Beschikbaar\"=:BESCHIKBAAR WHERE \"ID\"=:ID";
+                string Update = "UPDATE TRAM SET \"Tramtype_ID\"=:TRAMTYPEID, \"Nummer\"=:NUMMER, \"Lengte\"=:LENGTE, \"Status\"= UPPER(:STATUS),\"Vervuild\"=:VERVUILD, \"Defect\"=:DEFECT,\"ConducteurGeschikt\"=:CONDUCTEUR,\"Beschikbaar\"=:BESCHIKBAAR WHERE \"ID\"=:ID";
                 using (OracleCommand command = new OracleCommand(Update, connection))
                 {
                     command.Parameters.Add(new OracleParameter("TRAMTYPEID", tram.TramType.ID));
