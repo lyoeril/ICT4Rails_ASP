@@ -17,26 +17,26 @@ namespace ICT4RAILS___ASP.NET.Pages
             _admin = new Administratie();
             if (!IsPostBack)
             {
-                ShowName();
+                //ShowName();
             }
         }
 
-        private void ShowName()
-        {
-            string loginName = (string)Session["loginName"];
-            if (loginName != null)
-            {
-                foreach (Medewerker m in _admin.Medewerkers)
-                {
-                    if (m.Naam == loginName)
-                    {
-                        //HtmlGenericControl p = new HtmlGenericControl("p");
-                        //p.InnerText = "Logged in as: " + m.Naam + " - " + m.Functie.Naam;
-                        Labelname.Text = m.Naam + " - " + m.Functie.Naam;
-                        break;
-                    }
-                }
-            }
-        }
+        //private void ShowName()
+        //{
+        //    string loginName = (string)Session["loginName"];
+        //    if (loginName != null)
+        //    {
+        //        foreach (Medewerker m in _admin.Medewerkers)
+        //        {
+        //            if (m.Naam == loginName)
+        //            {
+        //                //HtmlGenericControl p = new HtmlGenericControl("p");
+        //                //p.InnerText = "Logged in as: " + m.Naam + " - " + m.Functie.Naam;
+        //                Labelname.Text = m.Naam + " - " + m.Functie.Naam;
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

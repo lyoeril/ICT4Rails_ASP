@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/AccountBeheer/AccountBeheerMaster.master" AutoEventWireup="true" CodeBehind="AccountMedewerkerAanmaken.aspx.cs" Inherits="ICT4RAILS___ASP.NET.Pages.AccountBeheer.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/AccountBeheerMaster.master" AutoEventWireup="true" CodeBehind="AccountMedewerkerAanmaken.aspx.cs" Inherits="ICT4RAILS___ASP.NET.Pages.AccountBeheer.WebForm2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
      <form runat="server">
         <div class="container">

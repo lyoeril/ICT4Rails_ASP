@@ -50,6 +50,9 @@ namespace ICT4RAILS___ASP.NET.database
                     command.Parameters.Add(new OracleParameter("ACCOUNTNAAM", medewerker.Naam));
                     command.ExecuteNonQuery();
                     return true;
+                }
+            }
+        }
 
         public void InsertReservering(Reservering reservering)
         {

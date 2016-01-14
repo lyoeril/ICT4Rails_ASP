@@ -11,11 +11,13 @@ namespace ICT4RAILS___ASP.NET.Pages
 {
     public partial class Index : System.Web.UI.Page
     {
-        private ActiveDirectory active;
+        private ActiveDirectory _active;
+        private Administratie _admin;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            active = new ActiveDirectory();
+            _active = new ActiveDirectory();
+            _admin = new Administratie();
 
             if (Request.Url.ToString().EndsWith("?logout"))
             {
@@ -25,13 +27,17 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         protected void bttnInloggen_Click(object sender, EventArgs e)
         {
-            string Username = txtInputUsername.Text;
-            string Password = txtInputPassword.Text;
+            string username = txtInputUsername.Text;
+            string password = txtInputPassword.Text;
 
             try
             {
-                if (active.ValidateUser(Username, Password))
+                if (_active.ValidateUser(username, password))
                 {
+                    Medewerker m = null;
+                    m = _admin.FindFunctie(txtInputUsername.Text);
+                    Session["functieID"] = m.FunctieId;
+                    Session["functie"] = m.Functie;
                     Session["loginName"] = txtInputUsername.Text;
                     Response.Redirect("~/Pages/Overzicht.aspx");
                 }
