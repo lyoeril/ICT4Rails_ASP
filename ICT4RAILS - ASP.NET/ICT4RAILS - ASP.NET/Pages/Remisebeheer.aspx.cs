@@ -20,11 +20,12 @@ namespace ICT4RAILS___ASP.NET.Pages
                 RequiredFieldValidator7.Enabled = false;
                 ddlSectoren.Enabled = false;
                 RequiredFieldValidator3.Enabled = false;
+
                 // Tram DropDownList + FieldValidator enablen wanneer 'Reserveren' is geselecteerd
-                ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
-                RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
-                ddlSectoren.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text != "Reserveren";
-                RequiredFieldValidator3.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text != "Reserveren";
+                ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "RESERVEREN";
+                RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "RESERVEREN";
+                ddlSectoren.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() != "RESERVEREN";
+                RequiredFieldValidator3.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() != "RESERVEREN";
             }
             catch (Exception en)
             {
@@ -47,7 +48,7 @@ namespace ICT4RAILS___ASP.NET.Pages
             foreach (Tram tram in admin.Remise.Trams.Where(tram => tram.ID.ToString() == ddlTrams.SelectedItem.Value))
             {
                 t = tram;
-                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Remise" && t.Status =="DIENST")
+                if (ddlTrambeheerBewerking.SelectedItem.ToString().ToUpper() == "REMISE" && t.Status.ToUpper() =="DIENST")
                 {
                     t.Status = ddlTrambeheerBewerking.SelectedItem.Text;
                     t.Defect = cbDefect.Checked;
@@ -57,7 +58,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                     admin.UpdateTram(t);
                     break;
                 }
-                if (ddlTrambeheerBewerking.SelectedItem.ToString() == "Dienst" && t.Status =="REMISE")
+                if (ddlTrambeheerBewerking.SelectedItem.ToString().ToUpper() == "DIENST" && t.Status.ToUpper() == "REMISE")
                 {
                     admin.LijnenInit();
                     admin.SorteerTram(t);
@@ -88,7 +89,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                 }
             }
 
-            if (ddlSpoorbeheerBewerking.SelectedItem.Text == "Blokkeren")
+            if (ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "BLOKKEREN")
             {
                 _sectoren.AddRange(_spoor.Sectoren.Where(sector => sector.Nummer <= _sector.Nummer));
 
@@ -104,7 +105,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                     admin.UpdateSector(sectorToUpdate);
                 }
             }
-            else if (ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren")
+            else if (ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "RESERVEREN")
             {
                 //OLD TEUN
                 //foreach (Sector sector in _spoor.Sectoren)
@@ -136,7 +137,7 @@ namespace ICT4RAILS___ASP.NET.Pages
                     }
                 }
             }
-            else if (ddlSpoorbeheerBewerking.SelectedItem.Text == "Deblokkeren")
+            else if (ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "DEBLOKKEREN")
             {
                 _sectoren.AddRange(_spoor.Sectoren.Where(sector => sector.Nummer >= _sector.Nummer));
 
@@ -178,8 +179,8 @@ namespace ICT4RAILS___ASP.NET.Pages
 
         protected void ddlSpoorbeheerBewerking_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
-            RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+            ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "RESERVEREN";
+            RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text.ToUpper() == "RESERVEREN";
         }
 
         protected void ddlSporen_SelectedIndexChanged(object sender, EventArgs e)
