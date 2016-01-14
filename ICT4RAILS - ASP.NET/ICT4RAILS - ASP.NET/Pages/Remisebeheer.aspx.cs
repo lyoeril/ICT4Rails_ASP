@@ -18,9 +18,13 @@ namespace ICT4RAILS___ASP.NET.Pages
                 VulLijsten();
                 ddlSpoorTrams.Enabled = false;
                 RequiredFieldValidator7.Enabled = false;
+                ddlSectoren.Enabled = false;
+                RequiredFieldValidator3.Enabled = false;
                 // Tram DropDownList + FieldValidator enablen wanneer 'Reserveren' is geselecteerd
                 ddlSpoorTrams.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
                 RequiredFieldValidator7.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text == "Reserveren";
+                ddlSectoren.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text != "Reserveren";
+                RequiredFieldValidator3.Enabled = ddlSpoorbeheerBewerking.SelectedItem.Text != "Reserveren";
             }
             catch (Exception en)
             {
